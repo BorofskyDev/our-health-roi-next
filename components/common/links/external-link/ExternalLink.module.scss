@@ -1,6 +1,6 @@
 @use '@/styles/abstracts/mixins/' as *;
 
-.external-link {
+.externalLink {
   position: relative;
   padding: var(--spacing-8) var(--spacing-16);
   text-transform: capitalize;

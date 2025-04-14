@@ -1,0 +1,7 @@
+@use '@/styles/abstracts/mixins' as *;
+
+.resultsList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-44);
+}

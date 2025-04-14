@@ -1,10 +1,9 @@
-@use '@/styles/abstracts/mixins/' as *;
-
-.list-item {
+.resultsListItem {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: var(--spacing-24);
 
   & span {
     text-align: right;
