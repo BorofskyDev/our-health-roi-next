@@ -1,1 +1,1 @@
-export { FlexColSection } from './FlexColSection'
+export { FlexColSection } from './flex-col-section/FlexColSection'

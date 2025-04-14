@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Libre_Franklin, Inter } from 'next/font/google'
 import '@/styles/index.scss'
+import { Providers } from './providers'
 
 const libreFranklin = Libre_Franklin({
   variable: '--font-libre-franklin',
@@ -28,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={`${libreFranklin.variable} ${inter.variable}`}>
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   )
