@@ -4,7 +4,7 @@ import { DialogTitle } from '@headlessui/react'
 import { ReactNode } from 'react'
 import { ParagraphTitle } from '@/components/common/headers'
 import { BodyText } from '@/components/common/body-typography'
-import { useModal } from '@/components/modals/ModalContext'
+import { useModal } from '@/context/ModalContext'
 import { CloseButton } from '@/components/common/buttons/close-button/CloseButton'
 
 type ModalShellProps = {

@@ -1,9 +1,14 @@
 'use client'
 
-import { Dialog, Transition, TransitionChild, DialogBackdrop } from '@headlessui/react'
+import {
+  Dialog,
+  Transition,
+  TransitionChild,
+  DialogBackdrop,
+} from '@headlessui/react'
 import { motion } from 'framer-motion'
 import { Fragment, ReactNode } from 'react'
-import { useModal } from './ModalContext'
+import { useModal } from '../../context/ModalContext'
 import styles from './ModalRoot.module.scss'
 
 export const ModalRoot = ({ children }: { children: ReactNode }) => {
@@ -12,11 +17,7 @@ export const ModalRoot = ({ children }: { children: ReactNode }) => {
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
-      <Dialog
-        as='div'
-        className={styles.modalRoot}
-        onClose={closeModal}
-      >
+      <Dialog as='div' className={styles.modalRoot} onClose={closeModal}>
         <TransitionChild
           as={Fragment}
           enter='ease-out duration-200'

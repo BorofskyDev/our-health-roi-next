@@ -5,7 +5,7 @@ import {
   useContext,
   useState,
 } from 'react'
-import { ModalRoot } from './ModalRoot'
+import { ModalRoot } from '@/components/modals/ModalRoot'
 
 type ModalState = ReactNode | null
 

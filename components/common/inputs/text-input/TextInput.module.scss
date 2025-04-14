@@ -9,15 +9,12 @@
   flex-direction: column;
   align-items: center;
 
-  &:hover .hint,
-  &:focus-within .hint {
+  &:hover .hint{
     opacity: 1;
     pointer-events: auto;
   }
 
-  &:focus-within .hint {
-    @include focused;
-  }
+ 
 }
 
 .textInput {

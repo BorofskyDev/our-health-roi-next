@@ -1,5 +1,15 @@
-// components/modals/EmailRepModal.tsx
+// components/modals/contact-congress/EmailRepModal.tsx
 import { ModalShell } from '../contact-modal-shell/ContactModalShell'
-export const EmailRepModal = () => (
-  <ModalShell title='Email Your Representative' />
+import { EmailRepBody } from './EmailRepBody'
+import { ResearchCounts } from '@/lib/utils/emailTemplates'
+
+type Props = {
+  searchTerm: string
+  research: ResearchCounts
+}
+
+export const EmailRepModal = ({ searchTerm, research }: Props) => (
+  <ModalShell title='Email Your Representative'>
+    <EmailRepBody searchTerm={searchTerm} research={research} />
+  </ModalShell>
 )
