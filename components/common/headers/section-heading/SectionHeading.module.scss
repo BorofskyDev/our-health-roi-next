@@ -1,0 +1,6 @@
+@use '@/styles/abstracts/mixins' as *;
+
+
+.sectionHeading {
+    @include heading-style(3);
+}
