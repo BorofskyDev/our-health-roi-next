@@ -1,18 +1,7 @@
-// components/modals/EmailRepModal.tsx
-import { DialogTitle } from '@headlessui/react'
-import { useModal } from '@/components/modals/ModalContext'
+// components/modals/contact-congress/call-rep-modal/CallRepModal.tsx
 
-export const CallRepModal = () => {
-  const { closeModal } = useModal()
-  return (
-    <>
-      <DialogTitle className='h4 mb-16'>Call Your Representative</DialogTitle>
-      <p className='body-text mb-24'>Form letter & inputs will live here.</p>
-      <button className='cta-btn' onClick={closeModal}>
-        Close
-      </button>
-    </>
-  )
-}
+import { ModalShell } from '../contact-modal-shell/ContactModalShell'
 
-// Duplicate & tweak for CallRepModal, EmailSenatorsModal, CallSenatorsModal
+export const CallRepModal = () => (
+  <ModalShell title='Call Your Representative' />
+)

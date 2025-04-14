@@ -4,10 +4,12 @@ import { BodyText } from '@/components/common/body-typography'
 import { FlexColSection } from '@/components/layout/sections'
 import { ContactContainer } from '@/components/containers/containers/contact-container/ContactContainer'
 import { useModal } from '@/components/modals/ModalContext'
-import { EmailRepModal } from '@/components/modals/contact-congress/email-rep-modal/EmailRepModal'
-import { CallRepModal } from '@/components/modals/contact-congress/call-rep-modal/CallRepModal'
-import { EmailSenatorsModal } from '@/components/modals/contact-congress/email-senators-modal/EmailSenatorsModal'
-import { CallSenatorsModal } from '@/components/modals/contact-congress/call-senators-modal/CallSenatorsModal'
+import {
+  CallRepModal,
+  CallSenatorsModal,
+  EmailRepModal,
+  EmailSenatorsModal,
+} from '@/components/modals/contact-congress'
 
 export const CTASection = () => {
   const { openModal } = useModal()

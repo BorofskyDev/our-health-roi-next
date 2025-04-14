@@ -4,6 +4,7 @@ import { Dialog, Transition, TransitionChild, DialogBackdrop } from '@headlessui
 import { motion } from 'framer-motion'
 import { Fragment, ReactNode } from 'react'
 import { useModal } from './ModalContext'
+import styles from './ModalRoot.module.scss'
 
 export const ModalRoot = ({ children }: { children: ReactNode }) => {
   const { closeModal } = useModal()
@@ -13,7 +14,7 @@ export const ModalRoot = ({ children }: { children: ReactNode }) => {
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog
         as='div'
-        className='fixed inset-0 z-50 flex items-center justify-center'
+        className={styles.modalRoot}
         onClose={closeModal}
       >
         <TransitionChild
@@ -33,7 +34,7 @@ export const ModalRoot = ({ children }: { children: ReactNode }) => {
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.95, opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className='relative z-50 max-w-lg w-full bg-white rounded-lg p-24 shadow-xl'
+          className={styles.modalContent}
         >
           {children}
         </motion.div>

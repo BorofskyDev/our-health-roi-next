@@ -1,0 +1,23 @@
+@use '@/styles/abstracts/mixins' as *;
+
+.closeButton {
+  @include btnBase(var(--spacing-8), var(--spacing-16));
+  display: flex;
+  border-color: hsl(var(--color-primary));
+  background-color: hsl(var(--color-accent) / 0.25);
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-8);
+  transition: all 0.2s ease-in-out;
+
+  &:hover,
+  &:focus,
+  &:focus-within {
+    background-color: hsl(var(--color-accent) / 0.5);
+  }
+
+  &:focus-within,
+  &:focus {
+    @include focused;
+  }
+}
