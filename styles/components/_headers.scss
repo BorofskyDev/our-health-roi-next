@@ -1,0 +1,17 @@
+@use '@/styles/abstracts/mixins' as *;
+
+.main-header {
+    @include heading-style(1)
+}
+
+.section-title {
+   @include heading-style(2);
+}
+
+.section-heading {
+    @include heading-style(3);
+}
+
+.paragraph-heading {
+    @include heading-style(4);
+}

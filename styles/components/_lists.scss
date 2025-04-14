@@ -1,0 +1,12 @@
+@use '@/styles/abstracts/mixins/' as *;
+
+.list-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  & span {
+    text-align: right;
+  }
+}
