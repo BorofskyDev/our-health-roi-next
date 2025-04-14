@@ -4,6 +4,9 @@ import { useState, FormEvent } from 'react'
 import { SectionHeading } from '@/components/common/headers'
 import { FlexColSection } from '@/components/layout/sections'
 import { ResultsList } from './results-list/ResultsList'
+import { CTAButton } from '@/components/common/buttons'
+import { TextInput } from '@/components/common/inputs'
+import styles from './SearchForm.module.scss'
 
 export type SearchResults = {
   projects: {
@@ -58,29 +61,28 @@ export const SearchForm = () => {
     <>
       {/* Search Section */}
       <FlexColSection id='search'>
-        <SectionHeading>Enter Your Condition</SectionHeading>
-        <form onSubmit={handleSearch}>
-          <div className='input-group'>
-            <label htmlFor='condition' className='visually-hidden'>
-              Search for a health condition
-            </label>
-            <input
-              className='primary-input'
-              id='condition'
-              name='condition'
-              placeholder='e.g. melanoma'
-              aria-describedby='condition-hint'
-              autoComplete='off'
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <div id='condition-hint' className='visually-hidden'>
-              Enter a health condition to review NIH research impact
-            </div>
-          </div>
-          <button className='cta-btn' type='submit' disabled={isLoading}>
-            {isLoading ? 'Searching...' : 'Search'}
-          </button>
+        <SectionHeading className='center'>
+          Enter a health condition to review NIH research impact
+        </SectionHeading>
+        <form className={styles.searchForm} onSubmit={handleSearch}>
+          <TextInput
+            id='condition'
+            name='condition'
+            label='Enter a health condition to review NIH research impact'
+            hideLabel
+            hint='Enter a health condition to review the NIH research impact, e.g. "melanoma"'
+            placeholder='e.g. melanoma'
+            autoComplete='off'
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <CTAButton
+            type='submit'
+            isLoading={isLoading}
+            loadingText='Searching..'
+          >
+            Search
+          </CTAButton>
         </form>
 
         {error && (

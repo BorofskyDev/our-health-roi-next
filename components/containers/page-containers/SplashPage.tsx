@@ -1,8 +1,11 @@
+// components/containers/page-containers/SplashPage.tsx
+
 import { PHeader, PageHeader, SectionTitle } from '@/components/common/headers'
 import { FlexColSection } from '@/components/layout/sections'
 import { SearchForm } from '@/components/layout/forms'
 import { Page } from '@/components/layout/page/Page'
 import { BodyText } from '@/components/common/body-typography'
+import { ContactContainer } from '../containers/contact-container/ContactContainer'
 
 const SplashPage = () => {
   return (
@@ -29,6 +32,28 @@ const SplashPage = () => {
           them for past support, and urge them to protect and grow NIH funding.
           Our personal message can keep the breakthroughs coming.
         </BodyText>
+        <ContactContainer
+          title='Contact Your Representative'
+          findLink={{
+            href: 'https://www.house.gov/representatives/find-your-representative',
+            text: 'Find My Representative',
+            ariaLabel:
+              'Visit site to find your U.S. Congressional Representative (opens in a new tab)',
+          }}
+          emailButton={{ text: 'Email My Rep', id: 'emailRepBtn' }}
+          callButton={{ text: 'Call My Rep', id: 'callRepBtn' }}
+        />
+        <ContactContainer
+          title='Contact Your Senators'
+          findLink={{
+            href: 'https://www.senate.gov/senators/senators-contact.htm',
+            text: 'Find My Senators',
+            ariaLabel:
+              'Visit site to find your U.S. Senators (opens in a new tab)',
+          }}
+          emailButton={{ text: 'Email My Senators', id: 'emailSenatorsBtn' }}
+          callButton={{ text: 'Call My Senators', id: 'callSenatorsBtn' }}
+        />
       </FlexColSection>
 
       {/* Final CTA Section */}

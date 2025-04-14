@@ -1,0 +1,7 @@
+@use '@/styles/abstracts/mixins' as *;
+
+.buttonGroup {
+    @include flexColCtr;
+    margin-top: var(--spacing-44);
+    gap: var(--spacing-44);
+}

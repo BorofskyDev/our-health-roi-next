@@ -25,11 +25,10 @@
   }
 }
 
-@mixin iconModalBtn($color) {
+@mixin iconModalBtn {
   @include btnBase(var(--spacing-8), var(--spacing-44));
   @include flexRowCtr;
   gap: var(--spacing-8);
-  color: $color;
 
   svg {
     width: var(--spacing-40);
