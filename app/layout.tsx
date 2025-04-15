@@ -30,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${libreFranklin.variable} ${inter.variable}`}>
+      <body className={`${libreFranklin.variable} ${inter.variable}`} suppressHydrationWarning>
         <Providers>{children}</Providers>
       </body>
     </html>

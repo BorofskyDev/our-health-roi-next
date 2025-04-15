@@ -8,6 +8,7 @@
     @include breakpoint(laptop) {
         grid-template-columns: 1fr 1fr;
         gap: var(--spacing-44);
+        align-items: flex-start;
         
     }
 
