@@ -124,6 +124,7 @@ I'm calling about funding for NIH research on ${searchTerm}.
 The NIH has done important work:
 - ${format(research.projects)} research projects
 - ${format(research.publications)} publications
+- ${format(research.patents)} discoveries
 - ${format(research.trials)} clinical trials
 
 Here's why this matters to me:
@@ -152,6 +153,7 @@ I'm calling about NIH funding for research on ${searchTerm}.
 The NIH has helped our state by funding:
 - ${format(research.projects)} research projects
 - ${format(research.publications)} publications
+- ${format(research.patents)} discoveries
 - ${format(research.trials)} clinical trials
 
 Here's why NIH research matters to me:
@@ -161,4 +163,3 @@ Please ask Senator ${senatorName} to support and increase NIH funding. This fund
 
 Thank you for your time.`
 }
-
