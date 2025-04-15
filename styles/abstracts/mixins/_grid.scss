@@ -1,0 +1,10 @@
+@use '@/styles/abstracts/mixins/breakpoints' as *;
+
+@mixin grid {
+  display: grid;
+}
+
+@mixin gridColToRow {
+  @include grid;
+  grid-template-columns: 1fr;
+}

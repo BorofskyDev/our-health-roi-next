@@ -1,0 +1,15 @@
+@use '@/styles/abstracts/mixins/breakpoints' as *;
+
+.decorativeIcon {
+ 
+  display: none;
+
+  @include breakpoint(laptop) {
+    display: block;   
+    height: 400px;
+    width: 400px;
+    color: hsl(var(--color-primary));
+
+
+}
+}

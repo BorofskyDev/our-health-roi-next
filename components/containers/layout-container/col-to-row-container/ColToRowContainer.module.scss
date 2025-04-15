@@ -1,0 +1,17 @@
+@use '@/styles/abstracts/mixins' as *;
+
+.colToRowContainer {
+    width: 100%;
+    margin: 0 auto;
+    @include gridColToRow;
+
+    @include breakpoint(laptop) {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-44);
+        align-items: center;
+        
+    }
+
+
+
+}

@@ -1,0 +1,10 @@
+@use '@/styles/abstracts/mixins/breakpoints' as *;
+
+.animatedIcon {
+    display: none;
+
+    @include breakpoint(laptop) {
+        display: block;
+    }
+
+}

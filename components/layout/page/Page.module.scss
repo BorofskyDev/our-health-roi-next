@@ -1,6 +1,7 @@
 @use '@/styles/abstracts/mixins' as *;
 
 .page {
+  max-width: 118em;
   padding: var(--spacing-44);
   font-family: var(--ff-body);
   font-weight: var(--fw-400);
@@ -10,7 +11,6 @@
   color: hsl(var(--color-text));
 
   @include breakpoint(laptop) {
-    max-width: 118em;
     margin-inline: auto;
     padding: 7.5rem;
   }

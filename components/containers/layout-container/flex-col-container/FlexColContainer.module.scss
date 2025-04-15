@@ -2,5 +2,6 @@
 
 .flexColContainer {
     @include flexColCtr;
+    position: relative;
     gap: var(--spacing-44);
 }
