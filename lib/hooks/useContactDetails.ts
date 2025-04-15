@@ -6,7 +6,7 @@ import { ContactDetailsContext } from '@/context/ContactDetailsContext'
 
 export const useContactDetails = () => {
   const ctx = useContext(ContactDetailsContext)
-   console.log('useContactDetails hook called, got context:', ctx)
+
   if (!ctx) {
     return {
       contactDetails: null,

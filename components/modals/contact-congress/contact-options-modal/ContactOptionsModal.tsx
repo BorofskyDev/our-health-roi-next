@@ -1,12 +1,10 @@
 // components/modals/contact-congress/contact-options-modal/ContactOptionsModal.tsx
 'use client'
-import { useEffect } from 'react'
 import { ModalShell } from '../modal-shell/ContactModalShell'
 import { EmailIconButton, PhoneIconButton } from '@/components/common/buttons'
 import { BodyText } from '@/components/common/body-typography'
 import { useModal } from '@/context/ModalContext'
 import { useSearchResults } from '@/lib/hooks/useSearchResults'
-import { useContactDetails } from '@/lib/hooks/useContactDetails'
 import { ContactDetailsModal } from '../contact-details-modal/ContactDetailsModal'
 import { MessagePreviewModal } from '../message-preview-modal/MessagePreviewModal'
 import styles from './ContactOptionsModal.module.scss'
@@ -14,18 +12,7 @@ import styles from './ContactOptionsModal.module.scss'
 export const ContactOptionsModal = () => {
   const { openModal } = useModal()
   const { term, counts } = useSearchResults()
-  const { contactDetails } = useContactDetails()
 
-  // Debug logging
-  useEffect(() => {
-    console.log('ContactOptionsModal mounted with:', {
-      contactDetails,
-      term,
-      counts,
-    })
-  }, [contactDetails, term, counts])
-
-  // Helper to create research object from counts
   const getResearchObject = () => {
     if (!counts) return { projects: 0, publications: 0, patents: 0, trials: 0 }
     return {
@@ -36,7 +23,6 @@ export const ContactOptionsModal = () => {
     }
   }
 
-  // Handle clicks for each option
   const handleEmailRep = () => {
     openModal(
       <MessagePreviewModal
@@ -85,7 +71,6 @@ export const ContactOptionsModal = () => {
     )
   }
 
-  // Edit contact information
   const handleEditInfo = () => {
     const handleReturnToOptions = () => {
       openModal(<ContactOptionsModal />)
@@ -93,9 +78,6 @@ export const ContactOptionsModal = () => {
 
     openModal(<ContactDetailsModal onComplete={handleReturnToOptions} />)
   }
-
-  // No longer check hasCompletedDetails here - we trust that this component
-  // will only be shown after the details are completed
 
   return (
     <ModalShell title='Contact Your Representatives'>

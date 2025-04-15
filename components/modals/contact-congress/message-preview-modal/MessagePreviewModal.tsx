@@ -33,23 +33,12 @@ export const MessagePreviewModal = ({
   const { openModal } = useModal()
   const [preview, setPreview] = useState<string | null>(null)
 
-  console.log('MessagePreviewModal contactDetails:', contactDetails)
-  console.log('MessagePreviewModal props:', {
-    searchTerm,
-    research,
-    contactType,
-    recipientType,
-  })
-
   useEffect(() => {
     if (!contactDetails) {
-      console.log('No contact details available, cannot generate preview')
       return
     }
 
-    // Generate previews based on recipient type
     if (recipientType === 'senators' && contactType === 'email') {
-      // Generate for the first senator
       const preview1 = contactDetails.senatorName1
         ? generateMessagePreview(
             { ...contactDetails, currentSenator: contactDetails.senatorName1 },
@@ -60,7 +49,6 @@ export const MessagePreviewModal = ({
           )
         : null
 
-      // Generate for the second senator
       const preview2 = contactDetails.senatorName2
         ? generateMessagePreview(
             { ...contactDetails, currentSenator: contactDetails.senatorName2 },
@@ -71,7 +59,6 @@ export const MessagePreviewModal = ({
           )
         : null
 
-      // Combine the previews with a separator
       let combinedPreview = ''
 
       if (preview1) {
@@ -88,7 +75,6 @@ export const MessagePreviewModal = ({
 
       setPreview(combinedPreview || null)
     } else {
-      // For representatives or call scripts, just generate a single preview
       const generatedPreview = generateMessagePreview(
         contactDetails,
         searchTerm,
@@ -96,7 +82,6 @@ export const MessagePreviewModal = ({
         contactType,
         recipientType
       )
-      console.log('Generated preview:', generatedPreview)
       setPreview(generatedPreview)
     }
   }, [contactDetails, searchTerm, research, contactType, recipientType])
