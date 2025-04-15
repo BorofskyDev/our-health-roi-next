@@ -4,13 +4,13 @@ import { ChangeEvent, FormEvent, useState } from 'react'
 import {
   MessageFormValues,
   generateMessagePreview,
-  ResearchCounts,
+  
 } from '@/lib/utils/messageTemplates'
 import {
   ContactType,
   RecipientType,
 } from '@/components/modals/contact-congress/messages/MessageBody'
-
+import { ResearchCounts } from '@/types/'
 export function useMessageForm(
   searchTerm: string,
   research: ResearchCounts,

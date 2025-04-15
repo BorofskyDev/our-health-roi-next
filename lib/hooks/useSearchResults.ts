@@ -3,7 +3,7 @@
 'use client'
 import { useContext } from 'react'
 import { SearchResultsContext } from '@/context/SearchResultsContext'
-import { ResearchCounts } from '@/lib/utils/messageTemplates'
+import { ResearchCounts } from '@/types'
 
 export const useSearchResults = () => {
   const ctx = useContext(SearchResultsContext)
