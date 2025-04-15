@@ -6,7 +6,7 @@ import { TextInput } from '@/components/common/inputs/'
 import { TextAreaWithCount } from '@/components/common/inputs/'
 import { BodyText } from '@/components/common/body-typography'
 import { useMessageForm } from '@/lib/hooks/useMessageForm'
-import { ResearchCounts } from '@/lib/utils/messageTemplates'
+import { ResearchCounts } from '@/types/'
 
 export type ContactType = 'email' | 'call'
 export type RecipientType = 'rep' | 'senators'
