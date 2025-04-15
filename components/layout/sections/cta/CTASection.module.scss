@@ -1,0 +1,6 @@
+@use '@/styles/abstracts/mixins' as *;
+
+.findLink {
+@include flexColCtr;
+gap: var(--spacing-24);
+}

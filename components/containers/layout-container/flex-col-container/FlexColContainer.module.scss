@@ -1,0 +1,6 @@
+@use '@/styles/abstracts/mixins' as *;
+
+.flexColContainer {
+    @include flexColCtr;
+    gap: var(--spacing-44);
+}

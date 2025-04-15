@@ -1,0 +1,5 @@
+@use '@/styles/abstracts/mixins' as *;
+
+.containerHeader {
+    @include heading-style(5)
+}
