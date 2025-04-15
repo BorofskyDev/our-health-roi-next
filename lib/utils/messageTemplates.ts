@@ -49,28 +49,27 @@ export function generateEmailRepPreview(
   research: ResearchCounts
 ) {
   const { repName, cityState, personalImpact, fullName } = values
-  // split "Columbus, OH"
   const [city = '', state = ''] = cityState.split(',').map((s) => s.trim())
 
   return `Dear Representative ${repName},
 
-I'm writing as a constituent from ${cityState} about NIH support for ${searchTerm} research.
+As your constituent from ${cityState}, I'm deeply concerned about the critical need to maintain robust NIH funding, especially for research into ${searchTerm}.
 
-Since 1985, the National Institutes of Health has funded:
-${format(research.projects)} research projects
-${format(research.publications)} peer‑reviewed publications
-${format(research.patents)} patented discoveries
-${format(research.trials)} clinical studies
+In the last few decades, NIH-funded research has achieved remarkable progress, including:
+${format(research.projects)} vital research projects
+${format(research.publications)} influential peer-reviewed publications
+${format(research.patents)} groundbreaking patented discoveries
+${format(research.trials)} transformative clinical trials
 
-These investments are not partisan – they are lifesaving.
+This investment is not just scientific—it's personal.
 
 ${personalImpact}
 
-Cuts to the NIH budget would stall breakthroughs, increase health‑care costs, and put American leadership in science at risk. I urge you to oppose any proposal that reduces NIH funding and, instead, champion increased support for biomedical research that saves lives and drives economic growth in every district – including ours.
+Drastic cuts to NIH funding threaten our nation's health, economic prosperity, and global leadership in science. Protecting and enhancing NIH funding is essential, not partisan. I urge you to vigorously oppose any measure that would reduce this essential investment and, instead, support increasing NIH funding to safeguard lives, reduce healthcare costs, and strengthen our economy—starting right here at home.
 
-Thank you for your time and service. I look forward to your response.
+Thank you for your leadership on this urgent issue. I eagerly await your support.
 
-Sincerely,
+Respectfully,
 ${fullName}
 ${city}, ${state}`
 }
@@ -81,28 +80,27 @@ export function generateEmailSenatorPreview(
   research: ResearchCounts
 ) {
   const { currentSenator, cityState, personalImpact, fullName } = values
-  // split "Columbus, OH"
   const [city = '', state = ''] = cityState.split(',').map((s) => s.trim())
 
   const senatorName = currentSenator || values.senatorName1 || 'Senator'
 
   return `Dear Senator ${senatorName},
 
-I'm writing as a constituent from ${cityState} about NIH support for ${searchTerm} research.
+As your constituent from ${cityState}, I urge your strong support for sustained funding of the National Institutes of Health, particularly for research related to ${searchTerm}.
 
-Since 1985, the National Institutes of Health has funded:
-${format(research.projects)} research projects
-${format(research.publications)} peer‑reviewed publications
-${format(research.patents)} patented discoveries
-${format(research.trials)} clinical studies
+In the last few decades, NIH funding has yielded significant advancements, including:
+${format(research.projects)} critical research projects
+${format(research.publications)} influential peer-reviewed publications
+${format(research.patents)} innovative patented discoveries
+${format(research.trials)} lifesaving clinical studies
 
-These investments are not partisan – they are lifesaving.
+These achievements transcend politics—they profoundly impact real lives.
 
 ${personalImpact}
 
-Cuts to the NIH budget would stall breakthroughs, increase health‑care costs, and put American leadership in science at risk. I urge you to oppose any proposal that reduces NIH funding and, instead, champion increased support for biomedical research that saves lives and drives economic growth in our state.
+Reducing NIH funding endangers our health security, stalls scientific innovation, and weakens America's global leadership in biomedical research. I respectfully ask you to actively oppose any proposals that threaten NIH funding and to support policies that invest in scientific research, benefiting both our state and our nation's future.
 
-Thank you for your time and service. I look forward to your response.
+Thank you for your dedicated service and consideration. I look forward to your commitment to this essential cause.
 
 Sincerely,
 ${fullName}
@@ -115,28 +113,25 @@ export function generateCallRepPreview(
   searchTerm: string,
   research: ResearchCounts
 ) {
-  const { cityState, personalImpact, fullName } = values
+  const { repName, cityState, personalImpact, fullName } = values
 
   return `CALL SCRIPT: REPRESENTATIVE
 
-Hello, my name is ${fullName} from ${cityState}.
+Hello, my name is ${fullName}. I'm from ${cityState}.
 
-I'm calling about NIH funding for ${searchTerm} research.
+I'm calling about funding for NIH research on ${searchTerm}.
 
-Since 1985, the NIH has funded ${format(
-    research.projects
-  )} research projects, ${format(
-    research.publications
-  )} publications, and ${format(
-    research.trials
-  )} clinical studies related to ${searchTerm}.
+The NIH has done important work:
+- ${format(research.projects)} research projects
+- ${format(research.publications)} publications
+- ${format(research.trials)} clinical trials
 
-[PERSONAL IMPACT STATEMENT]:
+Here's why this matters to me:
 ${personalImpact}
 
-I urge Representative [Name] to protect and increase NIH funding. These investments save lives and drive innovation.
+Please ask Representative ${repName} to support NIH funding. This funding helps people here in our community.
 
-Thank you for your time.`
+Thank you for listening.`
 }
 
 export function generateCallSenatorPreview(
@@ -144,26 +139,26 @@ export function generateCallSenatorPreview(
   searchTerm: string,
   research: ResearchCounts
 ) {
-  const { cityState, personalImpact, fullName } = values
+  const { currentSenator, cityState, personalImpact, fullName } = values
+
+  const senatorName = currentSenator || values.senatorName1 || 'Senator'
 
   return `CALL SCRIPT: SENATOR
 
-Hello, my name is ${fullName} from ${cityState}.
+Hello, my name is ${fullName}. I'm from ${cityState}.
 
-I'm calling about NIH funding for ${searchTerm} research.
+I'm calling about NIH funding for research on ${searchTerm}.
 
-Since 1985, the NIH has funded ${format(
-    research.projects
-  )} research projects, ${format(
-    research.publications
-  )} publications, and ${format(
-    research.trials
-  )} clinical studies related to ${searchTerm}.
+The NIH has helped our state by funding:
+- ${format(research.projects)} research projects
+- ${format(research.publications)} publications
+- ${format(research.trials)} clinical trials
 
-[PERSONAL IMPACT STATEMENT]:
+Here's why NIH research matters to me:
 ${personalImpact}
 
-I urge Senator [Name] to protect and increase NIH funding. These investments save lives and drive innovation.
+Please ask Senator ${senatorName} to support and increase NIH funding. This funding saves lives and benefits our state.
 
 Thank you for your time.`
 }
+
