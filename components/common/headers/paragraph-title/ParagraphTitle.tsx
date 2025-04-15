@@ -1,3 +1,5 @@
+// components/common/headers/paragraph-title/ParagraphTitle.tsx but imported from headers/index.ts
+
 import React, { ReactNode } from 'react'
 import styles from './ParagraphTitle.module.scss'
 

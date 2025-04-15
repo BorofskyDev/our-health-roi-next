@@ -10,13 +10,13 @@ import styles from './SearchForm.module.scss'
 
 export type SearchResults = {
   projects: {
-    total: number
+    total: number | null
     searchId: string | null
     reporterURL: string | null
-  }
-  publications: number
-  patents: number
-  trials: number
+  } | null
+  publications: number | null
+  patents: number | null
+  trials: number | null
   term: string
 }
 
@@ -43,7 +43,7 @@ export const SearchForm = () => {
       const data = await response.json()
       setResults(data)
       setContextResults(data.term, {
-        projects: data.projects.total,
+        projects: data.projects?.total ?? null,
         publications: data.publications,
         patents: data.patents,
         trials: data.trials,

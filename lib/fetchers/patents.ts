@@ -1,5 +1,11 @@
 // lib/fetchers/patents.ts
-export async function fetchPatents(term: string) {
+import { safeFetchJson } from './safeFetchJson'
+
+interface PatentsViewResponse {
+  total_patent_count?: number
+}
+
+export async function fetchPatents(term: string): Promise<number | null> {
   const payload = {
     q: {
       _or: [
@@ -11,13 +17,25 @@ export async function fetchPatents(term: string) {
     o: { per_page: 1 },
   }
 
-  const res = await fetch('https://api.patentsview.org/patents/query', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
-  })
+  const data = await safeFetchJson<PatentsViewResponse>(
+    'https://api.patentsview.org/patents/query',
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    }
+  )
 
-  if (!res.ok) throw new Error(`PatentsView error ${res.status}`)
-  const data = await res.json()
-  return data.total_patent_count ?? 0
+  // use for testing bad connections
+
+//  const data = await safeFetchJson<PatentsViewResponse>(
+//    'https://api.patentsview.org-BAD-API/patents/query',
+//    {
+//      method: 'POST',
+//      headers: { 'Content-Type': 'application/json' },
+//      body: JSON.stringify(payload),
+//    }
+//  )
+
+  return data?.total_patent_count ?? null
 }

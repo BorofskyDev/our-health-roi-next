@@ -1,5 +1,21 @@
 // lib/fetchers/projects.ts
-export async function fetchProjects(term: string) {
+import { safeFetchJson } from './safeFetchJson'
+
+interface NIHProjectsResponse {
+  meta?: {
+    total?: number
+    search_id?: string
+    properties?: { URL?: string }
+  }
+}
+
+export type ProjectsResult = {
+  total: number | null
+  searchId: string | null
+  reporterURL: string | null
+} | null
+
+export async function fetchProjects(term: string): Promise<ProjectsResult> {
   const payload = {
     criteria: {
       advanced_text_search: {
@@ -13,23 +29,32 @@ export async function fetchProjects(term: string) {
     include_fields: ['ProjectNum'],
   }
 
-  const res = await fetch('https://api.reporter.nih.gov/v2/projects/search', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
-    // NIH asks for ≤ 1 req / sec per IP
-  })
+  const data = await safeFetchJson<NIHProjectsResponse>(
+    'https://api.reporter.nih.gov/v2/projects/search',
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    }
+  )
+  // use for testing bad connections
+  // const data = await safeFetchJson<NIHProjectsResponse>(
+  //   'https://api.reporter.nih.gov-BAD-API/v2/projects/search',
+  //   {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify(payload),
+  //   }
+  // )
 
-  if (!res.ok) throw new Error(`NIH error ${res.status}`)
-  const data = await res.json()
+  if (!data) return null
 
   return {
-    total: data.meta?.total ?? 0,
+    total: data.meta?.total ?? null,
     searchId: data.meta?.search_id ?? null,
     reporterURL: data.meta?.properties?.URL ?? null,
   }
 }
-
 
 
 

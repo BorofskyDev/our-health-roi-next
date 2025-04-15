@@ -1,3 +1,5 @@
+// components/common/body-typography/body-text/BodyText.tsx but imported through body-typography/index.ts
+
 import React, { ReactNode } from 'react'
 import styles from './BodyText.module.scss'
 

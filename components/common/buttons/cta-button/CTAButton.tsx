@@ -1,3 +1,5 @@
+// components/common/buttons/cta-button/CTAButton.tsx, but called { CTAButton} from my buttons/index.ts file.
+
 import { ButtonHTMLAttributes, PropsWithChildren } from 'react'
 import styles from './CTAButton.module.scss'
 
