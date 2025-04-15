@@ -1,7 +1,20 @@
-// components/modals/contact-congress/email-senators-modal/EmailSenatorsModal.tsx
+import { ModalShell } from '../modal-shell/ContactModalShell'
+import { MessageBody } from '../messages/MessageBody'
+import { ResearchCounts } from '@/lib/utils/messageTemplates'
 
-import { ModalShell } from "../contact-modal-shell/ContactModalShell";
+type Props = {
+  searchTerm: string
+  research: ResearchCounts
+}
 
-export const EmailSenatorsModal = () => (
-  <ModalShell title="Email Your Senators" />
-);
+export const EmailSenatorsModal = ({ searchTerm, research }: Props) => (
+  <ModalShell title='Email Your Senators'>
+    <MessageBody
+      searchTerm={searchTerm}
+      research={research}
+      contactType='email'
+      recipientType='senators'
+      submitButtonText='Preview Emails'
+    />
+  </ModalShell>
+)

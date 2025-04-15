@@ -1,3 +1,5 @@
+// app/layout.tsx
+
 import type { Metadata } from 'next'
 import { Libre_Franklin, Inter } from 'next/font/google'
 import '@/styles/index.scss'

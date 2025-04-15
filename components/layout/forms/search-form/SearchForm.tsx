@@ -1,5 +1,3 @@
-// components/layout/forms/search-form/SearchForm.tsx
-
 'use client'
 import { useState, FormEvent } from 'react'
 import { SectionHeading } from '@/components/common/headers'
@@ -7,7 +5,7 @@ import { FlexColSection } from '@/components/layout/sections'
 import { ResultsList } from './results-list/ResultsList'
 import { CTAButton } from '@/components/common/buttons'
 import { TextInput } from '@/components/common/inputs'
-import { useSearchResults } from '@/context/SearchResultsContext'
+import { useSearchResults } from '@/lib/hooks/useSearchResults'
 import styles from './SearchForm.module.scss'
 
 export type SearchResults = {
@@ -64,6 +62,7 @@ export const SearchForm = () => {
 
   return (
     <>
+      {/* Search Section */}
       <FlexColSection id='search'>
         <SectionHeading className='center'>
           Enter a health condition to review NIH research impact
@@ -94,6 +93,7 @@ export const SearchForm = () => {
           </div>
         )}
       </FlexColSection>
+      {/* Results Section */}
       {showResults && results && (
         <FlexColSection id='results'>
           <ResultsList results={results} />

@@ -1,7 +1,7 @@
 // components/modals/contact-congress/EmailRepModal.tsx
-import { ModalShell } from '../contact-modal-shell/ContactModalShell'
-import { EmailRepBody } from './EmailRepBody'
-import { ResearchCounts } from '@/lib/utils/emailTemplates'
+import { ModalShell } from '../modal-shell/ContactModalShell'
+import { MessageBody } from '../messages/MessageBody'
+import { ResearchCounts } from '@/lib/utils/messageTemplates'
 
 type Props = {
   searchTerm: string
@@ -10,6 +10,12 @@ type Props = {
 
 export const EmailRepModal = ({ searchTerm, research }: Props) => (
   <ModalShell title='Email Your Representative'>
-    <EmailRepBody searchTerm={searchTerm} research={research} />
+    <MessageBody
+      searchTerm={searchTerm}
+      research={research}
+      contactType='email'
+      recipientType='rep'
+      submitButtonText='Preview Email'
+    />
   </ModalShell>
 )
