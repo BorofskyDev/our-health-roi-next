@@ -10,14 +10,14 @@ import ContactDetailsProvider from '@/context/ContactDetailsContext'
 
 export function Providers({ children }: { children: ReactNode }) {
   return (
-    <ModalProvider>
+    <ContactDetailsProvider>
       <SearchResultsProvider>
-        <ContactDetailsProvider>
+        <ModalProvider>
           {/* <ThemeProvider attribute='class'> */}
           {children}
           {/* </ThemeProvider> */}
-        </ContactDetailsProvider>
+        </ModalProvider>
       </SearchResultsProvider>
-    </ModalProvider>
+    </ContactDetailsProvider>
   )
 }

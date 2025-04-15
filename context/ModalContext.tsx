@@ -1,3 +1,5 @@
+// context/ModalContext.tsx
+
 import {
   createContext,
   ReactNode,
@@ -24,6 +26,7 @@ export const useModal = () => {
 
 export const ModalProvider = ({ children }: { children: ReactNode }) => {
   const [modalContent, setModalContent] = useState<ModalState>(null)
+  
 
   const openModal = useCallback(
     (content: ReactNode) => setModalContent(content),

@@ -1,5 +1,6 @@
+// components/modals/contact-congress/contact-details-modal/ContactDetailsModal.tsx
 'use client'
-import { useState, useEffect, FormEvent, ChangeEvent } from 'react'
+import { useState, FormEvent, ChangeEvent } from 'react'
 import { ModalShell } from '../modal-shell/ContactModalShell'
 import { TextInput } from '@/components/common/inputs'
 import { TextAreaWithCount } from '@/components/common/inputs'
@@ -7,6 +8,7 @@ import { CTAButton } from '@/components/common/buttons'
 import { useContactDetails } from '@/lib/hooks/useContactDetails'
 import { useModal } from '@/context/ModalContext'
 import { MessageFormValues } from '@/lib/utils/messageTemplates'
+import { ContactOptionsModal } from '../contact-options-modal/ContactOptionsModal'
 
 export const ContactDetailsModal = ({
   onComplete,
@@ -14,31 +16,24 @@ export const ContactDetailsModal = ({
   onComplete?: () => void
 }) => {
   const { contactDetails, setContactDetails } = useContactDetails()
-  const { closeModal } = useModal()
+  const { closeModal, openModal } = useModal()
 
-  // Add debugging to see if our hook is working
   console.log(
     'ContactDetailsModal rendering with contactDetails:',
     contactDetails
   )
 
   // Initialize form with existing values or defaults
-  const [values, setValues] = useState<MessageFormValues>({
-    repName: '',
-    senatorName1: '',
-    senatorName2: '',
-    cityState: '',
-    personalImpact: '',
-    fullName: '',
-  })
-
-  // Sync form with context values when the component mounts or contactDetails changes
-  useEffect(() => {
-    if (contactDetails) {
-      console.log('Syncing form with contactDetails:', contactDetails)
-      setValues(contactDetails)
+  const [values, setValues] = useState<MessageFormValues>(
+    contactDetails || {
+      repName: '',
+      senatorName1: '',
+      senatorName2: '',
+      cityState: '',
+      personalImpact: '',
+      fullName: '',
     }
-  }, [contactDetails])
+  )
 
   const handleChange =
     (field: keyof MessageFormValues) =>
@@ -47,23 +42,25 @@ export const ContactDetailsModal = ({
     }
 
   const handleSubmit = (e: FormEvent) => {
-    e.preventDefault() // Prevent default form submission behavior
-
-    // Log what we're about to save
+    e.preventDefault()
     console.log('Saving contact details:', values)
 
-    // Save the contact details
-    setContactDetails({ ...values }) // Pass a new object to ensure state update
+    // Save contact details first
+    setContactDetails(values)
 
-    // Close the modal and trigger the completion callback
+    // Now navigate to options
     closeModal()
 
-    // Use a small delay to ensure state updates have been processed
+    // Wait for the context update to complete before showing options
+    // This is important to ensure hasCompletedDetails is true
     setTimeout(() => {
       if (onComplete) {
         onComplete()
+      } else {
+        // If no callback provided, just open options modal directly
+        openModal(<ContactOptionsModal />)
       }
-    }, 50)
+    }, 50) // A short delay to allow state updates to complete
   }
 
   return (

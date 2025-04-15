@@ -6,12 +6,16 @@ import { ContactDetailsContext } from '@/context/ContactDetailsContext'
 
 export const useContactDetails = () => {
   const ctx = useContext(ContactDetailsContext)
+   console.log('useContactDetails hook called, got context:', ctx)
   if (!ctx) {
-    // Return default values instead of throwing an error
-    // This makes the hook more robust when used outside the provider
     return {
       contactDetails: null,
-      setContactDetails: () => {},
+      setContactDetails: (details: unknown) => {
+        console.warn(
+          'Attempted to set contact details outside of context:',
+          details
+        )
+      },
       clearContactDetails: () => {},
       hasCompletedDetails: false,
     }

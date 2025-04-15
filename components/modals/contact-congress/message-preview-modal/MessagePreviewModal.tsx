@@ -1,3 +1,4 @@
+// components/modals/contact-congress/message-preview-modal/MessagePreviewModal.tsx
 'use client'
 import { useEffect, useState } from 'react'
 import { ModalShell } from '../modal-shell/ContactModalShell'
@@ -6,6 +7,7 @@ import { BodyText } from '@/components/common/body-typography'
 import { useContactDetails } from '@/lib/hooks/useContactDetails'
 import { useModal } from '@/context/ModalContext'
 import { ContactOptionsModal } from '../contact-options-modal/ContactOptionsModal'
+import { ContactDetailsModal } from '../contact-details-modal/ContactDetailsModal'
 import {
   generateMessagePreview,
   ResearchCounts,
@@ -31,8 +33,19 @@ export const MessagePreviewModal = ({
   const { openModal } = useModal()
   const [preview, setPreview] = useState<string | null>(null)
 
+  console.log('MessagePreviewModal contactDetails:', contactDetails)
+  console.log('MessagePreviewModal props:', {
+    searchTerm,
+    research,
+    contactType,
+    recipientType,
+  })
+
   useEffect(() => {
-    if (!contactDetails) return
+    if (!contactDetails) {
+      console.log('No contact details available, cannot generate preview')
+      return
+    }
 
     // Generate previews based on recipient type
     if (recipientType === 'senators' && contactType === 'email') {
@@ -76,15 +89,15 @@ export const MessagePreviewModal = ({
       setPreview(combinedPreview || null)
     } else {
       // For representatives or call scripts, just generate a single preview
-      setPreview(
-        generateMessagePreview(
-          contactDetails,
-          searchTerm,
-          research,
-          contactType,
-          recipientType
-        )
+      const generatedPreview = generateMessagePreview(
+        contactDetails,
+        searchTerm,
+        research,
+        contactType,
+        recipientType
       )
+      console.log('Generated preview:', generatedPreview)
+      setPreview(generatedPreview)
     }
   }, [contactDetails, searchTerm, research, contactType, recipientType])
 
@@ -92,7 +105,38 @@ export const MessagePreviewModal = ({
     openModal(<ContactOptionsModal />)
   }
 
-  if (!contactDetails || !preview) {
+  const handleEditDetails = () => {
+    openModal(
+      <ContactDetailsModal
+        onComplete={() =>
+          openModal(
+            <MessagePreviewModal
+              searchTerm={searchTerm}
+              research={research}
+              contactType={contactType}
+              recipientType={recipientType}
+              title={title}
+            />
+          )
+        }
+      />
+    )
+  }
+
+  if (!contactDetails) {
+    return (
+      <ModalShell title={title}>
+        <BodyText>Missing contact information.</BodyText>
+        <div className='mt-24'>
+          <CTAButton onClick={handleEditDetails}>
+            Enter Contact Information
+          </CTAButton>
+        </div>
+      </ModalShell>
+    )
+  }
+
+  if (!preview) {
     return (
       <ModalShell title={title}>
         <BodyText>Loading your message...</BodyText>
