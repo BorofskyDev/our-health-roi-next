@@ -28,14 +28,14 @@ export async function fetchPatents(term: string): Promise<number | null> {
 
   // use for testing bad connections
 
-//  const data = await safeFetchJson<PatentsViewResponse>(
-//    'https://api.patentsview.org-BAD-API/patents/query',
-//    {
-//      method: 'POST',
-//      headers: { 'Content-Type': 'application/json' },
-//      body: JSON.stringify(payload),
-//    }
-//  )
+  //  const data = await safeFetchJson<PatentsViewResponse>(
+  //    'https://api.patentsview.org-BAD-API/patents/query',
+  //    {
+  //      method: 'POST',
+  //      headers: { 'Content-Type': 'application/json' },
+  //      body: JSON.stringify(payload),
+  //    }
+  //  )
 
   return data?.total_patent_count ?? null
 }

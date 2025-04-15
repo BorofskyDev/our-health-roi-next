@@ -1,16 +1,9 @@
-// lib/utils/messageTemplates.ts
-
 import {
   ContactType,
   RecipientType,
 } from '@/components/modals/contact-congress/messages/MessageBody'
-
-export type ResearchCounts = {
-  projects: number
-  publications: number
-  patents: number
-  trials: number
-}
+import { ResearchCounts } from '@/types/'
+import { buildResearchLines } from './buildResearchLines'
 
 export type MessageFormValues = {
   repName: string
@@ -19,10 +12,8 @@ export type MessageFormValues = {
   cityState: string
   personalImpact: string
   fullName: string
-  currentSenator?: string // Used internally for generating senator emails
+  currentSenator?: string
 }
-
-const format = (n: number | string) => Number(n).toLocaleString('en-US')
 
 export function generateMessagePreview(
   values: MessageFormValues,
@@ -35,14 +26,16 @@ export function generateMessagePreview(
     return recipientType === 'rep'
       ? generateEmailRepPreview(values, searchTerm, research)
       : generateEmailSenatorPreview(values, searchTerm, research)
-  } else {
-    return recipientType === 'rep'
-      ? generateCallRepPreview(values, searchTerm, research)
-      : generateCallSenatorPreview(values, searchTerm, research)
   }
+  return recipientType === 'rep'
+    ? generateCallRepPreview(values, searchTerm, research)
+    : generateCallSenatorPreview(values, searchTerm, research)
 }
 
-// Email templates
+/* ------------------------------------------------------------ */
+/*  EMAIL templates                                             */
+/* ------------------------------------------------------------ */
+
 export function generateEmailRepPreview(
   values: MessageFormValues,
   searchTerm: string,
@@ -51,17 +44,18 @@ export function generateEmailRepPreview(
   const { repName, cityState, personalImpact, fullName } = values
   const [city = '', state = ''] = cityState.split(',').map((s) => s.trim())
 
+  const lines = buildResearchLines(research, { tone: 'formal' })
+    .map((l) => `- ${l}`)
+    .join('\n')
+
   return `Dear Representative ${repName},
 
 As your constituent from ${cityState}, I'm deeply concerned about the critical need to maintain robust NIH funding, especially for research into ${searchTerm}.
 
-In the last few decades, NIH-funded research has achieved remarkable progress, including:
-${format(research.projects)} vital research projects
-${format(research.publications)} influential peer-reviewed publications
-${format(research.patents)} groundbreaking patented discoveries
-${format(research.trials)} transformative clinical trials
+In the last few decades, NIH‑funded research has achieved remarkable progress, including:
+${lines}
 
-This investment is not just scientific—it's personal.
+This investment is not just scientific—it’s personal.
 
 ${personalImpact}
 
@@ -81,18 +75,18 @@ export function generateEmailSenatorPreview(
 ) {
   const { currentSenator, cityState, personalImpact, fullName } = values
   const [city = '', state = ''] = cityState.split(',').map((s) => s.trim())
-
   const senatorName = currentSenator || values.senatorName1 || 'Senator'
+
+  const lines = buildResearchLines(research, { tone: 'formal' })
+    .map((l) => `- ${l}`)
+    .join('\n')
 
   return `Dear Senator ${senatorName},
 
 As your constituent from ${cityState}, I urge your strong support for sustained funding of the National Institutes of Health, particularly for research related to ${searchTerm}.
 
 In the last few decades, NIH funding has yielded significant advancements, including:
-${format(research.projects)} critical research projects
-${format(research.publications)} influential peer-reviewed publications
-${format(research.patents)} innovative patented discoveries
-${format(research.trials)} lifesaving clinical studies
+${lines}
 
 These achievements transcend politics—they profoundly impact real lives.
 
@@ -107,13 +101,19 @@ ${fullName}
 ${city}, ${state}`
 }
 
-// Call script templates
+/* ------------------------------------------------------------ */
+/*  PHONE templates (casual tone)                               */
+/* ------------------------------------------------------------ */
+
 export function generateCallRepPreview(
   values: MessageFormValues,
   searchTerm: string,
   research: ResearchCounts
 ) {
   const { repName, cityState, personalImpact, fullName } = values
+  const bulletPoints = buildResearchLines(research, { tone: 'casual' })
+    .map((l) => `- ${l}`)
+    .join('\n')
 
   return `CALL SCRIPT: REPRESENTATIVE
 
@@ -122,10 +122,7 @@ Hello, my name is ${fullName}. I'm from ${cityState}.
 I'm calling about funding for NIH research on ${searchTerm}.
 
 The NIH has done important work:
-- ${format(research.projects)} research projects
-- ${format(research.publications)} publications
-- ${format(research.patents)} discoveries
-- ${format(research.trials)} clinical trials
+${bulletPoints}
 
 Here's why this matters to me:
 ${personalImpact}
@@ -141,8 +138,10 @@ export function generateCallSenatorPreview(
   research: ResearchCounts
 ) {
   const { currentSenator, cityState, personalImpact, fullName } = values
-
   const senatorName = currentSenator || values.senatorName1 || 'Senator'
+  const bulletPoints = buildResearchLines(research, { tone: 'casual' })
+    .map((l) => `- ${l}`)
+    .join('\n')
 
   return `CALL SCRIPT: SENATOR
 
@@ -151,10 +150,7 @@ Hello, my name is ${fullName}. I'm from ${cityState}.
 I'm calling about NIH funding for research on ${searchTerm}.
 
 The NIH has helped our state by funding:
-- ${format(research.projects)} research projects
-- ${format(research.publications)} publications
-- ${format(research.patents)} discoveries
-- ${format(research.trials)} clinical trials
+${bulletPoints}
 
 Here's why NIH research matters to me:
 ${personalImpact}
