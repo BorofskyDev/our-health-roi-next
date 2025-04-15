@@ -10,8 +10,8 @@ import { ContactOptionsModal } from '../contact-options-modal/ContactOptionsModa
 import { ContactDetailsModal } from '../contact-details-modal/ContactDetailsModal'
 import {
   generateMessagePreview,
-  ResearchCounts,
 } from '@/lib/utils/messageTemplates'
+import { ResearchCounts } from '@/types/'
 import { ContactType, RecipientType } from '../messages/MessageBody'
 
 type Props = {
