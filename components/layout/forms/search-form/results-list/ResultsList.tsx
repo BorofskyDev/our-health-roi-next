@@ -3,9 +3,9 @@ import { SectionHeading } from '@/components/common/headers'
 import { ResultListItem } from './results-list-item/ResultsListItem'
 import { SearchResults } from '../SearchForm'
 import { ExternalLink } from '@/components/common/links'
-import { FlexColSection } from '@/components/layout/sections'
 import { BodyText } from '@/components/common/body-typography'
 import styles from './ResultsList.module.scss'
+import { GridColSection } from '@/components/layout/sections/grid-col-section/GridColSection'
 
 type ResultsListProps = { results: SearchResults }
 
@@ -46,36 +46,40 @@ export const ResultsList = ({ results }: ResultsListProps) => {
   ] as const
 
   return (
-    <FlexColSection id='results'>
-      <SectionHeading className='mb-24 center'>
-        NIH Impact Summary
-      </SectionHeading>
+    <GridColSection id='results' className={styles.results}>
+      <div className={styles.resultsHeader}>
+        <SectionHeading className='mb-24 center'>
+          NIH Impact Summary
+        </SectionHeading>
 
-      <BodyText className='mb-18 body-width center'>
-        Since 1985, public investment through the NIH has powered research into
-        <strong> {term} </strong> and produced the following:
-      </BodyText>
+        <BodyText className='mb-18 body-width center'>
+          In the last few decades, public investment through the NIH has powered research
+          into
+          <strong> {term} </strong> and produced the following:
+        </BodyText>
+      </div>
 
-      <ul className={styles.resultsList}>
-        {resultTypes.map((t) => (
-          <ResultListItem
-            key={t.id}
-            id={t.id}
-            label={t.label}
-            count={t.count}
-            url={t.url}
-            className='mb-18'
-          />
-        ))}
-      </ul>
-
-      <ExternalLink
-        href={`https://www.nih.gov/news-events/news-releases/search/${encodeURIComponent(
-          term
-        )}`}
-      >
-        Discover More News
-      </ExternalLink>
-    </FlexColSection>
+      <div className={styles.resultsContainer}>
+        <ul className={`${styles.resultsList}`}>
+          {resultTypes.map((t) => (
+            <ResultListItem
+              key={t.id}
+              id={t.id}
+              label={t.label}
+              count={t.count}
+              url={t.url}
+              className='mb-18'
+            />
+          ))}
+        </ul>
+        <ExternalLink
+          href={`https://www.nih.gov/news-events/news-releases/search/${encodeURIComponent(
+            term
+          )}`}
+        >
+          Discover More News
+        </ExternalLink>
+      </div>
+    </GridColSection>
   )
 }

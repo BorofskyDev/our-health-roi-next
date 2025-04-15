@@ -93,12 +93,8 @@ export const SearchForm = () => {
           </div>
         )}
       </FlexColSection>
-      {/* Results Section */}
-      {showResults && results && (
-        <FlexColSection id='results'>
-          <ResultsList results={results} />
-        </FlexColSection>
-      )}
+
+      {showResults && results && <ResultsList results={results} />}
     </>
   )
 }

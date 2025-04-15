@@ -3,5 +3,7 @@
 .flexColContainer {
     @include flexColCtr;
     position: relative;
+    margin: 0 auto;
+    width: 100%;
     gap: var(--spacing-44);
 }
