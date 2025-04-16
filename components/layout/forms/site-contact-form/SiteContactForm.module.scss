@@ -1,0 +1,73 @@
+// components/common/inputs/selector-input/SelectorInput.module.scss
+@use '@/styles/abstracts/mixins' as *;
+
+.contactForm {
+  width: 100%;
+  max-width: var(--w-1000);
+  margin: 0 auto;
+
+  fieldset {
+    @include flexColCtr;
+
+    border: none;
+    padding: 0;
+
+    & button {
+      margin-top: var(--spacing-80);
+    }
+  }
+
+  legend {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.formContainer {
+  @include gridColToRow;
+
+  @include breakpoint(laptop) {
+    grid-template-columns: repeat(3, minmax(var(--w-200,), 1fr));
+    gap: var(--spacing-44);
+  }
+
+  & > * {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  & > *:nth-child(4) {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.select {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-top: 0.5rem;
+}
+
+.errorMessage {
+  color: #d32f2f;
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background-color: #ffebee;
+  border-radius: 4px;
+}
+
+.successMessage {
+  color: #2e7d32;
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background-color: #e8f5e9;
+  border-radius: 4px;
+}

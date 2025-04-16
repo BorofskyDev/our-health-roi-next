@@ -1,5 +1,6 @@
 // components/icons/index.ts
-
+export { CheckIcon } from './CheckIcon'
+export { ChevronDownIcon } from './ChevronDownIcon'
 export { CloseIcon } from './CloseIcon'
 export { CopiedIcon } from './CopiedIcon'
 export { CopyIcon } from './CopyIcon'
