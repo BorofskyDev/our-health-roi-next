@@ -1,0 +1,11 @@
+@use '@/styles/abstracts/mixins' as *;
+
+.editButton {
+    @include btnBase(var(--spacing-8), var(--spacing-24));
+
+    background-color: hsl(var(--color-primary) / 0.1);
+
+    &:hover, &:focus {
+        background-color: hsl(var(--color-bg) );
+    }
+}

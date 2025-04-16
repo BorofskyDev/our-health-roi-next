@@ -8,6 +8,8 @@ import { useSearchResults } from '@/lib/hooks/useSearchResults'
 import { ContactDetailsModal } from '../contact-details-modal/ContactDetailsModal'
 import { MessagePreviewModal } from '../message-preview-modal/MessagePreviewModal'
 import styles from './ContactOptionsModal.module.scss'
+import { FlexColContainer } from '@/components/containers/layout-container/flex-col-container/FlexColContainer'
+import { ParagraphTitle } from '@/components/common/headers'
 
 export const ContactOptionsModal = () => {
   const { openModal } = useModal()
@@ -86,14 +88,14 @@ export const ContactOptionsModal = () => {
         funding for {term || 'research'}.
       </BodyText>
 
-      <div className={styles.optionsContainer}>
+      <FlexColContainer>
         <div className={styles.section}>
-          <h3>Representative</h3>
+          <ParagraphTitle className='mb-24 center'>Representative</ParagraphTitle>
           <div className={styles.buttonGroup}>
             <EmailIconButton
               text='Email Rep'
               id='emailRepBtn'
-              className='icon-modal-btn-primary mb-16'
+              className=' mb-44'
               onClick={handleEmailRep}
             />
             <PhoneIconButton
@@ -106,12 +108,12 @@ export const ContactOptionsModal = () => {
         </div>
 
         <div className={styles.section}>
-          <h3>Senators</h3>
+          <ParagraphTitle className='mb-24 center'>Senators</ParagraphTitle>
           <div className={styles.buttonGroup}>
             <EmailIconButton
               text='Email Senators'
               id='emailSenatorsBtn'
-              className='icon-modal-btn-primary mb-16'
+              className=' mb-44'
               onClick={handleEmailSenators}
             />
             <PhoneIconButton
@@ -122,7 +124,7 @@ export const ContactOptionsModal = () => {
             />
           </div>
         </div>
-      </div>
+      </FlexColContainer>
 
       <div className={styles.footer}>
         <button className={styles.editButton} onClick={handleEditInfo}>

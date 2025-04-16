@@ -1,0 +1,21 @@
+@use '@/styles/abstracts/mixins' as *;
+
+.buttonGroup {
+    @include flexRowCtr;
+    gap: var(--spacing-44)
+}
+
+
+.optionsBtn {
+    background-color: hsl(var(--color-bg));
+    color: hsl(var(--color-text));
+
+    &:hover, &:focus {
+        color: hsl(var(--color-text-alt));
+    }
+}
+
+.copyBtn, .copied {
+    @include flexRowCtr;
+    gap: var(--spacing-8);
+}

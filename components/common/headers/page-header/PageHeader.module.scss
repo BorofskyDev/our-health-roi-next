@@ -2,6 +2,7 @@
 
 .pageHeader {
   @include heading-style(1);
+  line-height: var(--lh-50);
 
   @include breakpoint(laptop){
     line-height: var(--lh-60);

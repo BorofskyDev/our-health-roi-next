@@ -13,6 +13,8 @@ import {
 } from '@/lib/utils/messageTemplates'
 import { ResearchCounts } from '@/types/'
 import { ContactType, RecipientType } from '../messages/MessageBody'
+import { CopyIcon, CopiedIcon } from '@/components/icons'
+import styles from './MessagePreviewModal.module.scss'
 
 type Props = {
   searchTerm: string
@@ -32,6 +34,7 @@ export const MessagePreviewModal = ({
   const { contactDetails } = useContactDetails()
   const { openModal } = useModal()
   const [preview, setPreview] = useState<string | null>(null)
+  const [isCopied, setIsCopied] = useState(false)
 
   useEffect(() => {
     if (!contactDetails) {
@@ -86,6 +89,16 @@ export const MessagePreviewModal = ({
     }
   }, [contactDetails, searchTerm, research, contactType, recipientType])
 
+   const handleCopy = () => {
+     if (!preview) return;
+     navigator.clipboard.writeText(preview)
+     setIsCopied(true)
+
+     // Reset after 5 seconds
+     setTimeout(() => {
+       setIsCopied(false)
+     }, 5000)
+   }
   const handleBack = () => {
     openModal(<ContactOptionsModal />)
   }
@@ -132,15 +145,28 @@ export const MessagePreviewModal = ({
   return (
     <ModalShell title={title}>
       <BodyText className='preview-content'>{preview}</BodyText>
-      <div className='flex gap-16 mt-24'>
-        <CTAButton type='button' onClick={handleBack}>
+      <div className={styles.buttonGroup}>
+        <CTAButton
+          className={styles.optionsBtn}
+          type='button'
+          onClick={handleBack}
+        >
           Back to Options
         </CTAButton>
         <CTAButton
           type='button'
-          onClick={() => navigator.clipboard.writeText(preview)}
+          onClick={handleCopy}
+          className={isCopied ? styles.copied : styles.copyBtn}
         >
-          Copy Text
+          {isCopied ? (
+            <>
+              Copied! <CopiedIcon />
+            </>
+          ) : (
+            <>
+              Copy Text <CopyIcon />
+            </>
+          )}
         </CTAButton>
       </div>
     </ModalShell>

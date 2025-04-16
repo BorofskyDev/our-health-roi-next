@@ -1,0 +1,6 @@
+@use '@/styles/abstracts/mixins' as *;
+
+.title {
+    @include heading-style(4);
+    
+}

@@ -1,7 +1,6 @@
 @use '@/styles/abstracts/mixins' as *;
 
 .header {
-  position: sticky;
   max-width: 118em;
   padding: var(--spacing-24) var(--spacing-44);
   background-color: hsl(var(--color-bg));

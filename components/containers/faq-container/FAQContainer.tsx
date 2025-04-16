@@ -6,6 +6,7 @@ import { faqData } from './faqData'
 
 export default function FAQContainer() {
   return (
+    
     <div className={styles.faqContainer}>
       {faqData.map((item, index) => (
         <FAQCard key={index} question={item.question} answer={item.answer} />
