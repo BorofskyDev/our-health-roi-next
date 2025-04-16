@@ -20,7 +20,7 @@ const SplashPage = () => {
     <Page>
       <ColToRowContainer>
         <FlexColSection id='hero'>
-          <PageHeader>Our Health ROI</PageHeader>
+          <PageHeader className='center'>Our Health ROI</PageHeader>
           <PHeader>See the return on your tax dollars</PHeader>
           <AnimatedIcon id='dna' size='25rem' />
         </FlexColSection>

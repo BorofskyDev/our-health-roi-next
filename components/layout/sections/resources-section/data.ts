@@ -30,7 +30,7 @@ export const resources: ResourceLink[] = [
       'Brookings analysis about the economic impact of the NIH (opens in a new tab)',
   },
   {
-    href: 'https://www.nih.gov/news-events/nih-research-matter',
+    href: 'https://seed.nih.gov/portfolio/stories',
     text: 'NIH: Weekly Success Stories',
     ariaLabel:
       'Weekly success stories of how NIH funding has helped America and the world (opens in a new tab)',

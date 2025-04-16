@@ -1,3 +1,5 @@
+// components/layout/sections/final-cta-section/data.ts
+
 export const finalCtaParagraphs: string[] = [
   "Every year, a few pennies from each tax dollar you send to Washington go to the National Institutes of Health. It isn't much – usually less than one percent of the federal budget. For most of us that works out to pocket change, only a few dollars a year.",
   'Yet those pennies buy something priceless: time with family, second chances, and healthier lives. NIH grants have helped create vaccines, cancer drugs, insulin pumps, and even the bandages used in combat hospitals on our American military members. If you have ever taken a prescription, received a flu shot, or watched a loved one beat an illness, odds are NIH‑funded science played a part.',

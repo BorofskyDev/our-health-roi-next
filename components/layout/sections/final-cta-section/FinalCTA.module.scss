@@ -1,0 +1,14 @@
+@use '@/styles/abstracts/mixins' as *;
+
+.iconContainer {
+  display: none;
+
+  @include breakpoint(laptop) {
+    display: block;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    place-content: center;
+    place-items: center;
+  }
+}

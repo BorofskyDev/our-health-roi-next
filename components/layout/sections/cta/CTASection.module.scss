@@ -4,3 +4,7 @@
 @include flexColCtr;
 gap: var(--spacing-24);
 }
+
+.reverse {
+    direction: rtl;
+}

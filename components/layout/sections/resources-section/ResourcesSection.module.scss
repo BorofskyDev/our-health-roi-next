@@ -1,0 +1,12 @@
+@use '@/styles/abstracts/mixins' as *;
+
+.resourcesGrid {
+  display: grid;
+  gap: var(--spacing-24);
+  grid-template-columns: 1fr;
+  place-items: center;
+
+  @include breakpoint(laptop) {
+    grid-template-columns: 1fr 1fr;
+  }
+}

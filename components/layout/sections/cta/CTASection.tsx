@@ -1,4 +1,3 @@
-
 'use client'
 import { SectionTitle } from '@/components/common/headers'
 import { BodyText } from '@/components/common/body-typography'
@@ -12,6 +11,7 @@ import { ContactOptionsModal } from '@/components/modals/contact-congress/contac
 import styles from './CTASection.module.scss'
 import { FlexColContainer } from '@/components/containers/layout-container/flex-col-container/FlexColContainer'
 import { ContainerHeader } from '@/components/common/headers/container-header/ContainerHeader'
+import { ColToRowContainer } from '@/components/containers/layout-container/col-to-row-container/ColToRowContainer'
 
 export const CTASection = () => {
   const { openModal } = useModal()
@@ -33,40 +33,49 @@ export const CTASection = () => {
 
   return (
     <FlexColSection id='cta'>
-      <SectionTitle className='mb-24 center'>Take Action</SectionTitle>
-      <BodyText className='mb-18 body-width center'>
-        If the above information has played an impact in your life or in the
-        life of someone close to you, then you need the NIH. Don&apos;t let
-        billionaires or politicians slash that lifeline. Email and call your
-        U.S. representative and both senators today; share your story, thank
-        them for past support, and urge them to protect and grow NIH funding.
-        Your personal message can keep the breakthroughs coming.
-      </BodyText>
-      <FlexColContainer className='mb-44'>
-        <div className={styles.findLink}>
-          <ContainerHeader>Find Your Representative</ContainerHeader>
-          <ExternalLink
-            href='https://www.house.gov/representatives/find-your-representative'
-            ariaLabel='Visit site to find your U.S. Congressional Representative (opens in a new tab)'
-          >
-            Find My Representative
-          </ExternalLink>
+      <ColToRowContainer className={styles.reverse}>
+        <div className='mb-44'>
+          <SectionTitle className='mb-24 center'>Take Action</SectionTitle>
+          <BodyText className='mb-18 body-width center'>
+            If the above information has played an impact in your life or in the
+            life of someone close to you, then you need the NIH. Don&apos;t let
+            billionaires or politicians slash that lifeline. Email and call your
+            U.S. representative and both senators today; share your story, thank
+            them for past support, and urge them to protect and grow NIH
+            funding. Your personal message can keep the breakthroughs coming.
+          </BodyText>
         </div>
-        <div className={styles.findLink}>
-          <ContainerHeader>Find Your Senators</ContainerHeader>
-          <ExternalLink
-            href='https://www.senate.gov/senators/senators-contact.htm'
-            ariaLabel='Visit site to find your U.S. Senators (opens in a new tab)'
-          >
-            Find My Senators
-          </ExternalLink>
-        </div>
-      </FlexColContainer>
-      <div className={styles.actionButtonContainer}>
-        <CTAButton onClick={handleTakeAction} className={styles.actionButton}>
-          {hasCompletedDetails ? 'Contact Congress' : 'Start Contact Form'}
-        </CTAButton>
-      </div>
+        <FlexColContainer>
+          <FlexColContainer className='mb-44'>
+            <div className={styles.findLink}>
+              <ContainerHeader>Find Your Representative</ContainerHeader>
+              <ExternalLink
+                href='https://www.house.gov/representatives/find-your-representative'
+                ariaLabel='Visit site to find your U.S. Congressional Representative (opens in a new tab)'
+              >
+                Find My Representative
+              </ExternalLink>
+            </div>
+            <div className={styles.findLink}>
+              <ContainerHeader>Find Your Senators</ContainerHeader>
+              <ExternalLink
+                href='https://www.senate.gov/senators/senators-contact.htm'
+                ariaLabel='Visit site to find your U.S. Senators (opens in a new tab)'
+              >
+                Find My Senators
+              </ExternalLink>
+            </div>
+          </FlexColContainer>
+          <div className={styles.actionButtonContainer}>
+            <CTAButton
+              onClick={handleTakeAction}
+              className={styles.actionButton}
+            >
+              {hasCompletedDetails ? 'Contact Congress' : 'Start Contact Form'}
+            </CTAButton>
+          </div>
+        </FlexColContainer>
+      </ColToRowContainer>
     </FlexColSection>
   )
 }
