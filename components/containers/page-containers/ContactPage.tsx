@@ -3,7 +3,7 @@
 import { Page } from '@/components/layout/page/Page'
 import React from 'react'
 import { PageHeader } from '@/components/common/headers'
-import { SiteContactContainer } from '../contact-container/site-contact-container/SiteContactContainer'
+import { SiteContactContainer } from '../site-contact-container/SiteContactContainer'
 
 export default function ContactPage() {
   return (
