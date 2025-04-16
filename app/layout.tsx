@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { Libre_Franklin, Inter } from 'next/font/google'
 import '@/styles/index.scss'
 import { Providers } from './providers'
+import { Header } from '@/components/layout/header/Header'
 
 const libreFranklin = Libre_Franklin({
   variable: '--font-libre-franklin',
@@ -29,9 +30,15 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang='en'>
-      <body className={`${libreFranklin.variable} ${inter.variable}`} suppressHydrationWarning>
-        <Providers>{children}</Providers>
+    <html lang='en' suppressHydrationWarning>
+      <body
+        className={`${libreFranklin.variable} ${inter.variable}`}
+        suppressHydrationWarning
+      >
+        <Providers>
+          <Header />
+          {children}
+        </Providers>
       </body>
     </html>
   )

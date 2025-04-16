@@ -1,0 +1,41 @@
+@use '@/styles/abstracts/mixins' as *;
+
+.header {
+  position: sticky;
+  max-width: 118em;
+  padding: var(--spacing-24) var(--spacing-44);
+  background-color: hsl(var(--color-bg));
+  border-bottom: var(--border-standard);
+  top: 0;
+  z-index: 100;
+
+  @include breakpoint(laptop) {
+    margin-inline: auto;
+    padding: var(--spacing-60) var(--spacing-120);
+  }
+}
+
+.container {
+  width: 100%;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.actions {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: flex-end;
+  transition: transform 0.3s ease;
+}
+
+.actionsOpen {
+  transform: translateX(100vw);
+  @include breakpoint(laptop) {
+    transform: none;
+  }
+}
