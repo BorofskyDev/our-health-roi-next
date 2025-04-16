@@ -4,10 +4,13 @@
 import React, { useState, FormEvent } from 'react'
 import { useSiteContact } from '@/lib/hooks/useSiteContact'
 import { getPrefixedSubject } from '@/lib/fetchers/getPrefixedSubject'
+import { CTAButton } from '@/components/common/buttons'
+import { TextInput, TextAreaWithCount } from '@/components/common/inputs'
 import type {
   SiteContactCategory,
   SiteContactFormData,
 } from '@/lib/utils/sendSiteContactEmail'
+import styles from './SiteContactForm.module.scss'
 
 const SiteContactForm: React.FC = () => {
   const { submitContact, loading, error, success } = useSiteContact()
@@ -47,16 +50,17 @@ const SiteContactForm: React.FC = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate>
+    <form onSubmit={handleSubmit} noValidate className={styles.contactForm}>
       <fieldset>
         <legend>Contact Us</legend>
 
-        <div>
+        <div className={styles.formGroup}>
           <label htmlFor='site-contact-category'>Select an option:</label>
           <select
             id='site-contact-category'
             value={category}
             onChange={(e) => setCategory(e.target.value as SiteContactCategory)}
+            className={styles.select}
           >
             <option value='MEDIA'>Media Contact / Media Package</option>
             <option value='ACCESSIBILITY'>Accessibility Issues</option>
@@ -67,53 +71,44 @@ const SiteContactForm: React.FC = () => {
           </select>
         </div>
 
-        <div>
-          <label htmlFor='site-contact-name'>Name:</label>
-          <input
-            type='text'
-            id='site-contact-name'
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </div>
+        <TextInput
+          label='Name'
+          id='site-contact-name'
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
 
-        <div>
-          <label htmlFor='site-contact-email'>Email:</label>
-          <input
-            type='email'
-            id='site-contact-email'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
+        <TextInput
+          label='Email'
+          id='site-contact-email'
+          type='email'
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
 
-        <div>
-          <label htmlFor='site-contact-subject'>Subject:</label>
-          <input
-            type='text'
-            id='site-contact-subject'
-            value={subject}
-            onChange={(e) => setSubject(e.target.value)}
-            maxLength={100}
-            required
-          />
-          <small>{subject.length}/100</small>
-        </div>
+        <TextInput
+          label='Subject'
+          id='site-contact-subject'
+          value={subject}
+          onChange={(e) => setSubject(e.target.value)}
+          maxLength={100}
+          required
+          hint={`${subject.length}/100 characters`}
+        />
 
-        <div>
-          <label htmlFor='site-contact-message'>Message:</label>
-          <textarea
-            id='site-contact-message'
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            required
-          />
-        </div>
+        <TextAreaWithCount
+          label='Message'
+          id='site-contact-message'
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          maxLength={1000}
+          required
+        />
 
         {/* Honeypot field using your visual-hidden util class */}
-        <div className='visuall hidden'>
+        <div className='visually-hidden'>
           <label htmlFor='site-contact-honeypot'>Leave this field empty</label>
           <input
             type='text'
@@ -124,12 +119,20 @@ const SiteContactForm: React.FC = () => {
           />
         </div>
 
-        <button type='submit' disabled={loading}>
-          {loading ? 'Submitting…' : 'Submit'}
-        </button>
+        <CTAButton type='submit' isLoading={loading} loadingText='Submitting…'>
+          Submit
+        </CTAButton>
 
-        {error && <div role='alert'>{error}</div>}
-        {success && <div role='status'>Message sent successfully!</div>}
+        {error && (
+          <div role='alert' className={styles.errorMessage}>
+            {error}
+          </div>
+        )}
+        {success && (
+          <div role='status' className={styles.successMessage}>
+            Message sent successfully!
+          </div>
+        )}
       </fieldset>
     </form>
   )

@@ -3,6 +3,9 @@
 
 import React from 'react'
 import SiteContactForm from '@/components/layout/forms/site-contact-form/SiteContactForm'
+import { FlexColSection } from '@/components/layout/sections'
+import Link from 'next/link'
+import { ParagraphTitle } from '@/components/common/headers'
 
 export interface SiteContactContainerProps {
   /** The title you want shown above the form */
@@ -16,21 +19,18 @@ export const SiteContactContainer: React.FC<SiteContactContainerProps> = ({
   findLink,
 }) => {
   return (
-    <section className='max-w-2xl mx-auto px-4'>
-      <h2 className='text-3xl font-semibold mb-4 text-center'>{title}</h2>
+    <FlexColSection id='contact-container' >
+      <ParagraphTitle className='center body-width'>{title}</ParagraphTitle>
       {findLink && (
         <p className='mb-8 text-center'>
-          <a
+          <Link
             href={findLink}
-            target='_blank'
-            rel='noopener noreferrer'
-            className='underline hover:text-primary'
           >
             More info here
-          </a>
+          </Link>
         </p>
       )}
       <SiteContactForm />
-    </section>
+    </FlexColSection>
   )
 }

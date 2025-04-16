@@ -8,12 +8,10 @@ import { SiteContactContainer } from '../site-contact-container/SiteContactConta
 export default function ContactPage() {
   return (
     <Page>
-      <PageHeader className='mb-44 center'>
-        Frequently Asked Questions
-      </PageHeader>
+      <PageHeader className='mb-44 center'>Contact Our Health ROI</PageHeader>
       <SiteContactContainer
-        title='Contact Us'
-        findLink='https://www.example.com/contact'
+        title='Please select the category that your contact falls into. I cannot guarantee I will respond to all emails, but will do my best.'
+        findLink='/faq'
       />
     </Page>
   )
