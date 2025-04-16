@@ -60,6 +60,7 @@
 
 @mixin body-text($weight: var(--fw-400)) {
   @include typography(var(--ff-body), $weight, var(--fs-base), var(--lh-36), none);
+  max-width: 80ch;
 }
 
 @mixin small-text($weight: var(--fw-400)) {
