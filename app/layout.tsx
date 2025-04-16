@@ -5,6 +5,7 @@ import { Libre_Franklin, Inter } from 'next/font/google'
 import '@/styles/index.scss'
 import { Providers } from './providers'
 import { Header } from '@/components/layout/header/Header'
+import { Footer } from '@/components/layout/footer/Footer'
 
 const libreFranklin = Libre_Franklin({
   variable: '--font-libre-franklin',
@@ -38,6 +39,7 @@ export default function RootLayout({
         <Providers>
           <Header />
           {children}
+          <Footer />
         </Providers>
       </body>
     </html>
