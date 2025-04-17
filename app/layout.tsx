@@ -6,6 +6,7 @@ import '@/styles/index.scss'
 import { Providers } from './providers'
 import { Header } from '@/components/layout/header/Header'
 import { Footer } from '@/components/layout/footer/Footer'
+import SkipToContent from '@/components/accessibility/skip-to-content/SkipToContent'
 
 const libreFranklin = Libre_Franklin({
   variable: '--font-libre-franklin',
@@ -37,6 +38,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <Providers>
+          <SkipToContent />
           <Header />
           {children}
           <Footer />

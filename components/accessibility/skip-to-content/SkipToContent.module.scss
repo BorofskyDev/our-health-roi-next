@@ -1,0 +1,22 @@
+@use '@/styles/abstracts/mixins/' as *;
+
+.skipToContent {
+  position: absolute;
+  top: -140px;
+  left: 0;
+  z-index: 1000;
+  background: hsl(var(--color-bg-alt));
+  color: hsl(var(--color-text-alt));
+  padding: var(--spacing-8) var(--spacing-16);
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 0 0 4px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: top 0.2s ease;
+
+  // When focused, slide down into view
+  &:focus {
+    top: 0;
+    @include focused;
+  }
+}

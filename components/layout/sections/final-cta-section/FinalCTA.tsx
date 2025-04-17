@@ -8,7 +8,8 @@ import { BodyText } from '@/components/common/body-typography'
 import { AnimatedIcon } from '@/components/icons'
 import { finalCtaParagraphs } from './data'
 import { ColToRowContainer } from '@/components/containers/layout-container/col-to-row-container/ColToRowContainer'
-import styles from './FinalCTA.module.scss'
+
+import { IconContainer } from '@/components/containers/icon-container/IconContainer'
 // Helper to group paragraphs into blocks (3 paragraphs each)
 const groupArray = (arr: string[], groupSize: number): string[][] =>
   arr.reduce((acc, cur, idx) => {
@@ -41,16 +42,18 @@ export const FinalCTA = () => {
                   </BodyText>
                 ))}
               </div>
-              <div className={`${styles.iconContainer}`}>
-                <AnimatedIcon  id='medical' size='25rem' />
-              </div>
+              <IconContainer>
+
+              <AnimatedIcon  id='medical' size='25rem' />
+              </IconContainer>
+           
             </>
           ) : (
             <>
               {/* Icon first, then text */}
-              <div className={`${styles.iconContainer}`}>
+              <IconContainer>
                 <AnimatedIcon id='flag' size='25rem' />
-              </div>
+              </IconContainer>
               <div className='text-container'>
                 {group.map((para, idx) => (
                   <BodyText className='mb-18 body-width' key={idx}>

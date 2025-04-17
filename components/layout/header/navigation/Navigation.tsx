@@ -1,5 +1,6 @@
 // components/layout/header/navigation/Navigation.tsx
 'use client'
+import { useRef, useEffect, KeyboardEvent } from 'react'
 import { motion } from 'framer-motion'
 import { NavLink } from '@/components/common/links/nav-link/NavLink'
 import styles from './Navigation.module.scss'
@@ -10,9 +11,26 @@ interface NavigationProps {
 }
 
 export const Navigation = ({ isOpen, setIsOpen }: NavigationProps) => {
+  const hamburgerRef = useRef<HTMLButtonElement>(null)
+  const navLinksRef = useRef<HTMLUListElement>(null)
+  const firstNavLinkRef = useRef<HTMLAnchorElement>(null)
+
   const toggleNavigation = () => {
     setIsOpen(!isOpen)
   }
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      toggleNavigation()
+    }
+  }
+
+  useEffect(() => {
+    if (isOpen && firstNavLinkRef.current) {
+      firstNavLinkRef.current.focus()
+    }
+  }, [isOpen])
 
   // Framer Motion variants for the mobile navigation overlay
   const navContainerVariants = {
@@ -37,13 +55,21 @@ export const Navigation = ({ isOpen, setIsOpen }: NavigationProps) => {
   return (
     <div className={styles.navigationContainer}>
       {/* Hamburger / X Toggle Button for Mobile */}
-      <div className={styles.hamburgerWrapper} onClick={toggleNavigation}>
+      <button
+        ref={hamburgerRef}
+        className={styles.hamburgerBtn}
+        onClick={toggleNavigation}
+        onKeyDown={handleKeyDown}
+        aria-label={isOpen ? 'Close navigation' : 'Open navigation'}
+        aria-expanded={isOpen}
+        aria-controls='mobileNav'
+      >
         <div className={`${styles.hamburger} ${isOpen ? styles.open : ''}`}>
           <span className={styles.line}></span>
           <span className={styles.line}></span>
           <span className={styles.line}></span>
         </div>
-      </div>
+      </button>
 
       {/* Mobile Navigation Overlay */}
       <motion.nav
@@ -52,24 +78,41 @@ export const Navigation = ({ isOpen, setIsOpen }: NavigationProps) => {
         initial='hidden'
         animate={isOpen ? 'visible' : 'hidden'}
       >
-        <motion.ul className={styles.navList}>
+        <motion.ul className={styles.navList} ref={navLinksRef}>
           <motion.li variants={navLinkVariants}>
-            <NavLink href='/' onClick={toggleNavigation}>
+            <NavLink
+              href='/'
+              onClick={toggleNavigation}
+              ref={firstNavLinkRef}
+              tabIndex={isOpen ? 0 : -1}
+            >
               Home
             </NavLink>
           </motion.li>
           <motion.li variants={navLinkVariants}>
-            <NavLink href='/about' onClick={toggleNavigation}>
+            <NavLink
+              href='/about'
+              onClick={toggleNavigation}
+              tabIndex={isOpen ? 0 : -1}
+            >
               About
             </NavLink>
           </motion.li>
           <motion.li variants={navLinkVariants}>
-            <NavLink href='/faq' onClick={toggleNavigation}>
+            <NavLink
+              href='/faq'
+              onClick={toggleNavigation}
+              tabIndex={isOpen ? 0 : -1}
+            >
               FAQ
             </NavLink>
           </motion.li>
           <motion.li variants={navLinkVariants}>
-            <NavLink href='/contact' onClick={toggleNavigation}>
+            <NavLink
+              href='/contact'
+              onClick={toggleNavigation}
+              tabIndex={isOpen ? 0 : -1}
+            >
               Contact
             </NavLink>
           </motion.li>

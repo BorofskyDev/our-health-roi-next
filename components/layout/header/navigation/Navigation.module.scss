@@ -10,22 +10,32 @@
 }
 
 /* Hamburger / X Toggle Button */
-.hamburgerWrapper {
+.hamburgerBtn {
   display: block;
   cursor: pointer;
-  z-index: 110; // keep above the mobile overlay
+  z-index: 210; // keep above the mobile overlay
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+
+  &:focus-visible, &:focus, &:focus-within {
+    @include focused;
+  }
   @include breakpoint(laptop) {
     display: none;
   }
+
 }
 
 .hamburger {
-  width: 30px;
-  height: 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+ width: 30px;
+ height: 24px;
+ display: flex;
+ flex-direction: column;
+ justify-content: space-between;
 }
+
 
 .line {
   display: block;
@@ -61,6 +71,11 @@
   justify-content: center;
   align-items: center;
   padding-left: 2rem;
+
+  & [aria-hidden="true"] {
+    visibility: hidden;
+    pointer-events: none;
+  }
 }
 
 /* Nav list styling */

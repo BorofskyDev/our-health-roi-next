@@ -5,10 +5,6 @@
   font-weight: var(--fw-700);
   transition: all 0.3s ease-in-out;
 
-  &:focus {
-    @include focused;
-  }
-
   &::before {
     content: '';
     position: absolute;
@@ -46,5 +42,10 @@
     &::after {
       transform: scale(1);
     }
+  }
+
+  &:focus-within,
+  &:focus {
+    @include focused;
   }
 }
