@@ -76,7 +76,6 @@ export const AnimatedIcon = ({
               style={{ stopColor: 'hsl(var(--color-primary))' }}
             />
           </motion.linearGradient>
-
           <filter id={glowId} x='-50%' y='-50%' width='200%' height='200%'>
             <feGaussianBlur in='SourceAlpha' stdDeviation='3' result='blur' />
 
@@ -104,8 +103,8 @@ export const AnimatedIcon = ({
               result='shadow2'
             />
 
-            <feOffset in='shadow1' dx='24' dy='16' result='offsetShadow1' />
-            <feOffset in='shadow2' dx='30' dy='18' result='offsetShadow2' />
+            <feOffset in='shadow1' dx='12' dy='10' result='offsetShadow1' />
+            <feOffset in='shadow2' dx='14' dy='16' result='offsetShadow2' />
 
             <feBlend
               in='offsetShadow1'
@@ -122,6 +121,7 @@ export const AnimatedIcon = ({
               <feMergeNode in='SourceGraphic' />
             </feMerge>
           </filter>
+
         </defs>
 
         {/* --- icon path -------------------------------------------- */}
