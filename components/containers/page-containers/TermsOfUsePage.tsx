@@ -52,12 +52,12 @@ const TermsOfUsePage = () => {
             </BodyText>
           </FlexColContainer>
           <IconContainer>
-            <AnimatedIcon id='dna' size='25rem' className='mb-24' />
+            <AnimatedIcon id='search' size='25rem' className='mb-24' />
           </IconContainer>
         </ColToRowContainer>
         <ColToRowContainer>
           <IconContainer>
-            <AnimatedIcon id='dna' size='25rem' className='mb-24' />
+            <AnimatedIcon id='terms' size='25rem' className='mb-24' />
           </IconContainer>
           <FlexColContainer>
             <BodyText>
@@ -102,12 +102,12 @@ const TermsOfUsePage = () => {
             </BodyText>
           </FlexColContainer>
           <IconContainer>
-            <AnimatedIcon id='dna' size='25rem' className='mb-24' />
+            <AnimatedIcon id='api' size='25rem' className='mb-24' />
           </IconContainer>
         </ColToRowContainer>
         <ColToRowContainer>
           <IconContainer>
-            <AnimatedIcon id='dna' size='25rem' className='mb-24' />
+            <AnimatedIcon id='volunteer' size='25rem' className='mb-24' />
           </IconContainer>
           <FlexColContainer>
             <BodyText>
