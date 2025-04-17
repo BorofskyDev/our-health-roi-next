@@ -94,7 +94,7 @@ export const AnimatedIcon = ({
 
             <feFlood
               floodColor='hsl(var(--color-accent))'
-              floodOpacity='0.4'
+              floodOpacity='0.25'
               result='color2'
             />
             <feComposite
@@ -104,8 +104,8 @@ export const AnimatedIcon = ({
               result='shadow2'
             />
 
-            <feOffset in='shadow1' dx='10' dy='5' result='offsetShadow1' />
-            <feOffset in='shadow2' dx='12' dy='7' result='offsetShadow2' />
+            <feOffset in='shadow1' dx='24' dy='16' result='offsetShadow1' />
+            <feOffset in='shadow2' dx='30' dy='18' result='offsetShadow2' />
 
             <feBlend
               in='offsetShadow1'
