@@ -1,34 +1,35 @@
 'use client'
 import { motion, useReducedMotion } from 'framer-motion'
 import { useId } from 'react'
-import { decorativeIcons, DecorativeIconId } from '../decorative-icon/decorativeIcon'
+import {
+  decorativeIcons,
+  DecorativeIconId,
+} from '../decorative-icon/decorativeIcon'
 import styles from './AnimatedIcon.module.scss'
 
 type AnimatedIconProps = {
-  id: DecorativeIconId // 'dna' | 'heart' | …
+  id: DecorativeIconId
   className?: string
-  size?: number | string // optional override (px | rem | etc.)
+  size?: number | string
 }
 
 export const AnimatedIcon = ({
   id,
   className,
-  size = '25rem', // default wrapper size
+  size = '25rem',
 }: AnimatedIconProps) => {
   const { viewBox, path } = decorativeIcons[id]
 
-  /* unique IDs so multiple instances never clash */
   const gradId = useId()
   const glowId = `${gradId}-glow`
 
-  /* respect prefers‑reduced‑motion */
   const shouldReduce = useReducedMotion()
 
   return (
     <div
       aria-hidden
       className={` ${styles.animatedIcon} ${className}`}
-      style={{  width: size, aspectRatio: '1 / 1' }}
+      style={{ width: size, aspectRatio: '1 / 1' }}
     >
       <svg
         viewBox={viewBox}
@@ -37,7 +38,6 @@ export const AnimatedIcon = ({
         focusable='false'
         style={{ filter: `url(#${glowId})` }}
       >
-        {/* --- defs -------------------------------------------------- */}
         <defs>
           <motion.linearGradient
             id={gradId}
@@ -46,7 +46,6 @@ export const AnimatedIcon = ({
             y1='0'
             x2='50'
             y2='50'
-            /* animate only when motion is allowed */
             animate={
               shouldReduce
                 ? undefined
@@ -78,10 +77,48 @@ export const AnimatedIcon = ({
             />
           </motion.linearGradient>
 
-          <filter id={glowId} x='-30%' y='-30%' width='160%' height='160%'>
-            <feGaussianBlur stdDeviation='2' result='blur' />
+          <filter id={glowId} x='-50%' y='-50%' width='200%' height='200%'>
+            <feGaussianBlur in='SourceAlpha' stdDeviation='3' result='blur' />
+
+            <feFlood
+              floodColor='hsl(var(--color-primary))'
+              floodOpacity='0.6'
+              result='color1'
+            />
+            <feComposite
+              in='color1'
+              in2='blur'
+              operator='in'
+              result='shadow1'
+            />
+
+            <feFlood
+              floodColor='hsl(var(--color-accent))'
+              floodOpacity='0.4'
+              result='color2'
+            />
+            <feComposite
+              in='color2'
+              in2='blur'
+              operator='in'
+              result='shadow2'
+            />
+
+            <feOffset in='shadow1' dx='10' dy='5' result='offsetShadow1' />
+            <feOffset in='shadow2' dx='12' dy='7' result='offsetShadow2' />
+
+            <feBlend
+              in='offsetShadow1'
+              in2='offsetShadow2'
+              mode='screen'
+              result='blendedShadow'
+            />
+
+            <feGaussianBlur in='SourceGraphic' stdDeviation='1' result='glow' />
+
             <feMerge>
-              <feMergeNode in='blur' />
+              <feMergeNode in='blendedShadow' />
+              <feMergeNode in='glow' />
               <feMergeNode in='SourceGraphic' />
             </feMerge>
           </filter>

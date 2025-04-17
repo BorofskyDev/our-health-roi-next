@@ -1,10 +1,18 @@
 @use '@/styles/abstracts/mixins/breakpoints' as *;
 
 .animatedIcon {
-    display: none;
+  display: none;
 
-    @include breakpoint(laptop) {
-        display: block;
-    }
-
+  @include breakpoint(laptop) {
+    display: block;
+    // filter: drop-shadow(
+    //   var(--spacing-40) var(--spacing-20) var(--spacing-4)
+    //     hsl(var(--color-accent) / 0.5)
+    // );
+    // filter: drop-shadow(
+    //   var(--spacing-40) var(--spacing-20) var(--spacing-4)
+    //     var(--shadow-gradient)
+    // );
+  }
 }
+

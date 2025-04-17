@@ -16,6 +16,12 @@
 
   --gradient-primary: hsl(var(--color-primary));
   --gradient-accent: hsl(var(var(--color-accent)));
+
+  --shadow-gradient: linear-gradient(
+    0deg,
+    hsl(var(--color-primary) / 0.5) 0%,
+    hsl(var(--color-accent) / 0.5) 100%
+  );
 }
 
 /* Dark Theme */
