@@ -10,7 +10,7 @@ export const ResourcesSection = () => (
     <div className={styles.resourcesGrid}>
       {resources.map(({ href, text, ariaLabel }, idx) => (
         <div key={idx}>
-          <ExternalLink href={href} ariaLabel={ariaLabel}>
+          <ExternalLink className='center' href={href} ariaLabel={ariaLabel}>
             {text}
           </ExternalLink>
         </div>

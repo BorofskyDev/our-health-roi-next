@@ -52,4 +52,8 @@ export const faqData = [
     answer:
       'Join advocacy groups, support science-focused NGOs, attend protests, and, if necessary, back international organizations still supported by other governments.',
   },
+  {
+    question: "I'm a developer, is there a way I can volunteer on this project?",
+    answer: "YES! I'd love to have you on board! Please reach out to me via the contact form.",
+  }
 ]
