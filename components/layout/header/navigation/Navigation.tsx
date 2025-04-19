@@ -116,6 +116,15 @@ export const Navigation = ({ isOpen, setIsOpen }: NavigationProps) => {
               Contact
             </NavLink>
           </motion.li>
+          <motion.li variants={navLinkVariants}>
+            <NavLink
+              href='/support'
+              onClick={toggleNavigation}
+              tabIndex={isOpen ? 0 : -1}
+            >
+              Support
+            </NavLink>
+          </motion.li>
         </motion.ul>
       </motion.nav>
 
@@ -125,6 +134,7 @@ export const Navigation = ({ isOpen, setIsOpen }: NavigationProps) => {
         <NavLink href='/about'>About</NavLink>
         <NavLink href='/faq'>FAQ</NavLink>
         <NavLink href='/contact'>Contact</NavLink>
+        <NavLink href='/support'>Support</NavLink>
       </nav>
     </div>
   )

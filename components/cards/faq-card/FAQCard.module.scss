@@ -1,5 +1,5 @@
 // components/cards/faq-card/FAQCard.module.scss
-
+@use '@/styles/abstracts/mixins' as *;
 .faqCard {
   width: 100%;
   max-width: var(--width-500);
@@ -15,6 +15,10 @@
     .cardBack {
         z-index: 3;
     }
+  }
+
+   &:focus-within {
+    @include focused;
   }
 }
 

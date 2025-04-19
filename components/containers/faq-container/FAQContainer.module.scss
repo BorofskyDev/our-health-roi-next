@@ -1,4 +1,6 @@
 // components/containers/faq-container/FAQContainer.module.scss
+@use '@/styles/abstracts/mixins' as *;
+
 
 .faqContainer {
   display: grid;
@@ -7,4 +9,7 @@
   padding: 24px;
   max-width: 1200px;
   margin: 0 auto;
+
+ 
+
 }
