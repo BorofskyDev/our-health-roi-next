@@ -1,53 +1,51 @@
-// components/layout/footer/Footer.tsx
 'use client'
-import Link from 'next/link'
+
 import styles from './Footer.module.scss'
+import { ExternalLink, NavLink } from '@/components/common/links'
 
 export const Footer = () => {
-  const currentYear = new Date().getFullYear()
+  const year = new Date().getFullYear()
 
   return (
     <footer className={styles.footer}>
-      <div className={styles.footerContainer}>
-        {/* 1. Site Navigation */}
-        <nav className={styles.footerNav}>
+      {/* inner wrapper that changes direction */}
+      <div className={styles['footer__inner']}>
+        {/* ①  Site navigation */}
+        <nav className={styles['footer__nav']} aria-label='Footer navigation'>
           <ul>
             <li>
-              <Link href='/'>Home</Link>
+              <NavLink href='/'>Home</NavLink>
             </li>
             <li>
-              <Link href='/about'>About</Link>
+              <NavLink href='/about'>About</NavLink>
             </li>
             <li>
-              <Link href='/faq'>FAQ</Link>
+              <NavLink href='/faq'>FAQ</NavLink>
             </li>
             <li>
-              <Link href='/contact'>Contact</Link>
+              <NavLink href='/contact'>Contact</NavLink>
+            </li>
+            <li>
+              <NavLink href='/tip'>Support Us</NavLink>
             </li>
           </ul>
         </nav>
 
-        {/* 2. Legal and Accessibility */}
-        <div className={styles.legal}>
-          <Link href='/privacy-policy'>Privacy Policy</Link>
-          <span>|</span>
-          <Link href='/terms-of-use'>Terms of Use</Link>
-          <span>|</span>
-          <Link href='/accessibility'>Accessibility</Link>
-        </div>
+        {/* ②  Legal links */}
+        <nav className={styles['footer__legal']} aria-label='Legal navigation'>
+          <NavLink href='/privacy-policy'>Privacy Policy</NavLink>
+          <span aria-hidden>│</span>
+          <NavLink href='/terms-of-use'>Terms of Use</NavLink>
+          <span aria-hidden>│</span>
+          <NavLink href='/accessibility'>Accessibility</NavLink>
+        </nav>
 
-        {/* 3. Branding & Copyright */}
-        <div className={styles.branding}>
-          <span>© {currentYear}</span>
+        {/* ③  Branding */}
+        <div className={styles['footer__branding']}>
+          <span>© {year} Our Health ROI</span>
           <span>
-            Designed and Developed by{' '}
-            <Link
-              href='https://jbsky.dev'
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              JBSky Dev
-            </Link>
+            Designed & Developed by{' '}
+            <ExternalLink href='https://joelborofsky.com'>JBSky Dev</ExternalLink>
           </span>
         </div>
       </div>

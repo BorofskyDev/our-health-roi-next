@@ -13,9 +13,9 @@ export const resources: ResourceLink[] = [
   },
   {
     href: 'https://www.dallasfed.org/-/media/documents/research/papers/2023/wp2305r1.pdf',
-    text: 'Federal Reserve Bank of Dallas: How Federal Investments in R&D Help the Private Business Sector',
+    text: 'Federal Reserve Bank of Dallas: How Federal Investments in R&D Help the Private Business Sector (Opens in PDF)',
     ariaLabel:
-      'How federal investments in R&D help the private business sector (opens in a new tab)',
+      'How federal investments in R&D help the private business sector (opens in a PDF)',
   },
   {
     href: 'https://www.faseb.org/science-policy-and-advocacy/federal-funding-data',

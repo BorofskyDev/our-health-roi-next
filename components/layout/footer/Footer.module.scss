@@ -1,82 +1,58 @@
-// components/layout/footer/Footer.module.scss
 @use '@/styles/abstracts/mixins' as *;
+
 
 .footer {
   background-color: hsl(var(--color-bg));
   padding: var(--spacing-24) var(--spacing-44);
   border-top: var(--border-standard);
+  container-type: inline-size;          
 
   @include breakpoint(laptop) {
     padding: var(--spacing-60) var(--spacing-120);
   }
 }
 
-.footerContainer {
+
+.footer__inner {
   max-width: 118em;
-  margin: 0 auto;
+  margin-inline: auto;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: var(--spacing-24);
   align-items: center;
   text-align: center;
+}
 
-  @include breakpoint(laptop) {
+
+@container (min-width: 1300px) {     
+  .footer__inner {
     flex-direction: row;
     justify-content: space-between;
     text-align: left;
+    gap: var(--spacing-30);
   }
 }
 
-/* Site Navigation Section */
-.footerNav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  gap: 1.5rem;
-}
 
-.footerNav a {
-  text-decoration: none;
-  color: hsl(var(--color-text));
-  transition: color 0.3s ease;
-
-  &:hover {
-    color: hsl(var(--color-accent));
+.footer__nav {
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1.5rem;
   }
 }
 
-/* Legal and Accessibility Section */
-.legal {
+.footer__legal {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-
-  a {
-    text-decoration: none;
-    color: hsl(var(--color-text));
-    transition: color 0.3s ease;
-
-    &:hover {
-      color: hsl(var(--color-accent));
-    }
-  }
 }
 
-/* Branding & Copyright Section */
-.branding {
+.footer__branding {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  font-size: 0.875rem;
-
-  a {
-    text-decoration: none;
-    color: hsl(var(--color-text));
-    transition: color 0.3s ease;
-
-    &:hover {
-      color: hsl(var(--color-accent));
-    }
-  }
+  font-size: .875rem;
 }

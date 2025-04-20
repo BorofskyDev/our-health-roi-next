@@ -10,10 +10,4 @@
             @content;
         }
     }
-
-    @if $breakpoint == desktop {
-        @media (min-width: 119em) {
-            @content;
-        }
-    }
 }
