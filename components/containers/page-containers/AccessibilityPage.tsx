@@ -13,6 +13,30 @@ import { ColToRowContainer } from '../layout-container/col-to-row-container/ColT
 import { FlexColContainer } from '../layout-container/flex-col-container/FlexColContainer'
 import { AnimatedIcon } from '@/components/icons'
 import { IconContainer } from '../icon-container/IconContainer'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Accessibility',
+  description:
+    'Our Health ROI accessibility statement - Learn about our commitment to making medical research data accessible to all users.',
+  openGraph: {
+    title: 'Accessibility | Our Health ROI',
+    description:
+      'Our commitment to making medical research data accessible to all.',
+    images: [
+      {
+        url: '/api/og?title=Accessibility&subtitle=Committed to Inclusive Access for All Users',
+        width: 1200,
+        height: 630,
+        alt: 'Accessibility - Our Health ROI',
+      },
+    ],
+  },
+  robots: {
+    index: false, // Typically don't index accessibility pages
+    follow: true,
+  },
+}
 
 const AccessibilityPage = () => {
   return (

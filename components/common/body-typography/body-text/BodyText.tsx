@@ -9,5 +9,5 @@ type BodyTextProps = {
 }
 
 export const BodyText = ({ children, className }: BodyTextProps) => {
-  return <h1 className={`${styles.bodyText} ${className}`}>{children}</h1>
+  return <p className={`${styles.bodyText} ${className}`}>{children}</p>
 }

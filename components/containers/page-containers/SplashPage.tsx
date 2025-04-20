@@ -1,6 +1,6 @@
 // components/containers/page-containers/SplashPage.tsx
 'use client'
-import { PHeader, PageHeader } from '@/components/common/headers'
+import { PHeader } from '@/components/common/headers'
 import { FlexColSection } from '@/components/layout/sections'
 import { SearchForm } from '@/components/layout/forms'
 import { Page } from '@/components/layout/page/Page'
@@ -10,6 +10,7 @@ import { CTASection } from '@/components/layout/sections/cta/CTASection'
 import { ColToRowContainer } from '../layout-container/col-to-row-container/ColToRowContainer'
 import { AnimatedIcon } from '@/components/icons'
 import { useSearchResults } from '@/lib/hooks/useSearchResults'
+import { Heading } from '@/components/common/headers/heading/Heading'
 
 const SplashPage = () => {
   const searchContext = useSearchResults()
@@ -20,7 +21,7 @@ const SplashPage = () => {
     <Page>
       <ColToRowContainer>
         <FlexColSection id='main'>
-          <PageHeader className='center'>Our Health ROI</PageHeader>
+          <Heading as='h1' size='2xl' className='center'>Our Health ROI</Heading>
           <PHeader>See the return on your tax dollars</PHeader>
           <AnimatedIcon id='dna' size='25rem' />
         </FlexColSection>

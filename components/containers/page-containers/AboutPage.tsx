@@ -1,11 +1,7 @@
 // components/containers/page-containers/AboutPage.tsx
 
 import { BodyText } from '@/components/common/body-typography'
-import {
-  PageHeader,
-  SectionHeading,
-  SectionTitle,
-} from '@/components/common/headers'
+
 import { ExternalLink } from '@/components/common/links'
 import { Page } from '@/components/layout/page/Page'
 import { FlexColSection } from '@/components/layout/sections'
@@ -13,13 +9,35 @@ import { ColToRowContainer } from '../layout-container/col-to-row-container/ColT
 import { FlexColContainer } from '../layout-container/flex-col-container/FlexColContainer'
 import { AnimatedIcon } from '@/components/icons'
 import { IconContainer } from '../icon-container/IconContainer'
+import { Heading } from '@/components/common/headers/heading/Heading'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'About',
+  description:
+    'Learn about Our Health ROI initiative and our mission to showcase the impact of medical research funding.',
+  openGraph: {
+    title: 'About | Our Health ROI',
+    description: 'Learn about our mission to showcase medical research impact.',
+    images: [
+      {
+        url: '/api/og?title=About&subtitle=Our mission to showcase medical research impact',
+        width: 1200,
+        height: 630,
+        alt: 'About Our Health ROI',
+      },
+    ],
+  },
+}
+
 
 const AboutPage = () => {
   return (
     <Page>
       <FlexColSection id='main'>
-        <PageHeader className='mb-44 center'>About Our Health ROI</PageHeader>
-        <SectionTitle>Why this site?</SectionTitle>
+        <Heading as='h1' size='2xl' className='center'>About Our Health ROI</Heading>
+        
+        <Heading as='h2' size='lg'>Why This Site?</Heading>
         <BodyText className='mb-24'>
           Our Health ROI is a citizen‑built tool that turns cold NIH funding
           data into a warm, unmistakable story: public dollars save lives, spark
@@ -31,9 +49,8 @@ const AboutPage = () => {
         </BodyText>
         <ColToRowContainer>
           <FlexColContainer>
-            <SectionHeading className='mb-30'>
-              The NIH: America&apos;s Biomedical Engine
-            </SectionHeading>
+            <Heading as='h2' size='md' className='mb-30'>The NIH: America&apos;s Biomedical Engin</Heading>
+
             <BodyText>
               Created in 1930 (with roots reaching back to an 1887 one‑room
               laboratory on Staten Island), the National Institutes of Health
@@ -83,7 +100,7 @@ const AboutPage = () => {
             </BodyText>
           </FlexColContainer>
         </ColToRowContainer>
-        <SectionHeading className='mb-30'>Why I Built This Site</SectionHeading>
+        <Heading as='h2' size='md' className='mb-30'>Why I Built This Site</Heading>
         <ColToRowContainer>
           <FlexColContainer>
             <BodyText>
@@ -144,7 +161,7 @@ const AboutPage = () => {
           </FlexColContainer>
         </ColToRowContainer>
 
-        <SectionHeading>How the Site Works</SectionHeading>
+        <Heading as='h2' size='md'>How the Site Works</Heading>
         <BodyText>
           <strong>Search any condition</strong>—from melanoma to rare genetic
           disorders—and instantly see every NIH‑funded project, publication,

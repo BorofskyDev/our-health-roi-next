@@ -13,6 +13,29 @@ import { ColToRowContainer } from '../layout-container/col-to-row-container/ColT
 import { FlexColContainer } from '../layout-container/flex-col-container/FlexColContainer'
 import { AnimatedIcon } from '@/components/icons'
 import { IconContainer } from '../icon-container/IconContainer'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy',
+  description:
+    'Our Health ROI privacy policy - Learn how we collect, use, and protect your personal information on our medical research impact platform.',
+  openGraph: {
+    title: 'Privacy Policy | Our Health ROI',
+    description: 'How we collect, use, and protect your personal information.',
+    images: [
+      {
+        url: '/api/og?title=Privacy%20Policy&subtitle=How We Protect Your Information',
+        width: 1200,
+        height: 630,
+        alt: 'Privacy Policy - Our Health ROI',
+      },
+    ],
+  },
+  robots: {
+    index: false, // Typically don't index privacy pages
+    follow: true,
+  },
+}
 
 const PrivacyPolicyPage = () => {
   return (

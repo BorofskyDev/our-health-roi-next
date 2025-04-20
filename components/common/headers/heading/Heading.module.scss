@@ -1,0 +1,25 @@
+/* components/typography/Heading.module.scss */
+@use '@/styles/abstracts/mixins' as *;
+
+.heading {
+  margin-bottom: var(--spacing-24);
+}
+
+.heading--xs {
+  @include heading-style(6);
+}
+.heading--sm {
+  @include heading-style(5);
+}
+.heading--md {
+  @include heading-style(4);
+}
+.heading--lg {
+  @include heading-style(3);
+}
+.heading--xl {
+  @include heading-style(2);
+}
+.heading--2xl {
+  @include heading-style(1);
+}

@@ -6,6 +6,26 @@ import { AnimatedIcon } from '@/components/icons'
 import { FlexColSection } from '@/components/layout/sections'
 import { ExternalLink, NavLink } from '@/components/common/links'
 import { IconContainer } from '../icon-container/IconContainer'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Support',
+  description:
+    'Support medical research advocacy by supporting Our Health ROI or getting involved in our mission to highlight the impact of NIH funding.',
+  openGraph: {
+    title: 'Support | Our Health ROI',
+    description:
+      'Support medical research advocacy through tips or volunteer opportunities.',
+    images: [
+      {
+        url: '/api/og?title=Support%20Our%20Mission&subtitle=Donate or Get Involved in Medical Research Advocacy',
+        width: 1200,
+        height: 630,
+        alt: 'Support Our Health ROI',
+      },
+    ],
+  },
+}
 
 export default function SupportPage() {
   return (

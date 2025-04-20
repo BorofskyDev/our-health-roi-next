@@ -13,6 +13,29 @@ import { ColToRowContainer } from '../layout-container/col-to-row-container/ColT
 import { FlexColContainer } from '../layout-container/flex-col-container/FlexColContainer'
 import { AnimatedIcon } from '@/components/icons'
 import { IconContainer } from '../icon-container/IconContainer'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Terms of Use',
+  description:
+    'Terms and conditions for using Our Health ROI platform. Understand your rights and responsibilities when accessing our medical research data.',
+  openGraph: {
+    title: 'Terms of Use | Our Health ROI',
+    description: 'Terms and conditions for using Our Health ROI platform.',
+    images: [
+      {
+        url: '/api/og?title=Terms%20of%20Use&subtitle=Understanding Your Rights and Responsibilities',
+        width: 1200,
+        height: 630,
+        alt: 'Terms of Use - Our Health ROI',
+      },
+    ],
+  },
+  robots: {
+    index: false, // Typically don't index terms pages
+    follow: true,
+  },
+}
 
 const TermsOfUsePage = () => {
   return (
