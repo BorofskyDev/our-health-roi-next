@@ -30,10 +30,15 @@ export default function SupportPage() {
             traffic, and ongoing development. It is greatly appreciated.
           </BodyText>
           <ColToRowContainer>
-            <ExternalLink href='#' className='mb-44'>
+            <ExternalLink
+              href='https://paypal.me/ourHealthROI?country.x=US&locale.x=en_US'
+              className='mb-44'
+            >
               Tip via PayPal
             </ExternalLink>
-            <ExternalLink href='#'>Tip via Venmo</ExternalLink>
+            <ExternalLink href='https://venmo.com/jbskydev'>
+              Tip via Venmo
+            </ExternalLink>
           </ColToRowContainer>
         </FlexColSection>
         <IconContainer>
