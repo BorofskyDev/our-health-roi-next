@@ -1,11 +1,6 @@
 // components/containers/page-containers/NotFoundPage.tsx
 
 import { BodyText } from '@/components/common/body-typography'
-import {
-  PageHeader,
-  SectionHeading,
-  SectionTitle,
-} from '@/components/common/headers'
 import { NavLink } from '@/components/common/links/nav-link/NavLink'
 import { Page } from '@/components/layout/page/Page'
 import { FlexColSection } from '@/components/layout/sections'
@@ -13,13 +8,14 @@ import { ColToRowContainer } from '../layout-container/col-to-row-container/ColT
 import { FlexColContainer } from '../layout-container/flex-col-container/FlexColContainer'
 import { AnimatedIcon } from '@/components/icons'
 import { IconContainer } from '../icon-container/IconContainer'
+import { Heading } from '@/components/common/headers/heading/Heading'
 
 const NotFoundPage = () => {
   return (
     <Page>
       <FlexColSection id='main'>
-        <PageHeader className='mb-44 center'>Page Not Found (404)</PageHeader>
-        <SectionTitle>What&apos;s a 404 Error?</SectionTitle>
+        <Heading as='h1' size='2xl' className='mb-44 center'>Page Not Found (404)</Heading>
+        <Heading as='h2' size='md'>What&apos;s a 404 Error?</Heading>
         <BodyText className='mb-24'>
           You&apos;ve encountered what&apos;s known as a &quot;404 error&quot; —
           one of the most common messages on the internet. This code is part of
@@ -36,9 +32,9 @@ const NotFoundPage = () => {
         </div>
         <ColToRowContainer>
           <FlexColContainer>
-            <SectionHeading className='mb-30'>
+            <Heading as='h3' size='lg' className='mb-30'>
               Why Am I Seeing This?
-            </SectionHeading>
+            </Heading>
             <BodyText>
               There are several common reasons you might have landed here. The
               link you followed might contain a typo or might have been changed

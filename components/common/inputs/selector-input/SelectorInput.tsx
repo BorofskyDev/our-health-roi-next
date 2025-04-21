@@ -37,16 +37,18 @@ export const SelectorInput = ({
   hideLabel = false,
   className,
 }: SelectorInputProps) => {
-  // Find the selected option object
   const selectedOption =
     options.find((option) => option.value === value) || options[0]
 
+  const labelId = `${id}-label`
+
   return (
     <div className={`${styles.selectorContainer} ${className || ''}`}>
-      <Listbox value={value} onChange={onChange}>
+      <Listbox value={value} onChange={onChange} aria-labelledby={labelId}>
         {({ open }) => (
           <div>
             <Label
+              id={labelId}
               htmlFor={id}
               className={hideLabel ? 'visually-hidden' : styles.label}
             >

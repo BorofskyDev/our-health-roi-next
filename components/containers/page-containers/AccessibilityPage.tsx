@@ -1,11 +1,6 @@
 // components/containers/page-containers/AccessibilityPage.tsx
 
 import { BodyText } from '@/components/common/body-typography'
-import {
-  PageHeader,
-  SectionHeading,
-  SectionTitle,
-} from '@/components/common/headers'
 import { ExternalLink, NavLink } from '@/components/common/links'
 import { Page } from '@/components/layout/page/Page'
 import { FlexColSection } from '@/components/layout/sections'
@@ -14,6 +9,7 @@ import { FlexColContainer } from '../layout-container/flex-col-container/FlexCol
 import { AnimatedIcon } from '@/components/icons'
 import { IconContainer } from '../icon-container/IconContainer'
 import { Metadata } from 'next'
+import { Heading } from '@/components/common/headers/heading/Heading'
 
 export const metadata: Metadata = {
   title: 'Accessibility',
@@ -42,10 +38,10 @@ const AccessibilityPage = () => {
   return (
     <Page>
       <FlexColSection id='main'>
-        <PageHeader className='mb-44 center'>
+        <Heading as='h1' size='2xl' className='mb-44 center'>
           Accessibility Commitment
-        </PageHeader>
-        <SectionTitle>Our Accessibility Philosophy</SectionTitle>
+        </Heading>
+        <Heading as='h2' size='md'>Our Accessibility Philosophy</Heading>
         <BodyText className='mb-24'>
           Our Health ROI is built with the firm belief that accessibility isn&apos;t
           an add-on feature—it&apos;s a fundamental requirement. We believe a website
@@ -56,9 +52,9 @@ const AccessibilityPage = () => {
         </BodyText>
         <ColToRowContainer>
           <FlexColContainer>
-            <SectionHeading className='mb-30'>
+            <Heading as='h3' size='lg' className='mb-30'>
               Our Accessibility Standards
-            </SectionHeading>
+            </Heading>
             <BodyText>
               We strive to meet WCAG 2.1 AA standards across our entire
               platform. This means implementing proper semantic HTML, ensuring
@@ -105,9 +101,9 @@ const AccessibilityPage = () => {
             </BodyText>
           </FlexColContainer>
         </ColToRowContainer>
-        <SectionHeading className='mb-30'>
+        <Heading as='h3' size='lg' className='mb-30'>
           Continuous Improvement
-        </SectionHeading>
+        </Heading>
         <ColToRowContainer>
           <FlexColContainer>
             <BodyText>
@@ -159,7 +155,7 @@ const AccessibilityPage = () => {
           </FlexColContainer>
         </ColToRowContainer>
 
-        <SectionHeading>Report Accessibility Issues</SectionHeading>
+        <Heading as='h3' size='lg'>Report Accessibility Issues</Heading>
         <BodyText>
           <strong>Found an accessibility barrier?</strong> We want to know about
           it. Please contact us with details about the issue you encountered,

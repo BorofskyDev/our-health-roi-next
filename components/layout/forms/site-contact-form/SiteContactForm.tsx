@@ -16,7 +16,7 @@ import type {
   SiteContactFormData,
 } from '@/lib/utils/sendSiteContactEmail'
 import styles from './SiteContactForm.module.scss'
-import { SectionHeading } from '@/components/common/headers'
+import { Heading } from '@/components/common/headers/heading/Heading'
 
 const contactCategoryOptions: SelectOption[] = [
   { value: 'MEDIA', label: 'Media Contact / Media Package' },
@@ -67,7 +67,8 @@ const SiteContactForm: React.FC = () => {
   return (
     <form onSubmit={handleSubmit} noValidate className={styles.contactForm}>
       <fieldset>
-        <SectionHeading className='mb-16 center'>Contact Me </SectionHeading>
+        <legend className='visually-hidden'>Contact Form</legend>
+        <Heading id='h2' size='lg' className='mb-16 center'>Contact Me </Heading>
           <SelectorInput
             label='Select an option'
             id='site-contact-category'

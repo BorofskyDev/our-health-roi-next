@@ -1,11 +1,6 @@
 // components/containers/page-containers/PrivacyPolicyPage.tsx
 
 import { BodyText } from '@/components/common/body-typography'
-import {
-  PageHeader,
-  SectionHeading,
-  SectionTitle,
-} from '@/components/common/headers'
 import { ExternalLink } from '@/components/common/links'
 import { Page } from '@/components/layout/page/Page'
 import { FlexColSection } from '@/components/layout/sections'
@@ -14,6 +9,7 @@ import { FlexColContainer } from '../layout-container/flex-col-container/FlexCol
 import { AnimatedIcon } from '@/components/icons'
 import { IconContainer } from '../icon-container/IconContainer'
 import { Metadata } from 'next'
+import { Heading } from '@/components/common/headers/heading/Heading'
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
@@ -41,35 +37,41 @@ const PrivacyPolicyPage = () => {
   return (
     <Page>
       <FlexColSection id='main'>
-        <PageHeader className='mb-44 center'>Privacy Policy</PageHeader>
-        <SectionTitle>Our Approach to Your Privacy</SectionTitle>
+        <Heading as='h1' size='2xl' className='mb-44 center'>
+          Privacy Policy
+        </Heading>
+        <Heading as='h2' size='md'>
+          Our Approach to Your Privacy
+        </Heading>
         <BodyText className='mb-24'>
           Our Health ROI is designed with privacy as a core value. We believe
-          that civic participation shouldn&apos;t come at the cost of your personal
-          data. That&apos;s why we&apos;ve built this platform to collect as little
-          information as possible while still providing you with the tools you
-          need to advocate for health research funding.
+          that civic participation shouldn&apos;t come at the cost of your
+          personal data. That&apos;s why we&apos;ve built this platform to
+          collect as little information as possible while still providing you
+          with the tools you need to advocate for health research funding.
         </BodyText>
         <ColToRowContainer>
           <FlexColContainer>
-            <SectionHeading className='mb-30'>
+            <Heading as='h3' size='lg' className='mb-30'>
               What We Don&apos;t Collect
-            </SectionHeading>
+            </Heading>
             <BodyText>
               We don&apos;t track what conditions you search for. Your health
-              interests and concerns remain completely private. We don&apos;t monitor
-              which representatives you contact or what you write to them. The
-              letters and messages you generate are your own private
+              interests and concerns remain completely private. We don&apos;t
+              monitor which representatives you contact or what you write to
+              them. The letters and messages you generate are your own private
               communication with your elected officials, and we have no way of
-              knowing their content while on our site or once you leave our site.
+              knowing their content while on our site or once you leave our
+              site.
             </BodyText>
             <BodyText>
-              We don&apos;t store search results or form letters between sessions.
-              When you refresh the page or return later, you start with a clean
-              slate. This is by design—it&apos;s proof that we&apos;re not retaining your
-              data. We don&apos;t use tracking cookies, advertising pixels, or any
-              other technologies designed to follow you across the web or build
-              a profile of your interests or activities.
+              We don&apos;t store search results or form letters between
+              sessions. When you refresh the page or return later, you start
+              with a clean slate. This is by design—it&apos;s proof that
+              we&apos;re not retaining your data. We don&apos;t use tracking
+              cookies, advertising pixels, or any other technologies designed to
+              follow you across the web or build a profile of your interests or
+              activities.
             </BodyText>
           </FlexColContainer>
           <IconContainer>
@@ -82,24 +84,26 @@ const PrivacyPolicyPage = () => {
           </IconContainer>
           <FlexColContainer>
             <BodyText>
-              We don&apos;t sell your data—because we don&apos;t collect it in the first
-              place. There are no advertisers, data brokers, or third parties
-              receiving information about your usage of this site. Your
+              We don&apos;t sell your data—because we don&apos;t collect it in
+              the first place. There are no advertisers, data brokers, or third
+              parties receiving information about your usage of this site. Your
               interaction with Our Health ROI remains between you, your device,
               and the minimal hosting infrastructure required to deliver the
               service.
             </BodyText>
             <BodyText className='mb-24'>
-              We don&apos;t track how many people write letters or make calls through
-              our platform. While this metric might be interesting from an
-              impact perspective, we&apos;ve chosen to prioritize your privacy over
-              our curiosity. The effectiveness of this tool will be measured by
-              broader societal outcomes, not by monitoring individual user
-              actions.
+              We don&apos;t track how many people write letters or make calls
+              through our platform. While this metric might be interesting from
+              an impact perspective, we&apos;ve chosen to prioritize your
+              privacy over our curiosity. The effectiveness of this tool will be
+              measured by broader societal outcomes, not by monitoring
+              individual user actions.
             </BodyText>
           </FlexColContainer>
         </ColToRowContainer>
-        <SectionHeading className='mb-30'>What We Do Collect</SectionHeading>
+        <Heading as='h3' size='lg' className='mb-30'>
+          What We Do Collect
+        </Heading>
         <ColToRowContainer>
           <FlexColContainer>
             <BodyText>
@@ -132,20 +136,22 @@ const PrivacyPolicyPage = () => {
               We monitor API usage to prevent abuse and ensure fair access for
               all users. This helps us maintain service quality and manage
               costs. These metrics are technical and infrastructural in
-              nature—they don&apos;t track your searches or the content you generate,
-              only the overall load on our systems.
+              nature—they don&apos;t track your searches or the content you
+              generate, only the overall load on our systems.
             </BodyText>
             <BodyText className='mb-24'>
               We use essential cookies required for the site to function
-              properly. These don&apos;t track you for advertising purposes or build
-              a profile of your interests. They simply enable basic features
-              like maintaining a secure connection while you use the site.
-              Without these, core functionality would break.
+              properly. These don&apos;t track you for advertising purposes or
+              build a profile of your interests. They simply enable basic
+              features like maintaining a secure connection while you use the
+              site. Without these, core functionality would break.
             </BodyText>
           </FlexColContainer>
         </ColToRowContainer>
 
-        <SectionHeading>Your Control & Our Commitment</SectionHeading>
+        <Heading as='h3' size='lg'>
+          Your Control & Our Commitment
+        </Heading>
         <BodyText>
           <strong>No account required.</strong> You can use Our Health ROI
           without creating an account or providing any personal information.
@@ -161,9 +167,9 @@ const PrivacyPolicyPage = () => {
 
         <BodyText>
           Our commitment to privacy reflects our broader values around civic
-          participation and health advocacy. We believe you shouldn&apos;t have to
-          sacrifice your personal data to make your voice heard on issues that
-          matter. If you have questions about our privacy practices or
+          participation and health advocacy. We believe you shouldn&apos;t have
+          to sacrifice your personal data to make your voice heard on issues
+          that matter. If you have questions about our privacy practices or
           suggestions for improvement, please reach out.
         </BodyText>
         <ExternalLink
@@ -173,7 +179,9 @@ const PrivacyPolicyPage = () => {
           Review Our Code on GitHub
         </ExternalLink>
 
-        <SectionTitle>The Legal Explanation</SectionTitle>
+        <Heading as='h2' size='xl'>
+          The Legal Explanation
+        </Heading>
         <BodyText>
           <strong>Information Collection:</strong> Our Health ROI uses Vercel
           Analytics which collects anonymous, aggregated data about site traffic

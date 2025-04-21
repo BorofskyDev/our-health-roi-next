@@ -1,5 +1,4 @@
 import { BodyText } from '@/components/common/body-typography'
-import { PageHeader, SectionHeading } from '@/components/common/headers'
 import { Page } from '@/components/layout/page/Page'
 import { ColToRowContainer } from '../layout-container/col-to-row-container/ColToRowContainer'
 import { AnimatedIcon } from '@/components/icons'
@@ -7,6 +6,7 @@ import { FlexColSection } from '@/components/layout/sections'
 import { ExternalLink, NavLink } from '@/components/common/links'
 import { IconContainer } from '../icon-container/IconContainer'
 import { Metadata } from 'next'
+import { Heading } from '@/components/common/headers/heading/Heading'
 
 export const metadata: Metadata = {
   title: 'Support',
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 export default function SupportPage() {
   return (
     <Page>
-      <PageHeader className='center mb-24'>How you can support me</PageHeader>
+      <Heading as='h1' size='2xl' className='center mb-24'>How you can support me</Heading>
       <BodyText className='center mb-60'>
         You&apos;ve seen how NIH funding saves lives - now let&apos;s make sure
         it endures. Fuel this fight with your support - whether that&apos;s a
@@ -40,9 +40,9 @@ export default function SupportPage() {
       </BodyText>
       <ColToRowContainer className='mb-24'>
         <FlexColSection id='main'>
-          <SectionHeading className='mb-24'>
+          <Heading as='h2' size='lg' className='mb-24'>
             Support Our Health ROI with a tip
-          </SectionHeading>
+          </Heading>
           <BodyText className=''>
             Site costs, for now, are relatively cheap. But this still takes time
             and at the moment I am the only person working on this project.
@@ -70,9 +70,9 @@ export default function SupportPage() {
           <AnimatedIcon id='expert' size='25rem' />
         </IconContainer>
         <FlexColSection id='expert'>
-          <SectionHeading className='mb-24'>
+          <Heading as='h2' size='lg' className='mb-24'>
             Support Our Health ROI with your expertise
-          </SectionHeading>
+          </Heading>
           <BodyText className=''>
             If you are a developer, designer, researcher, illustrator, or have
             experience in fundraising, NGOs, or anything related to this
@@ -85,7 +85,7 @@ export default function SupportPage() {
       </ColToRowContainer>
       <ColToRowContainer className='mb-24'>
         <FlexColSection id='share'>
-          <SectionHeading className='mb-24'>Amplify Your Voice</SectionHeading>
+          <Heading as='h2' size='lg'  className='mb-24'>Amplify Your Voice</Heading>
           <BodyText>
             Spread the word - the more people who know about this fight, the
             louder our collective call to Congress becomes. Share this site on
@@ -103,7 +103,7 @@ export default function SupportPage() {
           <AnimatedIcon id='protest' size='25rem' />
         </IconContainer>
         <FlexColSection id='protest'>
-          <SectionHeading className='mb-24'>Shape the Future</SectionHeading>
+          <Heading as='h2' size='lg'  className='mb-24'>Shape the Future</Heading>
           <BodyText>
             Bring your ideas and energy to make this platform truly democratic.
             Suggest new conditions, data points, or outreach tactics. Point out

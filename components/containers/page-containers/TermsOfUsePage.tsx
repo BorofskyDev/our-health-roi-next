@@ -1,11 +1,6 @@
 // components/containers/page-containers/TermsOfUsePage.tsx
 
 import { BodyText } from '@/components/common/body-typography'
-import {
-  PageHeader,
-  SectionHeading,
-  SectionTitle,
-} from '@/components/common/headers'
 import { ExternalLink } from '@/components/common/links'
 import { Page } from '@/components/layout/page/Page'
 import { FlexColSection } from '@/components/layout/sections'
@@ -14,6 +9,7 @@ import { FlexColContainer } from '../layout-container/flex-col-container/FlexCol
 import { AnimatedIcon } from '@/components/icons'
 import { IconContainer } from '../icon-container/IconContainer'
 import { Metadata } from 'next'
+import { Heading } from '@/components/common/headers/heading/Heading'
 
 export const metadata: Metadata = {
   title: 'Terms of Use',
@@ -41,37 +37,42 @@ const TermsOfUsePage = () => {
   return (
     <Page>
       <FlexColSection id='main'>
-        <PageHeader className='mb-44 center'>Terms of Use</PageHeader>
-        <SectionTitle>Our Digital Agreement</SectionTitle>
+        <Heading as='h1' size='2xl' className='mb-44 center'>
+          Terms of Use
+        </Heading>
+        <Heading as='h2' size='md'>
+          Our Digital Agreement
+        </Heading>
         <BodyText className='mb-24'>
-          Welcome to Our Health ROI. By using this website, you&apos;re engaging with
-          a citizen-built tool designed to connect people with information about
-          NIH funding and facilitate communication with elected representatives.
-          We&apos;ve created these terms to be straightforward and fair, emphasizing
-          both your rights as a user and the boundaries necessary to keep this
-          service sustainable and accessible for everyone.
+          Welcome to Our Health ROI. By using this website, you&apos;re engaging
+          with a citizen-built tool designed to connect people with information
+          about NIH funding and facilitate communication with elected
+          representatives. We&apos;ve created these terms to be straightforward
+          and fair, emphasizing both your rights as a user and the boundaries
+          necessary to keep this service sustainable and accessible for
+          everyone.
         </BodyText>
         <ColToRowContainer>
           <FlexColContainer>
-            <SectionHeading className='mb-30'>
+            <Heading as='h3' size='lg' className='mb-30'>
               How You Can Use This Site
-            </SectionHeading>
+            </Heading>
             <BodyText>
-              You&apos;re welcome to search for health conditions, view NIH funding
-              data, and generate letters to your representatives as often as you
-              need. The information is provided for educational and civic
-              engagement purposes. We encourage you to use the data in
+              You&apos;re welcome to search for health conditions, view NIH
+              funding data, and generate letters to your representatives as
+              often as you need. The information is provided for educational and
+              civic engagement purposes. We encourage you to use the data in
               conversations with policymakers, share insights with others, and
               integrate what you learn into your advocacy efforts. This is,
               after all, why we built this tool.
             </BodyText>
             <BodyText>
-              While we don&apos;t require an account or login, we do ask that you use
-              the site in good faith. The API that powers our searches has rate
-              limits, and we want to ensure everyone has equal access to this
-              resource. Please avoid automated scraping, excessive requests, or
-              any activities that could overwhelm our systems and prevent others
-              from accessing the service.
+              While we don&apos;t require an account or login, we do ask that
+              you use the site in good faith. The API that powers our searches
+              has rate limits, and we want to ensure everyone has equal access
+              to this resource. Please avoid automated scraping, excessive
+              requests, or any activities that could overwhelm our systems and
+              prevent others from accessing the service.
             </BodyText>
           </FlexColContainer>
           <IconContainer>
@@ -96,19 +97,21 @@ const TermsOfUsePage = () => {
               available on GitHub. You&apos;re welcome to fork the repository,
               suggest improvements, or adapt it for other civic engagement
               purposes. We believe in transparency and collaboration—if you see
-              ways to make this tool better, we&apos;re open to contributions that
-              align with our mission of connecting citizens with data about
+              ways to make this tool better, we&apos;re open to contributions
+              that align with our mission of connecting citizens with data about
               public health research funding.
             </BodyText>
           </FlexColContainer>
         </ColToRowContainer>
-        <SectionHeading className='mb-30'>Our Responsibilities</SectionHeading>
+        <Heading as='h3' size='lg' className='mb-30'>
+          Our Responsibilities
+        </Heading>
         <ColToRowContainer>
           <FlexColContainer>
             <BodyText>
               We strive to provide accurate information pulled directly from the
-              NIH RePORTER API. However, we can&apos;t guarantee that the data is
-              always complete or up-to-date, as we depend on external data
+              NIH RePORTER API. However, we can&apos;t guarantee that the data
+              is always complete or up-to-date, as we depend on external data
               sources. We present the data as-is, without warranties about its
               accuracy, completeness, or reliability. If you spot discrepancies
               in the data, we appreciate you letting us know so we can
@@ -145,20 +148,22 @@ const TermsOfUsePage = () => {
               This project operates on a voluntary basis with minimal resources.
               We do not offer refunds, as we do not charge for access. Any
               voluntary donations to support hosting costs are appreciated but
-              non-refundable. While we&apos;re passionate about this project, it&apos;s
-              important to understand that it comes with no warranty and limited
-              support capacity.
+              non-refundable. While we&apos;re passionate about this project,
+              it&apos;s important to understand that it comes with no warranty
+              and limited support capacity.
             </BodyText>
           </FlexColContainer>
         </ColToRowContainer>
 
-        <SectionHeading>Working Together</SectionHeading>
+        <Heading as='h3' size='lg'>
+          Working Together
+        </Heading>
         <BodyText>
           <strong>Respect the purpose.</strong> This tool is designed to promote
           informed civic engagement around public health research funding. While
-          we can&apos;t control how you use the information you gather here, we ask
-          that you maintain the spirit of constructive, fact-based advocacy that
-          inspired this project.
+          we can&apos;t control how you use the information you gather here, we
+          ask that you maintain the spirit of constructive, fact-based advocacy
+          that inspired this project.
         </BodyText>
         <BodyText className='mb-24'>
           <strong>Help us improve.</strong> If you encounter bugs, issues with
@@ -182,7 +187,9 @@ const TermsOfUsePage = () => {
           Contribute on GitHub
         </ExternalLink>
 
-        <SectionTitle>The Legal Explanation</SectionTitle>
+        <Heading as='h2' size='lg'>
+          The Legal Explanation
+        </Heading>
         <BodyText>
           <strong>Acceptance of Terms:</strong> By accessing or using Our Health
           ROI, you agree to be bound by these Terms of Use. If you do not agree
@@ -197,19 +204,20 @@ const TermsOfUsePage = () => {
           commercial purpose; attempt to decompile or reverse engineer any
           software contained on the website; remove any copyright or other
           proprietary notations from the materials; or transfer the materials to
-          another person or &quot;mirror&quot; the materials on any other server.
+          another person or &quot;mirror&quot; the materials on any other
+          server.
         </BodyText>
         <BodyText>
           <strong>Disclaimer:</strong> The materials on Our Health ROI are
-          provided on an &apos;as is&apos; basis. We make no warranties, expressed or
-          implied, and hereby disclaim and negate all other warranties
-          including, without limitation, implied warranties or conditions of
-          merchantability, fitness for a particular purpose, or non-infringement
-          of intellectual property or other violation of rights. Further, we do
-          not warrant or make any representations concerning the accuracy,
-          likely results, or reliability of the use of the materials on our
-          website or otherwise relating to such materials or on any sites linked
-          to this site.
+          provided on an &apos;as is&apos; basis. We make no warranties,
+          expressed or implied, and hereby disclaim and negate all other
+          warranties including, without limitation, implied warranties or
+          conditions of merchantability, fitness for a particular purpose, or
+          non-infringement of intellectual property or other violation of
+          rights. Further, we do not warrant or make any representations
+          concerning the accuracy, likely results, or reliability of the use of
+          the materials on our website or otherwise relating to such materials
+          or on any sites linked to this site.
         </BodyText>
         <BodyText>
           <strong>Limitations:</strong> In no event shall Our Health ROI or its

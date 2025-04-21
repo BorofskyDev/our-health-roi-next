@@ -1,5 +1,4 @@
 'use client'
-import { SectionTitle } from '@/components/common/headers'
 import { BodyText } from '@/components/common/body-typography'
 import { FlexColSection } from '@/components/layout/sections'
 import { CTAButton } from '@/components/common/buttons'
@@ -8,10 +7,10 @@ import { useModal } from '@/context/ModalContext'
 import { ContactDetailsModal } from '@/components/modals/contact-congress/contact-details-modal/ContactDetailsModal'
 import { useContactDetails } from '@/lib/hooks/useContactDetails'
 import { ContactOptionsModal } from '@/components/modals/contact-congress/contact-options-modal/ContactOptionsModal'
-import styles from './CTASection.module.scss'
 import { FlexColContainer } from '@/components/containers/layout-container/flex-col-container/FlexColContainer'
-import { ContainerHeader } from '@/components/common/headers/container-header/ContainerHeader'
 import { ColToRowContainer } from '@/components/containers/layout-container/col-to-row-container/ColToRowContainer'
+import { Heading } from '@/components/common/headers/heading/Heading'
+import styles from './CTASection.module.scss'
 
 export const CTASection = () => {
   const { openModal } = useModal()
@@ -33,9 +32,11 @@ export const CTASection = () => {
 
   return (
     <FlexColSection id='cta'>
-      <ColToRowContainer className={styles.reverse}>
+      <ColToRowContainer >
         <div className='mb-44'>
-          <SectionTitle className='mb-24 center'>Take Action</SectionTitle>
+          <Heading as='h3' size='lg' className='mb-24 center'>
+            Take Action
+          </Heading>
           <BodyText className='mb-18 body-width center'>
             If the above information has played an impact in your life or in the
             life of someone close to you, then you need the NIH. Don&apos;t let
@@ -48,7 +49,9 @@ export const CTASection = () => {
         <FlexColContainer>
           <FlexColContainer className='mb-44'>
             <div className={styles.findLink}>
-              <ContainerHeader>Find Your Representative</ContainerHeader>
+              <Heading as='h4' size='sm'>
+                Find Your Representative
+              </Heading>
               <ExternalLink
                 href='https://www.house.gov/representatives/find-your-representative'
                 ariaLabel='Visit site to find your U.S. Congressional Representative (opens in a new tab)'
@@ -57,7 +60,9 @@ export const CTASection = () => {
               </ExternalLink>
             </div>
             <div className={styles.findLink}>
-              <ContainerHeader>Find Your Senators</ContainerHeader>
+              <Heading as='h4' size='sm'>
+                Find Your Senators
+              </Heading>
               <ExternalLink
                 href='https://www.senate.gov/senators/senators-contact.htm'
                 ariaLabel='Visit site to find your U.S. Senators (opens in a new tab)'
