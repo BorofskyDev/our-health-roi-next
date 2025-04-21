@@ -24,14 +24,24 @@ export type SiteContactCategory =
 export async function sendSiteContactEmail(
   data: SiteContactFormData
 ): Promise<void> {
-  const response = await fetch('/api/site-contact', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  })
-  if (!response.ok) {
-    throw new Error('Error sending site contact email')
+  try {
+    console.log('Sending contact form data:', data)
+
+    const response = await fetch('/api/site-contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}))
+      console.error('API response error:', errorData)
+      throw new Error(errorData.error || 'Error sending site contact email')
+    }
+  } catch (error) {
+    console.error('Error in sendSiteContactEmail:', error)
+    throw error
   }
 }

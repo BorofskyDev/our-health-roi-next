@@ -1,80 +1,101 @@
-
+// app/api/site-contact/route.ts
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import nodemailer from 'nodemailer'
+import { z } from 'zod'
 
-interface SiteContactData {
-  name: string
-  email: string
-  subject: string
-  message: string
-  category:
-    | 'MEDIA'
-    | 'ACCESSIBILITY'
-    | 'TECHNICAL'
-    | 'GENERAL'
-    | 'DEVELOPER'
-    | 'VOLUNTEER'
-}
+const ContactSchema = z.object({
+  name: z.string().min(2).max(100),
+  email: z.string().email().max(254),
+  subject: z.string().min(3).max(120),
+  message: z.string().min(10).max(5_000),
+  category: z.enum([
+    'MEDIA',
+    'ACCESSIBILITY',
+    'TECHNICAL',
+    'GENERAL',
+    'DEVELOPER',
+    'VOLUNTEER',
+  ]),
+})
 
 export async function POST(request: NextRequest) {
   try {
-    const data: SiteContactData = await request.json()
+    const data = await request.json()
+    console.log('Received data:', data)
 
-    // Debug environment variables
-    console.log('SMTP Config:', {
-      host: process.env.SMTP_HOST,
-      port: process.env.SMTP_PORT,
-      user: process.env.SMTP_USER ? 'Present' : 'Missing',
-      pass: process.env.SMTP_PASS ? 'Present' : 'Missing',
-      from: process.env.SMTP_FROM,
-    })
+    // Validate input using Zod
+    const validatedData = ContactSchema.parse(data)
+    console.log('Validated data:', validatedData)
 
-    // Create a nodemailer transporter configured via environment variables.
+    // Check if environment variables are set
+    if (
+      !process.env.SMTP_HOST ||
+      !process.env.SMTP_USER ||
+      !process.env.SMTP_PASS
+    ) {
+      console.error('Missing SMTP environment variables')
+      throw new Error('Server configuration error')
+    }
+
+    // Create transporter
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
       port: parseInt(process.env.SMTP_PORT || '587'),
-      secure: false, // true for 465, false for 587
+      secure: false,
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
       },
       tls: {
-        // Do not fail on invalid certs
         rejectUnauthorized: false,
       },
     })
 
-    const mailOptions = {
+    // Test connection
+    console.log('Testing SMTP connection...')
+    await transporter.verify()
+    console.log('SMTP connection successful')
+
+    // Send email
+    await transporter.sendMail({
       from: process.env.SMTP_FROM || 'no-reply@example.com',
       to: 'joelborofskydev@gmail.com',
-      subject: data.subject,
-      text: `Name: ${data.name}\nEmail: ${data.email}\nCategory: ${data.category}\n\nMessage:\n${data.message}`,
-    }
-    // Test connection before sending
-    try {
-      await transporter.verify()
-      console.log('SMTP connection verified')
-    } catch (verifyError) {
-      console.error('SMTP verification failed:', verifyError)
-      return NextResponse.json(
-        {
-          error: 'SMTP connection failed',
-          details:
-            verifyError instanceof Error
-              ? verifyError.message
-              : String(verifyError),
-        },
-        { status: 500 }
-      )
-    }
-    await transporter.sendMail(mailOptions)
+      subject: `[${validatedData.category}] ${validatedData.subject}`,
+      text: `Name: ${validatedData.name}\nEmail: ${validatedData.email}\n\nMessage:\n${validatedData.message}`,
+    })
+
     return NextResponse.json(
       { message: 'Email sent successfully' },
       { status: 200 }
     )
   } catch (error) {
-    console.error('Error sending site contact email:', error)
+    console.error('Error processing request:', error)
+
+    if (error instanceof z.ZodError) {
+      console.error('Validation errors:', error.errors)
+      return NextResponse.json(
+        { error: 'Invalid form data', details: error.errors },
+        { status: 400 }
+      )
+    }
+
+    if (error instanceof Error) {
+      return NextResponse.json({ error: error.message }, { status: 500 })
+    }
+
     return NextResponse.json({ error: 'Failed to send email' }, { status: 500 })
   }
+}
+
+// Add OPTIONS handler for CORS preflight
+export async function OPTIONS() {
+  return new NextResponse(null, {
+    status: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type',
+    },
+  })
 }

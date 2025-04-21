@@ -1,4 +1,3 @@
-// components/containers/page-containers/SiteContactForm.tsx
 'use client'
 
 import React, { useState, FormEvent } from 'react'
@@ -35,49 +34,74 @@ const SiteContactForm: React.FC = () => {
   const [email, setEmail] = useState('')
   const [subject, setSubject] = useState('')
   const [message, setMessage] = useState('')
-  // const [honeypot, setHoneypot] = useState('')
+  const [honeypot, setHoneypot] = useState('')
+  const [validationError, setValidationError] = useState<string | null>(null)
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setValidationError(null)
 
-    // if (honeypot.trim() !== '') return
+    // If honeypot is filled, reject silently
+    if (honeypot.trim() !== '') {
+      console.log('Bot detected - submission blocked')
+      return
+    }
+
+    // Validate required fields
+    if (!name.trim() || !email.trim() || !subject.trim() || !message.trim()) {
+      setValidationError('Please fill in all required fields.')
+      return
+    }
+
+    // Validate subject length
     if (subject.length > 100) {
-      alert('Subject must be 100 characters or fewer.')
+      setValidationError('Subject must be 100 characters or fewer.')
       return
     }
 
     const finalSubject = getPrefixedSubject(category, subject)
 
-    await submitContact({
-      name,
-      email,
+    // Explicitly type the form data to match the interface
+    const formData: SiteContactFormData = {
+      name: name.trim(),
+      email: email.trim(),
       subject: finalSubject,
-      message,
+      message: message.trim(),
       category,
-    } as SiteContactFormData)
+    }
 
-    if (success) {
+    try {
+      await submitContact(formData)
+
+      // Clear form on success
       setName('')
       setEmail('')
       setSubject('')
       setMessage('')
+      setHoneypot('')
+    } catch (err) {
+      // Error is already handled in the hook
+      console.error('Form submission error:', err)
     }
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className={styles.contactForm}>
+    <form onSubmit={handleSubmit} className={styles.contactForm}>
       <fieldset>
         <legend className='visually-hidden'>Contact Form</legend>
-        <Heading id='h2' size='lg' className='mb-16 center'>Contact Me </Heading>
-          <SelectorInput
-            label='Select an option'
-            id='site-contact-category'
-            options={contactCategoryOptions}
-            value={category}
-            onChange={(value) => setCategory(value as SiteContactCategory)}
-          />
-        <div className={styles.formContainer}>
+        <Heading as='h2' size='lg' className='mb-16 center'>
+          Contact Me
+        </Heading>
 
+        <SelectorInput
+          label='Select an option'
+          id='site-contact-category'
+          options={contactCategoryOptions}
+          value={category}
+          onChange={(value) => setCategory(value as SiteContactCategory)}
+        />
+
+        <div className={styles.formContainer}>
           <TextInput
             label='Name'
             id='site-contact-name'
@@ -114,30 +138,35 @@ const SiteContactForm: React.FC = () => {
             required
           />
 
-          {/* Honeypot field using your visual-hidden util class */}
-          {/* <div className='visually-hidden'>
-            <label htmlFor='site-contact-honeypot'>
-              Leave this field empty
-            </label>
+          {/* Honeypot field - properly hidden from all users including screen readers */}
+          <div className={styles.honeypot} aria-hidden='true'>
             <input
               type='text'
-              id='site-contact-honeypot'
+              name='site_url'
+              tabIndex={-1}
+              autoComplete='off'
               value={honeypot}
               onChange={(e) => setHoneypot(e.target.value)}
-              autoComplete='off'
             />
-          </div> */}
+          </div>
         </div>
 
         <CTAButton type='submit' isLoading={loading} loadingText='Submitting…'>
           Submit
         </CTAButton>
 
+        {validationError && (
+          <div role='alert' className={styles.errorMessage}>
+            {validationError}
+          </div>
+        )}
+
         {error && (
           <div role='alert' className={styles.errorMessage}>
             {error}
           </div>
         )}
+
         {success && (
           <div role='status' className={styles.successMessage}>
             Message sent successfully!
