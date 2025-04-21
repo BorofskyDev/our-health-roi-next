@@ -2,7 +2,7 @@
 
 import { BodyText } from '@/components/common/body-typography'
 
-import { ExternalLink } from '@/components/common/links'
+import { ExternalLink, NavLink } from '@/components/common/links'
 import { Page } from '@/components/layout/page/Page'
 import { FlexColSection } from '@/components/layout/sections'
 import { ColToRowContainer } from '../layout-container/col-to-row-container/ColToRowContainer'
@@ -30,14 +30,17 @@ export const metadata: Metadata = {
   },
 }
 
-
 const AboutPage = () => {
   return (
     <Page>
       <FlexColSection id='main'>
-        <Heading as='h1' size='2xl' className='center'>About Our Health ROI</Heading>
-        
-        <Heading as='h2' size='lg'>Why This Site?</Heading>
+        <Heading as='h1' size='2xl' className='center'>
+          About Our Health ROI
+        </Heading>
+
+        <Heading as='h2' size='lg'>
+          Why This Site?
+        </Heading>
         <BodyText className='mb-24'>
           Our Health ROI is a citizen‑built tool that turns cold NIH funding
           data into a warm, unmistakable story: public dollars save lives, spark
@@ -49,7 +52,9 @@ const AboutPage = () => {
         </BodyText>
         <ColToRowContainer>
           <FlexColContainer>
-            <Heading as='h2' size='md' className='mb-30'>The NIH: America&apos;s Biomedical Engin</Heading>
+            <Heading as='h2' size='md' className='mb-30'>
+              The NIH: America&apos;s Biomedical Engin
+            </Heading>
 
             <BodyText>
               Created in 1930 (with roots reaching back to an 1887 one‑room
@@ -100,7 +105,9 @@ const AboutPage = () => {
             </BodyText>
           </FlexColContainer>
         </ColToRowContainer>
-        <Heading as='h2' size='md' className='mb-30'>Why I Built This Site</Heading>
+        <Heading as='h2' size='md' className='mb-30'>
+          Why I Built This Site
+        </Heading>
         <ColToRowContainer>
           <FlexColContainer>
             <BodyText>
@@ -161,7 +168,9 @@ const AboutPage = () => {
           </FlexColContainer>
         </ColToRowContainer>
 
-        <Heading as='h2' size='md'>How the Site Works</Heading>
+        <Heading as='h2' size='md'>
+          How the Site Works
+        </Heading>
         <BodyText>
           <strong>Search any condition</strong>—from melanoma to rare genetic
           disorders—and instantly see every NIH‑funded project, publication,
@@ -178,7 +187,10 @@ const AboutPage = () => {
           This project is <em>100 % independent</em>. No PAC, no foundation, no
           corporate sponsor—just a concerned citizen and the occasional coffee
           funded by PayPal tips to keep the servers humming. If you&apos;d like
-          to help with hosting costs, you can{' '}
+          to help with hosting costs, you can {' '}
+        <NavLink href='/support' className='mb-24'>
+          <strong>donate me</strong>
+        </NavLink>
         </BodyText>
       </FlexColSection>
     </Page>
