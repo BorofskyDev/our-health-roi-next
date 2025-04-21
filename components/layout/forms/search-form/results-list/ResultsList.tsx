@@ -33,9 +33,13 @@ export const ResultsList = ({ results }: ResultsListProps) => {
       id: 'pat',
       label: 'Patented Discoveries',
       count: results.patents,
-      url: `https://patentsview.org/search/?q=${encodeURIComponent(
-        `{"_text_any":{"patent_title":"${term}"},"_and":[]}`
-      )}`,
+      url:
+        results.projects?.reporterURL &&
+        results.projects.reporterURL.includes('/search/')
+          ? results.projects.reporterURL.replace(/\/projects$/, '/patents')
+          : `https://reporter.nih.gov/search-results?projects/text:${encodeURIComponent(
+              term
+            )}/patents`,
     },
     {
       id: 'ct',
@@ -53,8 +57,8 @@ export const ResultsList = ({ results }: ResultsListProps) => {
         </Heading>
 
         <BodyText className='mb-18 body-width center'>
-          In the last few decades, public investment through the NIH has powered research
-          into
+          In the last few decades, public investment through the NIH has powered
+          research into
           <strong> {term} </strong> and produced the following:
         </BodyText>
       </div>
@@ -73,7 +77,7 @@ export const ResultsList = ({ results }: ResultsListProps) => {
           ))}
         </ul>
         <ExternalLink
-          href={`https://www.nih.gov/news-events/news-releases/search/${encodeURIComponent(
+          href={`https://search.nih.gov/search/docs?affiliate=nih&query=${encodeURIComponent(
             term
           )}`}
         >
