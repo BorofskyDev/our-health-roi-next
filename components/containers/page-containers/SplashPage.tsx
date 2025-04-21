@@ -1,6 +1,5 @@
 // components/containers/page-containers/SplashPage.tsx
 'use client'
-import { PHeader } from '@/components/common/headers'
 import { FlexColSection } from '@/components/layout/sections'
 import { SearchForm } from '@/components/layout/forms'
 import { Page } from '@/components/layout/page/Page'
@@ -22,7 +21,7 @@ const SplashPage = () => {
       <ColToRowContainer>
         <FlexColSection id='main'>
           <Heading as='h1' size='2xl' className='center'>Our Health ROI</Heading>
-          <PHeader>See the return on your tax dollars</PHeader>
+          <Heading as='h2' size='sm'>See the return on your tax dollars</Heading>
           <AnimatedIcon id='dna' size='25rem' />
         </FlexColSection>
         <SearchForm />

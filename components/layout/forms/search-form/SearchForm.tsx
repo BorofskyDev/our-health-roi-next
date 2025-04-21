@@ -1,11 +1,11 @@
 'use client'
 import { useState, FormEvent } from 'react'
-import { SectionHeading } from '@/components/common/headers'
 import { FlexColSection } from '@/components/layout/sections'
 import { ResultsList } from './results-list/ResultsList'
 import { CTAButton } from '@/components/common/buttons'
 import { TextInput } from '@/components/common/inputs'
 import { useSearchResults } from '@/lib/hooks/useSearchResults'
+import { Heading } from '@/components/common/headers/heading/Heading'
 import styles from './SearchForm.module.scss'
 
 export type SearchResults = {
@@ -64,9 +64,9 @@ export const SearchForm = () => {
     <>
       {/* Search Section */}
       <FlexColSection id='search'>
-        <SectionHeading className='center'>
+        <Heading as='h3' size='lg' className='center'>
           Enter a health condition to review NIH research impact
-        </SectionHeading>
+        </Heading>
         <form className={styles.searchForm} onSubmit={handleSearch}>
           <TextInput
             id='condition'

@@ -13,7 +13,7 @@
     @include focused;
   }
 
-  a {
+  &__text {
     position: relative;
     stroke: hsl(var(--color-text));
     transform: scale(1);
