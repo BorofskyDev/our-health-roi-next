@@ -21,56 +21,18 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://ourhealthroi.com'),
-  title: {
-    default: 'Our Health ROI',
-    template: '%s | Our Health ROI',
-  },
+  metadataBase: new URL('https://www.ourhealthroi.com'),
+  title: { default: 'Our Health ROI', template: '%s | Our Health ROI' },
   description:
-    'Explore how your tax dollars fund life-saving medical research. Search NIH-funded projects by condition, view real impact data, and contact your representatives to support continued investment in science and health.',
- 
-  authors: [{ name: 'Our Health ROI Team' }],
-  creator: 'Our Health ROI',
-  publisher: 'Our Health ROI',
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
+    'Explore how your tax dollars fund life‑saving medical research.',
   openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://ourhealthroi.com',
-    siteName: 'Our Health ROI',
-    title: 'Our Health ROI',
-    description:
-      'Explore how your tax dollars fund life-saving medical research.',
-    images: [
-      {
-        url: '/api/og',
-        width: 1200,
-        height: 630,
-        alt: 'Our Health ROI - Explore Medical Research Impact',
-      },
-    ],
+    images: ['/opengraph-image.png'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Our Health ROI',
-    description:
-      'Explore how your tax dollars fund life-saving medical research.',
-    images: ['/api/og'],
+    images: ['/twitter-image.png'], 
   },
-  alternates: {
-    canonical: 'https://ourhealthroi.com',
-  },
- 
+  alternates: { canonical: 'https://www.ourhealthroi.com' },
 }
 
 export default function RootLayout({
