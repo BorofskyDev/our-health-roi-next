@@ -30,7 +30,9 @@ export const metadata: Metadata = {
 export default function SupportPage() {
   return (
     <Page>
-      <Heading as='h1' size='2xl' className='center mb-24'>How you can support me</Heading>
+      <Heading as='h1' size='2xl' className='center mb-24'>
+        How you can support me
+      </Heading>
       <BodyText className='center mb-60'>
         You&apos;ve seen how NIH funding saves lives - now let&apos;s make sure
         it endures. Fuel this fight with your support - whether that&apos;s a
@@ -48,6 +50,14 @@ export default function SupportPage() {
             and at the moment I am the only person working on this project.
             Every contribution - no matter the size - helps cover hosting costs,
             traffic, and ongoing development. It is greatly appreciated.
+          </BodyText>
+          <BodyText>
+            <strong>Disclaimer:</strong> Your payment is a personal, voluntary
+            tip to support the ongoing development and hosting costs of Our
+            Health ROI. It is not a charitable donation, and no goods, services,
+            or tax deductions are provided in exchange. Our Health ROI is a
+            personal project and is not registered as a 501(c)(3) or other
+            nonprofit entity.
           </BodyText>
           <ColToRowContainer>
             <ExternalLink
@@ -85,7 +95,9 @@ export default function SupportPage() {
       </ColToRowContainer>
       <ColToRowContainer className='mb-24'>
         <FlexColSection id='share'>
-          <Heading as='h2' size='lg'  className='mb-24'>Amplify Your Voice</Heading>
+          <Heading as='h2' size='lg' className='mb-24'>
+            Amplify Your Voice
+          </Heading>
           <BodyText>
             Spread the word - the more people who know about this fight, the
             louder our collective call to Congress becomes. Share this site on
@@ -103,7 +115,9 @@ export default function SupportPage() {
           <AnimatedIcon id='protest' size='25rem' />
         </IconContainer>
         <FlexColSection id='protest'>
-          <Heading as='h2' size='lg'  className='mb-24'>Shape the Future</Heading>
+          <Heading as='h2' size='lg' className='mb-24'>
+            Shape the Future
+          </Heading>
           <BodyText>
             Bring your ideas and energy to make this platform truly democratic.
             Suggest new conditions, data points, or outreach tactics. Point out

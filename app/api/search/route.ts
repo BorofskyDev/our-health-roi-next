@@ -1,4 +1,6 @@
-// app/api/search/route.ts
+// ─────────────────────────────────────────────────────────
+// /app/api/search/route.ts
+// ─────────────────────────────────────────────────────────
 import { NextRequest, NextResponse } from 'next/server'
 import {
   fetchProjects,
@@ -7,13 +9,26 @@ import {
   fetchTrials,
 } from '@/lib'
 
-export const dynamic = 'force-dynamic' // ensures fresh data in dev
+// -------- DEVELOPMENT‑ONLY SETTINGS ---------------------
+// Uncomment **only** while debugging locally:
+// export const dynamic = 'force-dynamic' // ensures fresh data every hit
+// --------------------------------------------------------
+
+
+export const revalidate = 60 * 60 * 24 
+
+
+const MAX_TERM_LEN = 80
 
 export async function GET(req: NextRequest) {
-  const term = req.nextUrl.searchParams.get('q')?.trim().toLowerCase() || ''
+  const term = req.nextUrl.searchParams.get('q')?.trim().toLowerCase() ?? ''
+
   if (!term) return NextResponse.json({ error: 'Missing q' }, { status: 400 })
+  if (term.length > MAX_TERM_LEN)
+    return NextResponse.json({ error: 'Query too long' }, { status: 422 })
 
   try {
+    // Fan‑out in parallel
     const [projects, publications, patents, trials] = await Promise.all([
       fetchProjects(term),
       fetchPublications(term),
@@ -21,7 +36,6 @@ export async function GET(req: NextRequest) {
       fetchTrials(term),
     ])
 
-    /** Cache for 24 h at Vercel’s edge; tweak as you like */
     const headers = {
       'Cache-Control': 's-maxage=86400, stale-while-revalidate',
     }
@@ -30,9 +44,9 @@ export async function GET(req: NextRequest) {
       { term, projects, publications, patents, trials },
       { headers }
     )
-  } catch (err: unknown) {
-    console.error('[search route] ', err)
-    const message = err instanceof Error ? err.message : 'Unknown error';
+  } catch (err) {
+    console.error('[search route]', err)
+    const message = err instanceof Error ? err.message : 'Unknown error'
     return NextResponse.json({ error: message }, { status: 500 })
   }
 }
