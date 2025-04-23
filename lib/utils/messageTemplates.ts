@@ -2,8 +2,8 @@ import {
   ContactType,
   RecipientType,
 } from '@/components/modals/contact-congress/messages/MessageBody'
-import { ResearchCounts } from '@/types/'
 import { buildResearchLines } from './buildResearchLines'
+import type { ResearchCounts } from '@/types/research'
 
 export type MessageFormValues = {
   repName: string

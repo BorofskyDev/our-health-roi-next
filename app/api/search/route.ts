@@ -3,6 +3,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 
+// -------- DEVELOPMENT‑ONLY SETTINGS ---------------------
+// Uncomment **only** while debugging locally:
+// export const dynamic = 'force-dynamic' // ensures fresh data every hit
+// --------------------------------------------------------
+
+
 export const revalidate = 86400
 
 

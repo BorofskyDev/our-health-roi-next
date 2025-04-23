@@ -1,21 +1,26 @@
-// lib/fetchers/trials.ts
 import { safeFetchJson } from './safeFetchJson'
 
 interface TrialsResponse {
   totalCount?: number
 }
 
-export async function fetchTrials(term: string): Promise<number | null> {
+export type TrialsResult = {
+  total: number | null
+  reporterURL: string | null
+} | null
+
+export async function fetchTrials(term: string): Promise<TrialsResult> {
   const url =
     'https://clinicaltrials.gov/api/v2/studies' +
-    `?query.cond=${encodeURIComponent(term)}&countTotal=true&pageSize=0`
-  
-    // use for testing bad connections
-    // const url =
-    // 'https://clinicaltrials.gov-BAD-API/api/v2/studies' +
-    // `?query.cond=${encodeURIComponent(term)}&countTotal=true&pageSize=0`
+    `?query.cond=${encodeURIComponent(term)}` +
+    '&query.funder_type=NIH&countTotal=true&pageSize=0'
 
   const data = await safeFetchJson<TrialsResponse>(url)
-  return data?.totalCount ?? null
-}
 
+  return {
+    total: data?.totalCount ?? null,
+    reporterURL: `https://clinicaltrials.gov/search?cond=${encodeURIComponent(
+      term
+    )}&funder_type=NIH`,
+  }
+}

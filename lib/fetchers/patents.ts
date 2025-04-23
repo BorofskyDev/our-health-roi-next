@@ -1,24 +1,59 @@
-// lib/fetchers/patents.ts
+// ─────────────────────────────────────────────────────────
+// /lib/fetchers/patents.ts   (NIH RePORTER source)
+// ─────────────────────────────────────────────────────────
 import { safeFetchJson } from './safeFetchJson'
 
-interface PatentsViewResponse {
-  total_patent_count?: number
+const NIH_ICS = [
+  'NCI',
+  'NIAID',
+  'NHLBI',
+  'NINDS',
+  'NIDDK',
+  'NIEHS',
+  'NIA',
+  'NIGMS',
+  'NICHD',
+  'NIMH',
+  'NIDCR',
+  'NIBIB',
+  'NIDA',
+  'NHGRI',
+  'NEI',
+  'NCCIH',
+  'NINR',
+  'NIMHD',
+  'NIDCD',
+  'NLM',
+  'NCATS',
+  'OD',
+]
+
+interface NIHPatentsResponse {
+  meta?: { total?: number; properties?: { URL?: string } }
 }
 
-export async function fetchPatents(term: string): Promise<number | null> {
+export type PatentsResult = {
+  total: number | null
+  reporterURL: string | null
+} | null
+
+export async function fetchPatents(term: string): Promise<PatentsResult> {
   const payload = {
-    q: {
-      _or: [
-        { _text_any: { patent_title: term } },
-        { _text_any: { patent_abstract: term } },
-      ],
+    criteria: {
+      agencies: NIH_ICS,
+      advanced_text_search: {
+        operator: 'and',
+        search_field: 'all',
+        search_text: term,
+      },
     },
-    f: ['patent_number'],
-    o: { per_page: 1 },
+    offset: 0,
+    limit: 0,
+    include_fields: ['PatentNum'],
   }
 
-  const data = await safeFetchJson<PatentsViewResponse>(
-    'https://api.patentsview.org/patents/query',
+  const data = await safeFetchJson<NIHPatentsResponse>(
+    'https://api.reporter.nih.gov/v2/patents/search',
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -26,16 +61,9 @@ export async function fetchPatents(term: string): Promise<number | null> {
     }
   )
 
-  // use for testing bad connections
-
-  //  const data = await safeFetchJson<PatentsViewResponse>(
-  //    'https://api.patentsview.org-BAD-API/patents/query',
-  //    {
-  //      method: 'POST',
-  //      headers: { 'Content-Type': 'application/json' },
-  //      body: JSON.stringify(payload),
-  //    }
-  //  )
-
-  return data?.total_patent_count ?? null
+  if (!data) return null
+  return {
+    total: data.meta?.total ?? null,
+    reporterURL: data.meta?.properties?.URL ?? null,
+  }
 }

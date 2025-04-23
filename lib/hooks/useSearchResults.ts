@@ -3,20 +3,22 @@
 'use client'
 import { useContext } from 'react'
 import { SearchResultsContext } from '@/context/SearchResultsContext'
-import { ResearchCounts } from '@/types'
+import type { ResearchCounts, SearchResults } from '@/types/research'
 
 export const useSearchResults = () => {
   const ctx = useContext(SearchResultsContext)
-  if (!ctx) {
 
-    const noop = (_term: string, _counts: ResearchCounts) => {
-      void _counts; 
-      
+  /* Fallback for server components or outside provider */
+  if (!ctx) {
+    const noop = (_term: string, _r: SearchResults) => {
+      void _term;
+      void _r;
     }
 
     return {
       term: null,
-      counts: null,
+      results: null,
+      counts: null as ResearchCounts | null,
       setResults: noop,
     }
   }
