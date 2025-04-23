@@ -1,16 +1,8 @@
-// ─────────────────────────────────────────────────────────
-// /app/api/search/route.ts
-// ─────────────────────────────────────────────────────────
+// File: /app/api/search/route.ts
 import { NextRequest, NextResponse } from 'next/server'
-import {
-  fetchProjects,
-  fetchPublications,
-  fetchPatents,
-  fetchTrials,
-} from '@/lib/fetchers' 
+import { fetchProjects, fetchPublications, fetchTrials } from '@/lib/fetchers'
 
-export const revalidate = 86400 // 24 h edge cache
-
+export const revalidate = 86400 // 24h cache
 const MAX_TERM_LEN = 80
 
 export async function GET(req: NextRequest) {
@@ -21,16 +13,47 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'Query too long' }, { status: 422 })
 
   try {
-    // fan-out the four NIH calls in parallel
-    const [projects, publications, patents, trials] = await Promise.all([
-      fetchProjects(term),
-      fetchPublications(term),
-      fetchPatents(term),
-      fetchTrials(term),
+    // 1️⃣ Get projects first to obtain search_id
+    const projects = await fetchProjects(term)
+    if (!projects) throw new Error('Failed to fetch NIH projects')
+
+    const { searchId } = projects
+    if (!searchId)
+      throw new Error('No search_id returned - cannot create NIH Reporter URLs')
+
+    // 2️⃣ Build response URLs using the searchId
+    const baseURL = `https://reporter.nih.gov/search/${searchId}`
+    const urls = {
+      projects: `${baseURL}/projects`,
+      publications: `${baseURL}/publications`,
+      trials: `${baseURL}/clinicalStudies`,
+    }
+
+    // 3️⃣ Get counts in parallel using external APIs
+    const [pubCount, trialCount] = await Promise.all([
+      fetchPublications(term), // Use the search term
+      fetchTrials(term), // Use the search term
     ])
 
+    // 4️⃣ Format results to match expected structure
     return NextResponse.json(
-      { term, projects, publications, patents, trials },
+      {
+        term,
+        projects: {
+          total: projects.total,
+          reporterURL: urls.projects,
+        },
+        publications: {
+          total: pubCount,
+          reporterURL: urls.publications,
+        },
+        trials: {
+          total: trialCount,
+          reporterURL: `https://clinicaltrials.gov/search?term=${encodeURIComponent(
+            term
+          )}&funder=1`, // NIH only (funder=1)
+        },
+      },
       { headers: { 'Cache-Control': 's-maxage=86400, stale-while-revalidate' } }
     )
   } catch (err) {

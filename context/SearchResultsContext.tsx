@@ -1,20 +1,15 @@
+// ─────────────────────────────────────────────────────────
+// /context/SearchResultsContext.tsx
+// ─────────────────────────────────────────────────────────
 'use client'
 import { createContext, useState, ReactNode } from 'react'
-import type { SearchResults, ResearchCounts } from '@/types/research'
+import type { ResearchCounts } from '@/types/research'
 
-
-const toCounts = (sr: SearchResults): ResearchCounts => ({
-  projects: sr.projects?.total ?? null,
-  publications: sr.publications?.total ?? null,
-  patents: sr.patents?.total ?? null,
-  trials: sr.trials?.total ?? null,
-})
-
-export type SearchResultsContextType = {
+export interface SearchResultsContextType {
   term: string | null
-  results: SearchResults | null 
-  counts: ResearchCounts | null 
-  setResults: (term: string, results: SearchResults) => void
+  counts: ResearchCounts | null
+  /** called by SearchForm after a successful fetch */
+  setResults: (term: string, counts: ResearchCounts) => void
 }
 
 export const SearchResultsContext = createContext<
@@ -27,19 +22,15 @@ export default function SearchResultsProvider({
   children: ReactNode
 }) {
   const [term, setTerm] = useState<string | null>(null)
-  const [results, setResultsRaw] = useState<SearchResults | null>(null)
   const [counts, setCounts] = useState<ResearchCounts | null>(null)
 
-  const setResults = (newTerm: string, sr: SearchResults) => {
+  const setResults = (newTerm: string, newCounts: ResearchCounts) => {
     setTerm(newTerm)
-    setResultsRaw(sr)
-    setCounts(toCounts(sr))
+    setCounts(newCounts)
   }
 
   return (
-    <SearchResultsContext.Provider
-      value={{ term, results, counts, setResults }}
-    >
+    <SearchResultsContext.Provider value={{ term, counts, setResults }}>
       {children}
     </SearchResultsContext.Provider>
   )

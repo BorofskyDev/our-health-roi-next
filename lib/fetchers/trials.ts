@@ -1,26 +1,43 @@
-import { safeFetchJson } from './safeFetchJson'
+export async function fetchTrials(term: string): Promise<number | null> {
+  try {
+    const classes = ['NIH', 'FED']
+    let total = 0
 
-interface TrialsResponse {
-  totalCount?: number
-}
+    for (const cls of classes) {
+      const adv = encodeURIComponent(`AREA[LeadSponsorClass]${cls}`)
+      const url =
+        'https://clinicaltrials.gov/api/v2/studies' +
+        `?query.term=${encodeURIComponent(term)}` +
+        `&filter.advanced=${adv}` +
+        `&countTotal=true` +
+        `&pageSize=0` +
+        `&format=json`
 
-export type TrialsResult = {
-  total: number | null
-  reporterURL: string | null
-} | null
+      console.log(`[fetchTrials] URL for ${cls} →`, url)
+      const res = await fetch(url, { headers: { Accept: 'application/json' } })
+      console.log(
+        `[fetchTrials] status for ${cls} →`,
+        res.status,
+        res.statusText
+      )
 
-export async function fetchTrials(term: string): Promise<TrialsResult> {
-  const url =
-    'https://clinicaltrials.gov/api/v2/studies' +
-    `?query.cond=${encodeURIComponent(term)}` +
-    '&query.funder_type=NIH&countTotal=true&pageSize=0'
+      const raw = await res.text()
+      console.log(`[fetchTrials] raw body for ${cls} →`, raw)
 
-  const data = await safeFetchJson<TrialsResponse>(url)
+      const json = JSON.parse(raw)
+      console.log(
+        `[fetchTrials] parsed JSON for ${cls} → totalCount:`,
+        json.totalCount
+      )
+      if (typeof json.totalCount !== 'number') return null
 
-  return {
-    total: data?.totalCount ?? null,
-    reporterURL: `https://clinicaltrials.gov/search?cond=${encodeURIComponent(
-      term
-    )}&funder_type=NIH`,
+      total += json.totalCount
+    }
+
+    console.log('[fetchTrials] combined total →', total)
+    return total
+  } catch (err) {
+    console.error('[fetchTrials]', err)
+    return null
   }
 }

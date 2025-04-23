@@ -21,7 +21,6 @@ export const buildResearchLines = (
   return [
     lineFor('research projects', r.projects),
     lineFor('peer-reviewed publications', r.publications),
-    lineFor('patented discoveries', r.patents),
     lineFor('clinical trials', r.trials),
   ]
 }

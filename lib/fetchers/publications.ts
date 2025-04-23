@@ -1,34 +1,26 @@
-// ─────────────────────────────────────────────────────────
-// /lib/fetchers/publications.ts   (PubMed + NIH grant filter)
-// ─────────────────────────────────────────────────────────
+// File: /lib/fetchers/publications.ts
 import { safeFetchJson } from './safeFetchJson'
 
-interface ESearchResponse {
-  esearchresult?: { count?: string }
-}
+type PubMedCount = { esearchresult?: { count: string } }
 
-export type PublicationsResult = {
-  total: number | null
-  reporterURL: string | null
-} | null
+/**
+ * Fetch publication count from PubMed with NIH funding filter
+ * @param term - search term
+ */
+export async function fetchPublications(term: string): Promise<number | null> {
+  try {
+    // Use the NIH funding filter (nih[gr]) to limit to NIH-funded research
+    const nihFilter = encodeURIComponent('nih[gr]')
+    const url =
+      'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi' +
+      `?db=pubmed&retmode=json&rettype=count&term=${encodeURIComponent(
+        term
+      )}+AND+${nihFilter}`
 
-const BASE =
-  'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi' +
-  '?db=pubmed&retmode=json&retmax=0' 
-
-export async function fetchPublications(
-  term: string
-): Promise<PublicationsResult> {
-  const query = `${encodeURIComponent(term)}+AND+nih%5Bgr%5D`
-  const url = `${BASE}&term=${query}`
-
-  const data = await safeFetchJson<ESearchResponse>(url)
-  const total = data?.esearchresult?.count
-    ? Number(data.esearchresult.count)
-    : null
-
-  return {
-    total,
-    reporterURL: `https://pubmed.ncbi.nlm.nih.gov/?term=${query}`,
+    const data = await safeFetchJson<PubMedCount>(url)
+    return data?.esearchresult?.count ? Number(data.esearchresult.count) : null
+  } catch (err) {
+    console.error('[fetchPublications]', err)
+    return null
   }
 }

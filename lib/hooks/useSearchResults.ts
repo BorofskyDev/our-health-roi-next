@@ -1,26 +1,30 @@
-// lib/hooks/useSearchResults.ts
-
+// ─────────────────────────────────────────────────────────
+// /lib/hooks/useSearchResults.ts
+// ─────────────────────────────────────────────────────────
 'use client'
 import { useContext } from 'react'
-import { SearchResultsContext } from '@/context/SearchResultsContext'
-import type { ResearchCounts, SearchResults } from '@/types/research'
+import {
+  SearchResultsContext,
+  SearchResultsContextType,
+} from '@/context/SearchResultsContext'
+import type { ResearchCounts } from '@/types/research'
 
 export const useSearchResults = () => {
   const ctx = useContext(SearchResultsContext)
 
-  /* Fallback for server components or outside provider */
+  // SSR safety / when provider is missing
   if (!ctx) {
-    const noop = (_term: string, _r: SearchResults) => {
+    const noop = (_term: string, _counts: ResearchCounts) => {
       void _term;
-      void _r;
+      void _counts;
     }
-
-    return {
+    const fallback: SearchResultsContextType = {
       term: null,
-      results: null,
-      counts: null as ResearchCounts | null,
+      counts: null,
       setResults: noop,
     }
+    return fallback
   }
+
   return ctx
 }

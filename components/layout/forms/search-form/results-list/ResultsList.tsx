@@ -34,16 +34,6 @@ export const ResultsList = ({ results }: ResultsListProps) => {
         `https://pubmed.ncbi.nlm.nih.gov/?term=${encodeURIComponent(term)}`,
     },
     {
-      id: 'pat',
-      label: 'Patented Discoveries',
-      count: results.patents?.total ?? null,
-      url:
-        results.patents?.reporterURL ??
-        `https://reporter.nih.gov/search/results?patents/text:${encodeURIComponent(
-          term
-        )}`,
-    },
-    {
       id: 'ct',
       label: 'Clinical Studies',
       count: results.trials?.total ?? null,

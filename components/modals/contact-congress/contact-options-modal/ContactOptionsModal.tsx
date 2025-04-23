@@ -16,11 +16,10 @@ export const ContactOptionsModal = () => {
   const { term, counts } = useSearchResults()
 
   const getResearchObject = () => {
-    if (!counts) return { projects: 0, publications: 0, patents: 0, trials: 0 }
+    if (!counts) return { projects: 0, publications: 0, trials: 0 }
     return {
       projects: counts.projects,
       publications: counts.publications,
-      patents: counts.patents,
       trials: counts.trials,
     }
   }

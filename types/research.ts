@@ -11,7 +11,6 @@ export interface SearchResults {
   term: string
   projects: MetricWithLink | null
   publications: MetricWithLink | null
-  patents: MetricWithLink | null
   trials: MetricWithLink | null
 }
 
@@ -21,6 +20,5 @@ export interface SearchResults {
 export type ResearchCounts = {
   projects: number | null
   publications: number | null
-  patents: number | null
   trials: number | null
 }
