@@ -1,32 +1,10 @@
+// ─────────────────────────────────────────────────────────
+// /lib/fetchers/publications.ts   (PubMed + NIH grant filter)
+// ─────────────────────────────────────────────────────────
 import { safeFetchJson } from './safeFetchJson'
 
-const NIH_ICS = [
-  'NCI',
-  'NIAID',
-  'NHLBI',
-  'NINDS',
-  'NIDDK',
-  'NIEHS',
-  'NIA',
-  'NIGMS',
-  'NICHD',
-  'NIMH',
-  'NIDCR',
-  'NIBIB',
-  'NIDA',
-  'NHGRI',
-  'NEI',
-  'NCCIH',
-  'NINR',
-  'NIMHD',
-  'NIDCD',
-  'NLM',
-  'NCATS',
-  'OD', // add/remove as needed
-]
-
-interface NIHPubResponse {
-  meta?: { total?: number; properties?: { URL?: string } }
+interface ESearchResponse {
+  esearchresult?: { count?: string }
 }
 
 export type PublicationsResult = {
@@ -34,35 +12,23 @@ export type PublicationsResult = {
   reporterURL: string | null
 } | null
 
+const BASE =
+  'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi' +
+  '?db=pubmed&retmode=json&retmax=0' 
+
 export async function fetchPublications(
   term: string
 ): Promise<PublicationsResult> {
-  const payload = {
-    criteria: {
-      agencies: NIH_ICS,
-      advanced_text_search: {
-        operator: 'and',
-        search_field: 'all',
-        search_text: term,
-      },
-    },
-    offset: 0,
-    limit: 0,
-    include_fields: ['Pmid'],
-  }
+  const query = `${encodeURIComponent(term)}+AND+nih%5Bgr%5D`
+  const url = `${BASE}&term=${query}`
 
-  const data = await safeFetchJson<NIHPubResponse>(
-    'https://api.reporter.nih.gov/v2/publications/search',
-    {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    }
-  )
+  const data = await safeFetchJson<ESearchResponse>(url)
+  const total = data?.esearchresult?.count
+    ? Number(data.esearchresult.count)
+    : null
 
-  if (!data) return null
   return {
-    total: data.meta?.total ?? null,
-    reporterURL: data.meta?.properties?.URL ?? null,
+    total,
+    reporterURL: `https://pubmed.ncbi.nlm.nih.gov/?term=${query}`,
   }
 }

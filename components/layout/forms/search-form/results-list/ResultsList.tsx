@@ -31,9 +31,7 @@ export const ResultsList = ({ results }: ResultsListProps) => {
       count: results.publications?.total ?? null,
       url:
         results.publications?.reporterURL ??
-        `https://reporter.nih.gov/search/results?publications/text:${encodeURIComponent(
-          term
-        )}`,
+        `https://pubmed.ncbi.nlm.nih.gov/?term=${encodeURIComponent(term)}`,
     },
     {
       id: 'pat',
