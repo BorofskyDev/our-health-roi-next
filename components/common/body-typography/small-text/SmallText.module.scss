@@ -1,0 +1,5 @@
+@use '@/styles/abstracts/mixins' as *;
+
+.smallText {
+    @include small-text(var(--fw-200));
+}
