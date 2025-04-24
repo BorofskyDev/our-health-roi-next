@@ -11,6 +11,7 @@ import { Heading } from '@/components/common/headers/heading/Heading'
 import styles from './SearchForm.module.scss'
 
 import type { SearchResults, ResearchCounts } from '@/types/research' // ← centralised types
+import { SmallText } from '@/components/common/body-typography'
 
 export const SearchForm = () => {
   const [searchTerm, setSearchTerm] = useState('')
@@ -65,6 +66,7 @@ export const SearchForm = () => {
         <Heading as='h3' size='lg' className='center mb-24'>
           Enter a health condition to review NIH research impact
         </Heading>
+        <SmallText className='center'>If a search doesn&apos;t go through, refresh the page and retry the search.</SmallText>
 
         <form className={styles.searchForm} onSubmit={handleSearch}>
           <TextInput

@@ -42,7 +42,7 @@ export const CTASection = () => {
             life of someone close to you, then you need the NIH. Don&apos;t let
             billionaires or politicians slash that lifeline. Email and call your
             U.S. representative and both senators today; share your story, thank
-            them for past support, and urge them to protect and grow NIH
+            them for past support and/or encourage future support, and urge them to protect and grow NIH
             funding. Your personal message can keep the breakthroughs coming.
           </BodyText>
         </div>
