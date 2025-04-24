@@ -71,12 +71,12 @@ export const ResultsList = ({ results }: ResultsListProps) => {
           Discover More News
         </ExternalLink>
       </div>
-      <FlexColContainer className='mb-44'>
-        <SmallText className=' mb-44 center'>
+      <FlexColContainer className='mt-44 mb-44'>
+        <SmallText className='mt-44 mb-44 center'>
           The numbers here represent NIH and Federally Funded research projects
           by the United States government to the best of the APIs&apos; ability.
           Our Health ROI pulls from:
-          <FlexColContainer>
+          <span className='flex-col'>
             <ExternalLink
               className='mt-44 mb-44 center'
               href='https://www.ncbi.nlm.nih.gov/books/NBK25501/'
@@ -92,7 +92,10 @@ export const ResultsList = ({ results }: ResultsListProps) => {
             <ExternalLink className='center' href='https://reporter.nih.gov/'>
               NIH&apos;s API RePORTER
             </ExternalLink>
-          </FlexColContainer>
+
+
+          </span>
+          
         </SmallText>
         <SmallText>
           Our Health ROI uses the nih[gr] to limit searches to NIH-funded and
