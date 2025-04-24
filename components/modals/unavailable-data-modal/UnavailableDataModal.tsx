@@ -1,6 +1,6 @@
-import { ParagraphTitle, PHeader } from '@/components/common/headers'
 import { BodyText } from '@/components/common/body-typography'
 import { CTAButton } from '@/components/common/buttons'
+import { Heading } from '@/components/common/headers/Heading'
 import { FlexColSection } from '@/components/layout/sections'
 
 type Props = {
@@ -10,8 +10,12 @@ type Props = {
 
 export const UnavailableDataModal = ({ metricLabel, close }: Props) => (
   <FlexColSection>
-    <ParagraphTitle>Why is {metricLabel} data missing?</ParagraphTitle>
-    <PHeader>Possible reasons the data isn&apos;t being retrieved</PHeader>
+    <Heading as='h2' size='xl'>
+      Why is {metricLabel} data missing?
+    </Heading>
+    <Heading as='h3' size='sm'>
+      Possible reasons the data isn&apos;t being retrieved
+    </Heading>
     <BodyText>
       <strong>Temporary outages or maintenance</strong> – NIH public servers
       sometimes go offline for scheduled upgrades, high traffic, or the

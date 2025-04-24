@@ -12,12 +12,10 @@ type EmailIconButtonProps = {
 
 export const EmailIconButton = ({
   text,
-  className ,
+  className,
   id,
   onClick,
 }: EmailIconButtonProps) => {
-
-
   return (
     <IconButton
       icon={<EmailIcon />}

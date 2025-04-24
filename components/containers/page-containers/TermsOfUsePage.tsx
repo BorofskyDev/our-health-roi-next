@@ -9,7 +9,7 @@ import { FlexColContainer } from '../layout-container/flex-col-container/FlexCol
 import { AnimatedIcon } from '@/components/icons'
 import { IconContainer } from '../icon-container/IconContainer'
 import { Metadata } from 'next'
-import { Heading } from '@/components/common/headers/heading/Heading'
+import { Heading } from '@/components/common/headers/Heading'
 
 export const metadata: Metadata = {
   title: 'Terms of Use',

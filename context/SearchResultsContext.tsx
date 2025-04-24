@@ -1,14 +1,11 @@
+// ─────────────────────────────────────────────────────────
+// /context/SearchResultsContext.tsx
+// ─────────────────────────────────────────────────────────
 'use client'
-import { ReactNode, createContext, useState } from 'react'
+import { createContext, useState, ReactNode } from 'react'
+import type { ResearchCounts } from '@/types/research'
 
-export type ResearchCounts = {
-  projects: number
-  publications: number
-  patents: number
-  trials: number
-}
-
-export type SearchResultsContextType = {
+export interface SearchResultsContextType {
   term: string | null
   counts: ResearchCounts | null
   /** called by SearchForm after a successful fetch */

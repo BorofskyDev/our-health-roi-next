@@ -1,1 +1,1 @@
-export type {ResearchCounts} from './research'
+export type {SearchResults} from './research'

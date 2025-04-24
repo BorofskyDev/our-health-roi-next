@@ -1,1 +1,7 @@
+@use '@/styles/abstracts/mixins' as *;
+
 .flex { display: flex;}
+
+.flex-col {
+    @include flexColCtr;
+}

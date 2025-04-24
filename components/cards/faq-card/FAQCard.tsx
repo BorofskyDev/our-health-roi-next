@@ -2,7 +2,7 @@
 'use client'
 import React, { useState } from 'react'
 import styles from './FAQCard.module.scss'
-import { Heading } from '@/components/common/headers/heading/Heading'
+import { Heading } from '@/components/common/headers/Heading'
 
 interface FAQCardProps {
   question: string
@@ -39,14 +39,22 @@ const FAQCard: React.FC<FAQCardProps> = ({ question, answer }) => {
       <div className={styles.cardInner}>
         <div className={styles.cardFront}>
           <div className={styles.header}>
-            <Heading as='h2' size='md'>{question}</Heading>
-            <span className={styles.icon} aria-hidden='true'>+</span>
+            <Heading as='h2' size='md'>
+              {question}
+            </Heading>
+            <span className={styles.icon} aria-hidden='true'>
+              +
+            </span>
           </div>
         </div>
         <div className={styles.cardBack} id={cardId}>
           <div className={styles.header}>
-            <Heading as='h2' size='md'>{question}</Heading>
-            <span className={styles.icon} aria-hidden='true'>−</span>
+            <Heading as='h2' size='md'>
+              {question}
+            </Heading>
+            <span className={styles.icon} aria-hidden='true'>
+              −
+            </span>
           </div>
           <p className={styles.answer}>{answer}</p>
         </div>

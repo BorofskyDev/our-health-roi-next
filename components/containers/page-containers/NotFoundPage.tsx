@@ -8,14 +8,18 @@ import { ColToRowContainer } from '../layout-container/col-to-row-container/ColT
 import { FlexColContainer } from '../layout-container/flex-col-container/FlexColContainer'
 import { AnimatedIcon } from '@/components/icons'
 import { IconContainer } from '../icon-container/IconContainer'
-import { Heading } from '@/components/common/headers/heading/Heading'
+import { Heading } from '@/components/common/headers/Heading'
 
 const NotFoundPage = () => {
   return (
     <Page>
       <FlexColSection id='main'>
-        <Heading as='h1' size='2xl' className='mb-44 center'>Page Not Found (404)</Heading>
-        <Heading as='h2' size='md'>What&apos;s a 404 Error?</Heading>
+        <Heading as='h1' size='2xl' className='mb-44 center'>
+          Page Not Found (404)
+        </Heading>
+        <Heading as='h2' size='md'>
+          What&apos;s a 404 Error?
+        </Heading>
         <BodyText className='mb-24'>
           You&apos;ve encountered what&apos;s known as a &quot;404 error&quot; —
           one of the most common messages on the internet. This code is part of

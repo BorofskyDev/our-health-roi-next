@@ -5,9 +5,8 @@
   padding: var(--spacing-8) var(--spacing-16);
   text-transform: capitalize;
   font-weight: var(--fw-700);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: inlin-flex;
+
 
   &:focus-within {
     @include focused;
@@ -15,6 +14,7 @@
 
   &__text {
     position: relative;
+    margin-right: var(--spacing-16);
     stroke: hsl(var(--color-text));
     transform: scale(1);
     transition: all 0.2s ease-in-out;

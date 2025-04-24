@@ -1,5 +1,0 @@
-@use '@/styles/abstracts/mixins' as *;
-
-.paragraphTitle {
-    @include heading-style(4);
-}

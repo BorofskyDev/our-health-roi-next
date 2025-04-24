@@ -1,23 +1,26 @@
-import { ResearchCounts } from '@/types'
+// ─────────────────────────────────────────────────────────
+// /lib/utils/buildResearchLines.ts
+// ─────────────────────────────────────────────────────────
+import type { ResearchCounts } from '@/types/research'
 
-const format = (n: number | string) => Number(n).toLocaleString('en-US')
+const format = (n: number | null) =>
+  n === null ? '—' : n.toLocaleString('en-US')
 
-export function buildResearchLines(
-  research: ResearchCounts,
+export const buildResearchLines = (
+  r: ResearchCounts,
   { tone = 'formal' }: { tone?: 'formal' | 'casual' } = {}
-): string[] {
+): string[] => {
   const fallback = (label: string) =>
     tone === 'formal'
       ? `Public data for ${label} was unavailable when I searched—an omission that deeply concerns me.`
       : `No public numbers for ${label} showed up, and I’d like to know why.`
 
-  const lineFor = (label: string, count: number | null) =>
-    count === null ? fallback(label) : `${format(count)} ${label}`
+  const lineFor = (label: string, n: number | null) =>
+    n === null ? fallback(label) : `${format(n)} ${label}`
 
   return [
-    lineFor('research projects', research.projects),
-    lineFor('peer‑reviewed publications', research.publications),
-    lineFor('patented discoveries', research.patents),
-    lineFor('clinical trials', research.trials),
+    lineFor('research projects', r.projects),
+    lineFor('peer-reviewed publications', r.publications),
+    lineFor('clinical trials', r.trials),
   ]
 }

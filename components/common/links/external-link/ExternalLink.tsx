@@ -29,6 +29,7 @@ export const ExternalLink = ({
       ? ` (${detectedType.toUpperCase()})`
       : ''
   return (
+    
     <a
       href={href}
       target='_blank'

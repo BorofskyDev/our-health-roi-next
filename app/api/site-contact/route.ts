@@ -24,11 +24,9 @@ export async function POST(request: NextRequest) {
     const data = await request.json()
     console.log('Received data:', data)
 
-    // Validate input using Zod
     const validatedData = ContactSchema.parse(data)
     console.log('Validated data:', validatedData)
 
-    // Check if environment variables are set
     if (
       !process.env.SMTP_HOST ||
       !process.env.SMTP_USER ||
@@ -38,7 +36,6 @@ export async function POST(request: NextRequest) {
       throw new Error('Server configuration error')
     }
 
-    // Create transporter
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
       port: parseInt(process.env.SMTP_PORT || '587'),
@@ -52,12 +49,10 @@ export async function POST(request: NextRequest) {
       },
     })
 
-    // Test connection
     console.log('Testing SMTP connection...')
     await transporter.verify()
     console.log('SMTP connection successful')
 
-    // Send email
     await transporter.sendMail({
       from: process.env.SMTP_FROM || 'no-reply@example.com',
       to: 'joelborofskydev@gmail.com',
@@ -88,7 +83,6 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// Add OPTIONS handler for CORS preflight
 export async function OPTIONS() {
   return new NextResponse(null, {
     status: 200,

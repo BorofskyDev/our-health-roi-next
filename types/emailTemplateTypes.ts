@@ -1,9 +1,6 @@
-export type ResearchCounts = {
-  projects: number
-  publications: number
-  patents: number
-  trials: number
-}
+// types/emailTemplateTypes.ts
+
+
 
 export type EmailRepFormValues = {
   repName: string

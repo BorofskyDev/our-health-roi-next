@@ -16,7 +16,6 @@ export const IconButton = ({
   id,
   onClick,
 }: IconButtonProps) => {
-
   return (
     <button
       className={`${styles.iconButton} ${className}`}

@@ -9,7 +9,7 @@ import { CTASection } from '@/components/layout/sections/cta/CTASection'
 import { ColToRowContainer } from '../layout-container/col-to-row-container/ColToRowContainer'
 import { AnimatedIcon } from '@/components/icons'
 import { useSearchResults } from '@/lib/hooks/useSearchResults'
-import { Heading } from '@/components/common/headers/heading/Heading'
+import { Heading } from '@/components/common/headers/Heading'
 
 const SplashPage = () => {
   const searchContext = useSearchResults()
@@ -20,8 +20,12 @@ const SplashPage = () => {
     <Page>
       <ColToRowContainer>
         <FlexColSection id='main'>
-          <Heading as='h1' size='2xl' className='center'>Our Health ROI</Heading>
-          <Heading as='h2' size='sm'>See the return on your tax dollars</Heading>
+          <Heading as='h1' size='2xl' className='center'>
+            Our Health ROI
+          </Heading>
+          <Heading as='h2' size='sm'>
+            See the return on your tax dollars
+          </Heading>
           <AnimatedIcon id='dna' size='25rem' />
         </FlexColSection>
         <SearchForm />

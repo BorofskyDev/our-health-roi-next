@@ -7,6 +7,7 @@ import { Providers } from './providers'
 import { Header } from '@/components/layout/header/Header'
 import { Footer } from '@/components/layout/footer/Footer'
 import SkipToContent from '@/components/accessibility/skip-to-content/SkipToContent'
+import { Analytics } from '@vercel/analytics/next'
 
 const libreFranklin = Libre_Franklin({
   variable: '--font-libre-franklin',
@@ -52,6 +53,7 @@ export default function RootLayout({
           {children}
           <Footer />
         </Providers>
+        <Analytics />
       </body>
     </html>
   )

@@ -26,7 +26,7 @@
   background-color: hsl(var(--color-bg-secondary));
   text-align: left;
   cursor: pointer;
-  
+
   &:focus {
     @include focused;
   }
@@ -37,7 +37,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  
 }
 
 .iconContainer {
@@ -62,7 +61,8 @@
   border-radius: 0.375rem;
   background-color: hsl(var(--color-bg-secondary));
   padding: 0.25rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
   border: var(--border-standard);
 }
 
@@ -81,7 +81,7 @@
   background-color: hsl(var(--color-bg-alt));
   color: hsl(var(--color-text-alt));
   border: var(--border-standard);
-  box-shadow: 0px 4px 8px 0 rgba(0, 0, 0, 0.15)
+  box-shadow: 0px 4px 8px 0 rgba(0, 0, 0, 0.15);
 }
 
 .optionText {

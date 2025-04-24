@@ -3,9 +3,9 @@
 import { Page } from '@/components/layout/page/Page'
 import React from 'react'
 import FAQContainer from '../faq-container/FAQContainer'
-import { PageHeader } from '@/components/common/headers'
 import { FlexColSection } from '@/components/layout/sections'
 import { Metadata } from 'next'
+import { Heading } from '@/components/common/headers/Heading'
 
 export const metadata: Metadata = {
   title: 'Tip',
@@ -30,9 +30,9 @@ export default function FAQPage() {
   return (
     <Page>
       <FlexColSection id='main'>
-        <PageHeader className='mb-44 center'>
+        <Heading as='h1' size='2xl' className='mb-44 center'>
           Frequently Asked Questions
-        </PageHeader>
+        </Heading>
       </FlexColSection>
         <FAQContainer />
     </Page>

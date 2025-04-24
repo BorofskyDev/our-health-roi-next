@@ -15,7 +15,7 @@ import type {
   SiteContactFormData,
 } from '@/lib/utils/sendSiteContactEmail'
 import styles from './SiteContactForm.module.scss'
-import { Heading } from '@/components/common/headers/heading/Heading'
+import { Heading } from '@/components/common/headers/Heading'
 
 const contactCategoryOptions: SelectOption[] = [
   { value: 'MEDIA', label: 'Media Contact / Media Package' },

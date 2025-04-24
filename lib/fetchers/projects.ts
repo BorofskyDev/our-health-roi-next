@@ -1,4 +1,3 @@
-// lib/fetchers/projects.ts
 import { safeFetchJson } from './safeFetchJson'
 
 interface NIHProjectsResponse {
@@ -11,10 +10,12 @@ interface NIHProjectsResponse {
 
 export type ProjectsResult = {
   total: number | null
-  searchId: string | null
   reporterURL: string | null
+  /** used by downstream tab calls */
+  searchId: string | null
 } | null
 
+/** Zero-result query just to get the roll-up total + search_id */
 export async function fetchProjects(term: string): Promise<ProjectsResult> {
   const payload = {
     criteria: {
@@ -25,7 +26,7 @@ export async function fetchProjects(term: string): Promise<ProjectsResult> {
       },
     },
     offset: 0,
-    limit: 1,
+    limit: 0,
     include_fields: ['ProjectNum'],
   }
 
@@ -37,24 +38,12 @@ export async function fetchProjects(term: string): Promise<ProjectsResult> {
       body: JSON.stringify(payload),
     }
   )
-  // use for testing bad connections
-  // const data = await safeFetchJson<NIHProjectsResponse>(
-  //   'https://api.reporter.nih.gov-BAD-API/v2/projects/search',
-  //   {
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify(payload),
-  //   }
-  // )
 
-  if (!data) return null
+  if (!data?.meta) return null
 
   return {
-    total: data.meta?.total ?? null,
-    searchId: data.meta?.search_id ?? null,
-    reporterURL: data.meta?.properties?.URL ?? null,
+    total: data.meta.total ?? null,
+    reporterURL: data.meta.properties?.URL ?? null,
+    searchId: data.meta.search_id ?? null,
   }
 }
-
-
-

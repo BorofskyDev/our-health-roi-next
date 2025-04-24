@@ -11,9 +11,9 @@ import { ContactDetailsModal } from '../contact-details-modal/ContactDetailsModa
 import {
   generateMessagePreview,
 } from '@/lib/utils/messageTemplates'
-import { ResearchCounts } from '@/types/'
 import { ContactType, RecipientType } from '../messages/MessageBody'
 import { CopyIcon, CopiedIcon } from '@/components/icons'
+import type { ResearchCounts } from '@/types/research'
 import styles from './MessagePreviewModal.module.scss'
 
 type Props = {
