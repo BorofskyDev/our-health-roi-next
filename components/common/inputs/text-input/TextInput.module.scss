@@ -2,18 +2,15 @@
 
 .inputGroup {
   @include inputGroup;
- 
 
-  &:hover .hint{
+  &:hover .hint {
     opacity: 1;
     pointer-events: auto;
   }
-
- 
 }
 
 .textInput {
- @include inputArea;
+  @include inputArea;
 }
 
 .hint {

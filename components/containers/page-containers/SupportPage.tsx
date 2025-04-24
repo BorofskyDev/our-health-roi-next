@@ -6,7 +6,7 @@ import { FlexColSection } from '@/components/layout/sections'
 import { ExternalLink, NavLink } from '@/components/common/links'
 import { IconContainer } from '../icon-container/IconContainer'
 import { Metadata } from 'next'
-import { Heading } from '@/components/common/headers/heading/Heading'
+import { Heading } from '@/components/common/headers/Heading'
 
 export const metadata: Metadata = {
   title: 'Support',

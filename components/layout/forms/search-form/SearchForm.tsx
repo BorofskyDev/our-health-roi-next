@@ -7,7 +7,7 @@ import { ResultsList } from './results-list/ResultsList'
 import { CTAButton } from '@/components/common/buttons'
 import { TextInput } from '@/components/common/inputs'
 import { useSearchResults } from '@/lib/hooks/useSearchResults'
-import { Heading } from '@/components/common/headers/heading/Heading'
+import { Heading } from '@/components/common/headers/Heading'
 import styles from './SearchForm.module.scss'
 
 import type { SearchResults, ResearchCounts } from '@/types/research' // ← centralised types
@@ -44,7 +44,6 @@ export const SearchForm = () => {
         trials: data.trials?.total ?? null,
       }
 
-    
       setContextResults(data.term, counts)
       setShowResults(true)
     } catch (err) {
@@ -58,15 +57,16 @@ export const SearchForm = () => {
     }
   }
 
-
   return (
     <>
-
       <FlexColSection id='search'>
         <Heading as='h3' size='lg' className='center mb-24'>
           Enter a health condition to review NIH research impact
         </Heading>
-        <SmallText className='center'>If a search doesn&apos;t go through, refresh the page and retry the search.</SmallText>
+        <SmallText className='center'>
+          If a search doesn&apos;t go through, refresh the page and retry the
+          search.
+        </SmallText>
 
         <form className={styles.searchForm} onSubmit={handleSearch}>
           <TextInput
@@ -96,7 +96,6 @@ export const SearchForm = () => {
         )}
       </FlexColSection>
 
-    
       {showResults && results && <ResultsList results={results} />}
     </>
   )

@@ -9,7 +9,7 @@ import { ColToRowContainer } from '../layout-container/col-to-row-container/ColT
 import { FlexColContainer } from '../layout-container/flex-col-container/FlexColContainer'
 import { AnimatedIcon } from '@/components/icons'
 import { IconContainer } from '../icon-container/IconContainer'
-import { Heading } from '@/components/common/headers/heading/Heading'
+import { Heading } from '@/components/common/headers/Heading'
 import { Metadata } from 'next'
 import photo from '@/public/kjames.webp'
 import Image from 'next/image'
@@ -50,7 +50,6 @@ const AboutPage = () => {
           breakthroughs, and keeps the United States at the forefront of global
           science. Search any condition to see how the NIH and taxpayer-backed
           research has helped you and those you love throughout the years.
-          
         </BodyText>
         <ColToRowContainer>
           <FlexColContainer>

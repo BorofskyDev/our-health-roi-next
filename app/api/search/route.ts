@@ -13,7 +13,6 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'Query too long' }, { status: 422 })
 
   try {
-
     const projects = await fetchProjects(term)
     if (!projects) throw new Error('Failed to fetch NIH projects')
 
@@ -21,7 +20,6 @@ export async function GET(req: NextRequest) {
     if (!searchId)
       throw new Error('No search_id returned - cannot create NIH Reporter URLs')
 
-  
     const baseURL = `https://reporter.nih.gov/search/${searchId}`
     const urls = {
       projects: `${baseURL}/projects`,
@@ -29,12 +27,10 @@ export async function GET(req: NextRequest) {
       trials: `${baseURL}/clinicalStudies`,
     }
 
-  
     const [pubCount, trialCount] = await Promise.all([
-      fetchPublications(term), // Use the search term
-      fetchTrials(term), // Use the search term
+      fetchPublications(term),
+      fetchTrials(term),
     ])
-
 
     return NextResponse.json(
       {
@@ -49,7 +45,7 @@ export async function GET(req: NextRequest) {
         },
         trials: {
           total: trialCount,
-          reporterURL: urls.trials
+          reporterURL: urls.trials,
         },
       },
       { headers: { 'Cache-Control': 's-maxage=86400, stale-while-revalidate' } }

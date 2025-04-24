@@ -9,7 +9,7 @@ import { useContactDetails } from '@/lib/hooks/useContactDetails'
 import { ContactOptionsModal } from '@/components/modals/contact-congress/contact-options-modal/ContactOptionsModal'
 import { FlexColContainer } from '@/components/containers/layout-container/flex-col-container/FlexColContainer'
 import { ColToRowContainer } from '@/components/containers/layout-container/col-to-row-container/ColToRowContainer'
-import { Heading } from '@/components/common/headers/heading/Heading'
+import { Heading } from '@/components/common/headers/Heading'
 import styles from './CTASection.module.scss'
 
 export const CTASection = () => {
@@ -32,7 +32,7 @@ export const CTASection = () => {
 
   return (
     <FlexColSection id='cta'>
-      <ColToRowContainer >
+      <ColToRowContainer>
         <div className='mb-44'>
           <Heading as='h3' size='lg' className='mb-24 center'>
             Take Action
@@ -42,8 +42,9 @@ export const CTASection = () => {
             life of someone close to you, then you need the NIH. Don&apos;t let
             billionaires or politicians slash that lifeline. Email and call your
             U.S. representative and both senators today; share your story, thank
-            them for past support and/or encourage future support, and urge them to protect and grow NIH
-            funding. Your personal message can keep the breakthroughs coming.
+            them for past support and/or encourage future support, and urge them
+            to protect and grow NIH funding. Your personal message can keep the
+            breakthroughs coming.
           </BodyText>
         </div>
         <FlexColContainer>

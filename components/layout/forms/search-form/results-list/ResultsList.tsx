@@ -6,7 +6,7 @@ import type { SearchResults } from '@/types/research'
 import { ExternalLink } from '@/components/common/links'
 import { BodyText, SmallText } from '@/components/common/body-typography'
 import { GridColSection } from '@/components/layout/sections/grid-col-section/GridColSection'
-import { Heading } from '@/components/common/headers/heading/Heading'
+import { Heading } from '@/components/common/headers/Heading'
 import styles from './ResultsList.module.scss'
 import { FlexColContainer } from '@/components/containers/layout-container/flex-col-container/FlexColContainer'
 
@@ -77,23 +77,21 @@ export const ResultsList = ({ results }: ResultsListProps) => {
           by the United States government to the best of the APIs&apos; ability.
           Our Health ROI pulls from:
           <FlexColContainer>
-
-
-          <ExternalLink
-            className='mt-44 mb-44 center'
-            href='https://www.ncbi.nlm.nih.gov/books/NBK25501/'
-          >
-            The National Library of Medicine
-          </ExternalLink>
-          <ExternalLink
-            className='mb-44 center'
-            href='https://clinicaltrials.gov/'
-          >
-            NIH&apos;s Clinical Trials
-          </ExternalLink>
-          <ExternalLink className='center' href='https://reporter.nih.gov/'>
-            NIH&apos;s API RePORTER
-          </ExternalLink>
+            <ExternalLink
+              className='mt-44 mb-44 center'
+              href='https://www.ncbi.nlm.nih.gov/books/NBK25501/'
+            >
+              The National Library of Medicine
+            </ExternalLink>
+            <ExternalLink
+              className='mb-44 center'
+              href='https://clinicaltrials.gov/'
+            >
+              NIH&apos;s Clinical Trials
+            </ExternalLink>
+            <ExternalLink className='center' href='https://reporter.nih.gov/'>
+              NIH&apos;s API RePORTER
+            </ExternalLink>
           </FlexColContainer>
         </SmallText>
         <SmallText>

@@ -16,8 +16,6 @@ export const PhoneIconButton = ({
   id,
   onClick,
 }: PhoneIconButtonProps) => {
-  
-
   return (
     <IconButton
       icon={<PhoneIcon className={styles.icon} />}

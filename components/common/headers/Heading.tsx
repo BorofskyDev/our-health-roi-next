@@ -11,12 +11,6 @@ type HeadingProps<C extends ElementType = 'h2'> = {
   className?: string
 } & React.ComponentPropsWithoutRef<C>
 
-/**
- * One Heading component to rule them all.
- *
- * Example:
- *   <Heading as="h2" size="sm">See my tiny H2</Heading>
- */
 export const Heading = <C extends ElementType = 'h2'>({
   as,
   size = 'md',
