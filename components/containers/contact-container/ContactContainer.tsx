@@ -1,8 +1,8 @@
 import { ExternalLink } from '@/components/common/links'
 import { EmailIconButton, PhoneIconButton } from '@/components/common/buttons'
 import { FlexColSection } from '@/components/layout/sections'
-import { SectionHeading } from '@/components/common/headers'
 import styles from './ContactContainer.module.scss'
+import { Heading } from '@/components/common/headers/Heading'
 
 type ContactButton = {
   /** Visible text, e.g. “Email My Rep” */
@@ -30,7 +30,7 @@ export const ContactContainer = ({
   callButton,
 }: ContactContainerProps) => (
   <FlexColSection id='congressContact'>
-    <SectionHeading className='mb-44 center'>{title}</SectionHeading>
+    <Heading as='h3' size='md' className='mb-44 center'>{title}</Heading>
 
     <ExternalLink href={findLink.href} ariaLabel={findLink.ariaLabel}>
       {findLink.text}
