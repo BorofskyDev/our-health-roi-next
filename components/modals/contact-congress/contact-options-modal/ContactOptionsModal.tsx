@@ -9,7 +9,7 @@ import { ContactDetailsModal } from '../contact-details-modal/ContactDetailsModa
 import { MessagePreviewModal } from '../message-preview-modal/MessagePreviewModal'
 import styles from './ContactOptionsModal.module.scss'
 import { FlexColContainer } from '@/components/containers/layout-container/flex-col-container/FlexColContainer'
-import { ParagraphTitle } from '@/components/common/headers'
+import { Heading } from '@/components/common/headers/Heading'
 
 export const ContactOptionsModal = () => {
   const { openModal } = useModal()
@@ -89,7 +89,7 @@ export const ContactOptionsModal = () => {
 
       <FlexColContainer>
         <div className={styles.section}>
-          <ParagraphTitle className='mb-24 center'>Representative</ParagraphTitle>
+          <Heading as='h4' size='md' className='mb-24 center'>Representative</Heading>
           <div className={styles.buttonGroup}>
             <EmailIconButton
               text='Email Rep'
@@ -107,7 +107,7 @@ export const ContactOptionsModal = () => {
         </div>
 
         <div className={styles.section}>
-          <ParagraphTitle className='mb-24 center'>Senators</ParagraphTitle>
+          <Heading as='h4' size='md' className='mb-24 center'>Senators</Heading>
           <div className={styles.buttonGroup}>
             <EmailIconButton
               text='Email Senators'
