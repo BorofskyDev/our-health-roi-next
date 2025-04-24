@@ -11,6 +11,9 @@ import { AnimatedIcon } from '@/components/icons'
 import { IconContainer } from '../icon-container/IconContainer'
 import { Heading } from '@/components/common/headers/heading/Heading'
 import { Metadata } from 'next'
+import photo from '@/public/kjames.webp'
+import Image from 'next/image'
+import { ImageContainer } from '../image-container/ImageContainer'
 
 export const metadata: Metadata = {
   title: 'About',
@@ -42,13 +45,12 @@ const AboutPage = () => {
           Why This Site?
         </Heading>
         <BodyText className='mb-24'>
-          Our Health ROI is a citizen‑built tool that turns cold NIH funding
-          data into a warm, unmistakable story: public dollars save lives, spark
-          private‑sector breakthroughs, and keep the United States at the
-          forefront of global health science. Search any medical condition, see
-          exactly how much NIH support it has received since 1985, and—within
-          seconds—generate an email or phone script that puts those numbers on
-          your lawmakers&apos; desks.
+          Our Health ROI is a free citizen-built tool that turns NIH funding
+          data into action. Public dollars save lives, spark private-sector
+          breakthroughs, and keeps the United States at the forefront of global
+          science. Search any condition to see how the NIH and taxpayer-backed
+          research has helped you and those you love throughout the years.
+          
         </BodyText>
         <ColToRowContainer>
           <FlexColContainer>
@@ -111,25 +113,23 @@ const AboutPage = () => {
         <ColToRowContainer>
           <FlexColContainer>
             <BodyText>
-              In 2018 a dermatologist told me the dark speck on my head was
-              melanoma. A plastic surgeon, armed with NIH‑funded research, used
-              a then‑new “pinwheel” closure technique that spared me skin grafts
-              and left only a faint swirl of scar tissue. Within weeks I was
-              back at work—grateful, amazed, and suddenly aware of how invisible
-              public science can be when it works perfectly.
+              In the movies, there&apos;s always a hero or group of heros, a
+              single person or group of individuals who overcome all the odds
+              and save the day while the masses flail about. That, however, only
+              happens in the movies. In reality, our salvation has to come from
+              a collective effort, each of us taking our own part. That means
+              listening to each other and paying attention to ideas, even if
+              they seem far-fetched.
             </BodyText>
             <BodyText>
-              While on Bluesky someone quipped,{' '}
-              <em>
-                &quot;Why isn’t there an app that shows how much NIH money went
-                into the disease that saved your life? Throw the stats on a
-                coffee mug and profit.&quote;
-              </em>{' '}
-              My reflex was to reply,
-              <em> Nothing in development is ever easy.</em> Then I discovered
-              the NIH RePORTER API and realized that at least the data‑to‑email
-              part was easy. One caffeine‑fueled week later, the prototype
-              you&apos;re using was launched.
+              <ImageContainer>
+                <Image
+                  src={photo}
+                  alt='Social media post on bluesky by Karen James @kejames.bsky.social. Content: Free Idea, a website where you enter the name of your disease/injury/condition/procedure and get shirts, stickers, signs, etc. with NIH grand number X saved my life.'
+                  height='1260'
+                  width='1960'
+                />
+              </ImageContainer>
             </BodyText>
           </FlexColContainer>
           <IconContainer>
@@ -142,29 +142,25 @@ const AboutPage = () => {
           </IconContainer>
           <FlexColContainer>
             <BodyText>
-              This site isn&apos;t about single‑handedly flipping congressional
-              votes—some lawmakers will ignore a million emails if it suits
-              them. The goal is to change our habits. For most Americans,
-              democracy happens once every four years in a voting booth. Voting
-              is necessary, but it is not sufficient. Sending a data‑backed note
-              to your representatives takes five minutes and reminds
-              everyone—citizens and officials alike—that participation is a
-              daily practice, not a quadrennial chore.
+              <ExternalLink href='https://bsky.app/profile/kejames.bsky.social/post/3lmg3zxmwhk2c'>
+                This post
+              </ExternalLink>
+              sparked the idea for Our Health ROI. While we can&apos;t make
+              t-shirts and signs, we can create form letters to send to your
+              congressional representatives and senators. No single one of us is
+              the hero or the knight riding in to save the day, but what this
+              means is that if we all take action, then each of us are
+              contributing to a heroic movement.
             </BodyText>
             <BodyText className='mb-24'>
               There&apos;s no hidden agenda here. I run no ads, collect no
-              personal data, and the entire codebase is open‑source on GitHub
-              for anyone to audit or improve. If this project nudges you to flex
-              your civic muscles, mission accomplished. If it also helps keep
-              NIH funding off the chopping block, that&apos;s the cherry on top
-              of my tiny pinwheel scar.
+              personal data, and the entire codebase is
+              <ExternalLink href='https://github.com/BorofskyDev/our-health-roi-next'>
+                open-source on GitHub
+              </ExternalLink>
+              for anyone to audit or improve. The whole point is to get you to
+              take action. If only some of us act then all of us are at risk.
             </BodyText>
-            <ExternalLink
-              className='mb-24'
-              href='https://github.com/BorofskyDev/our-health-roi-next'
-            >
-              See the Code For Yourself
-            </ExternalLink>
           </FlexColContainer>
         </ColToRowContainer>
 
@@ -173,9 +169,12 @@ const AboutPage = () => {
         </Heading>
         <BodyText>
           <strong>Search any condition</strong>—from melanoma to rare genetic
-          disorders—and instantly see every NIH‑funded project, publication,
-          patent, and clinical trial since as far back as 1985 (not all searches
-          will go that far back).
+          disorders—and instantly see every NIH‑funded project, publication, and
+          clinical trial since as far back as 1985 (not all searches will go
+          that far back). Our Health ROI numbers might be different than the
+          search results from the site because we apply filters to do our best
+          to narrow down the search to NIH-funded and government-funded
+          programs.
         </BodyText>
         <BodyText className='mb-24'>
           <strong>Generate a ready‑to‑send email or phone script</strong>{' '}
@@ -186,11 +185,12 @@ const AboutPage = () => {
         <BodyText>
           This project is <em>100 % independent</em>. No PAC, no foundation, no
           corporate sponsor—just a concerned citizen and the occasional coffee
-          funded by PayPal tips to keep the servers humming. If you&apos;d like
-          to help with hosting costs, you can {' '}
-        <NavLink href='/support' className='mb-24'>
-          <strong>donate me</strong>
-        </NavLink>
+          funded by PayPal tips to keep everything running. If you&apos;d like
+          to help with hosting costs, you can{' '}
+          <NavLink href='/support' className='mb-24'>
+            <strong>donate to me here</strong>
+          </NavLink>
+          .
         </BodyText>
       </FlexColSection>
     </Page>
